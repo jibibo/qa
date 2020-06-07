@@ -1,32 +1,42 @@
 const router = require('express').Router();
 let UserModel = require('../models/userModel.js');
 
-router.route('/add').post((req, res) => {
+// insert emailExists function to check if duplicate addresses
 
-    const username = req.body.username
-    const password = req.body.password
-    const registered = Date.now()
+// Routes
+
+router.route('/register').post((req, res) => {
+    console.log('ROUTE /user/register...')
 
     const newUser = new UserModel({
-        username,
-        password,
-        registered
+        username: req.body.username,
+        password: req.body.password,
+        registered: Date.now()
     })
 
     newUser.save()
-    .then(() => res.json(`Registered user ${username}`))
-    .catch(err => res.status(400).json('Error: ' + err))
-    
+    .then(() => {
+        console.log(`ROUTE /user/register OK: registered ${username}`)
+        res.status(200).json({result: 'success'})
+    })
+    .catch(e => {
+        console.log(`ROUTE /user/register ERROR: ${e}`)
+        res.status(400).json({result: 'error', error: e})
+    })
 });
 
-router.route('/').get((req, res) => {
-    
+router.route('/search').get((req, res) => {
+    console.log('ROUTE /user/search...')
 
-    UserModel.find({ _id: req.body.id })
-        .then(users => {
-            res.json(users[0])
-        })
-        .catch(err => res.status(400).json('Error: ' + err));
+    UserModel.find({ _id: req.body.id }) // should be more options than just _id
+    .then(users => {
+        console.log(`ROUTE /user/search OK: found ${users.length}`)
+        res.status(200).json(users)
+    })
+    .catch(e => {
+        console.log(`ROUTE /user/search ERROR: ${e}`)
+        res.status(400).json({result: 'error', error: e})
+    });
 });
 
 module.exports = router;

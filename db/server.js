@@ -19,6 +19,7 @@ connection.once('open', () => {
 
 app.use(express.json());
 app.use('/users', require('./routes/userRoute'));
+app.use('/questions', require('./routes/questionRoute'));
 
 app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}`)

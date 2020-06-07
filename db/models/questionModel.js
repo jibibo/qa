@@ -1,13 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-module.exports = mongoose.model('User', new Schema({
+module.exports = mongoose.model('Question', new Schema({
 
-    username: {
+    title: {
         type: String,
         required: true
     },
-    password: {
+    content: {
+        type: String
+    },
+    author: {
         type: String,
         required: true
     }

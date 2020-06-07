@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-let User = require('../models/user.js');
+let User = require('../models/userModel.js');
 
 router.route('/add').post((req, res) => {
     const username = req.body.username

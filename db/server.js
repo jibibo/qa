@@ -20,7 +20,7 @@ connection.once('open', () => {
     console.log('hello');
 });
 
-app.use('/users', require('./routes/user'));
+app.use('/users', require('./routes/userRoute'));
 
 app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}`)

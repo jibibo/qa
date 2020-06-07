@@ -23,9 +23,9 @@ usernameExists = async (username, callback) =>  { // old: usernameExists = async
 
 router.route('/submit').post((req, res) => {
     console.log('ROUTE /question/submit...')
+
     let callback = (exists) => {
         if (exists) {
-            console.log("Whatever")
             const newQuestion = new QuestionModel({
                 title: req.body.title,
                 content: req.body.content,
@@ -49,6 +49,9 @@ router.route('/submit').post((req, res) => {
             res.status(400).json({response: 'error', error: e})
         }
     }
+
+    usernameExists(req.body.author, callback);
+
 });
 
 module.exports = router

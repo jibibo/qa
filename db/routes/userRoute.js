@@ -1,5 +1,4 @@
 const router = require('express').Router();
-
 let User = require('../models/userModel.js');
 
 router.route('/add').post((req, res) => {

@@ -16,7 +16,7 @@ router.route('/register').post((req, res) => {
 
     newUser.save()
     .then(() => {
-        console.log(`ROUTE /user/register OK: registered ${username}`)
+        console.log(`ROUTE /user/register OK: registered ${newUser.username}`)
         res.status(200).json({result: 'success'})
     })
     .catch(e => {

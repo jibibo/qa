@@ -2,20 +2,21 @@ const router = require('express').Router()
 let QuestionModel = require('../models/questionModel')
 let UserModel = require('../models/userModel')
 
-async function usernameExists(username) { // old: usernameExists = async username =>
+usernameExists = async (username, callback) =>  { // old: usernameExists = async username =>
     console.log(`Checking if user ${username} exists...`)
-
-    UserModel.find({ username: user }) // should check sessionToken instead
+    
+    UserModel.find({ username: username }) // should check sessionToken instead
     .then(foundUsers => {
-        if (foundUsers) {
+        console.log(foundUsers)
+        if (foundUsers[0]) {
             console.log(`Username ${username} exists`)
-            return true
-
+            callback(true)
         } else {
             console.log(`Username ${username} doesn't exist`)
-            return false
+            callback(false)
         }
     })
+
 }
 
 // Routes
@@ -23,7 +24,8 @@ async function usernameExists(username) { // old: usernameExists = async usernam
 router.route('/submit').post((req, res) => {
     console.log('ROUTE /question/submit...')
     
-    if (userExists(req.body.author)) {
+    if (usernameExists(req.body.author)) {
+        console.log("Whatever")
         const newQuestion = new QuestionModel({
             title: req.body.title,
             content: req.body.content,

@@ -4,18 +4,25 @@ import './App.css';
 
 function App() {
   
-  
+  let questions = []
 
   axios.get('http://localhost:3000/questions')
-  .then(questions => {
-    console.log(questions)
+  .then(res => {
+    questions = r.data
   })
 
   return (
     <div className="App">
       <header className="App-header">
 
-        <p>Test</p>  
+        <p>Test</p>
+        <ul>
+          {
+          questions.forEach(q => {
+            <li id={q._id}><b>{q.title}</b> by {q.author} (id = {q._id})</li>
+          })
+          }
+        </ul>  
       
       </header>
     </div>

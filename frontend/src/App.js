@@ -3,20 +3,22 @@ import axios from 'axios';
 import './App.css';
 
 function App() {
-  
-  
 
+  const questionsList = []
+  
   axios.get('http://localhost:3000/questions')
   .then(questions => {
-    console.log(questions)
+    questions.data.forEach(question => {
+      console.log(question)
+    })
   })
+  .catch(error => console.log(error))
+
+  
 
   return (
     <div className="App">
       <header className="App-header">
-
-        <p>Test</p>  
-      
       </header>
     </div>
   );

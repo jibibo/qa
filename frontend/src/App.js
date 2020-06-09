@@ -5,11 +5,12 @@ import './App.css';
 function App() {
   
   let questions = []
-
+  
   axios.get('http://localhost:3000/questions')
-  .then(res => {
+  .then(r => {
     questions = r.data
   })
+  .catch(error => console.log(error))
 
   return (
     <div className="App">

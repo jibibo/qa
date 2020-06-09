@@ -1,25 +1,19 @@
 const router = require('express').Router()
 let QuestionModel = require('../models/questionModel')
-let UserModel = require('../models/userModel')
+let { usernameExists } = require('../util')
 
-usernameExists = async (username, callback) =>  { // old: usernameExists = async username =>
-    console.log(`Checking if user ${username} exists...`)
-    
-    UserModel.find({ username: username }) // should check sessionToken instead
-    .then(foundUsers => {
-        console.log(foundUsers)
-        if (foundUsers[0]) {
-            console.log(`Username ${username} exists`)
-            callback(true)
-        } else {
-            console.log(`Username ${username} doesn't exist`)
-            callback(false)
-        }
-    })
-
-}
 
 // Routes
+
+router.route('/').get((req, res) => {
+    QuestionModel.find({  }) 
+    .then(questions => {
+        res.status(200).json(questions)
+    })
+    .catch(e => {
+        res.status(400).json({result: 'error', error: e})
+    })
+});
 
 router.route('/submit').post((req, res) => {
     console.log('ROUTE /question/submit...')

@@ -5,11 +5,11 @@ import QuestionsPanel from "./components/questionsPanel";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <div className="container">
         <p>Test</p>
         <span className="badge badge-primary">ok</span>
         <QuestionsPanel />
-      </header>
+      </div>
     </div>
   );
 }

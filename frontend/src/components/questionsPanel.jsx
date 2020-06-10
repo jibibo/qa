@@ -20,14 +20,18 @@ class QuestionsPanel extends Component {
       .catch((err) => console.log(err));
 
     return (
-      <div className="panel">
+      <div className="questionsPanel">
         <h2>Questions:</h2>
         <ul>
           {this.state.questions.map((question) => {
             return (
-              <li key={question._id}>
-                {question.title} by {question.author}
-              </li>
+              <div key={question._id} className="row">
+                <div className="col-lg-3">
+                  <div className="panel panel-sm">pct%</div>
+                </div>
+                <div className="col-lg-6 align">{question.title}</div>
+                <div className="col-lg-3">{question.author}</div>
+              </div>
             );
           })}
         </ul>

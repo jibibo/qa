@@ -2,7 +2,13 @@
 
 ### https://trello.com/b/2ZRWn9gv
 
-npm 
+## HOW START
+
+CMD
+RUN
+
+# ok
+
 quick lookup website for questions you want answered quickly
 asdfsdf
 gsdf\

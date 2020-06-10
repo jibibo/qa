@@ -1,6 +1,6 @@
 import React from "react";
 
-import QuestionsPanel from "./components/questionsPanel";
+import QuestionsPanel from "./components/QuestionsPanel";
 
 function App() {
   return (

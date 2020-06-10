@@ -6,38 +6,37 @@ import axios from "axios";
 class App extends Component {
   state = {
     questions: [],
-    search: ''
+    search: "",
   };
 
   fetchQuestions = () => {
     axios
       .get("http://localhost:3000/question/")
-      .then(r => {
+      .then((r) => {
         this.setState({
           questions: r.data,
         });
       })
       .catch((err) => console.log(err));
-  }
+  };
 
   componentDidMount() {
-    this.fetchQuestions()
+    this.fetchQuestions();
   }
 
-  handleChange = (event) => { 
-    
-    this.setState({ search: event.target.value })
-    console.log(this.state.search)
+  handleChange = (event) => {
+    this.setState({ search: event.target.value });
+    console.log(this.state.search);
     axios
       .get(`http://localhost:3000/question/search/`, {
         params: {
-          title: this.state.search
-        }
+          title: this.state.search,
+        },
       })
-      .then(r => {
-        this.setState({questions: r.data});
-      })
-  }
+      .then((r) => {
+        this.setState({ questions: r.data });
+      });
+  };
 
   render() {
     return (
@@ -64,9 +63,7 @@ class App extends Component {
               </div>
             </div>
             <div className="row">
-              {this.state.questions.map(question => {
-                return <QuestionsPanel key={question._id} questions={question}/>
-              })}
+              <QuestionsPanel />
             </div>
           </div>
         </div>

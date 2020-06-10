@@ -1,20 +1,24 @@
 import React, { Component } from "react";
 
-
+import axios from "axios";
 
 class QuestionsPanel extends Component {
   state = {
-    
+    questions: [],
   };
 
- 
-
-  updateQuestions = (query) => {
-
+  componentDidMount() {
+    axios
+      .get("http://localhost:3000/question")
+      .then((r) => {
+        this.setState({
+          questions: r.data,
+        });
+      })
+      .catch((err) => console.log(err));
   }
 
   render() {
-    const questions = this.props.questions;
     return (
       <div class="col-md-12">
         <h2>Questions:</h2>

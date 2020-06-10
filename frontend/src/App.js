@@ -3,7 +3,6 @@ import React from "react";
 import QuestionsPanel from "./components/questionsPanel";
 
 function App() {
-
   return (
     <div className="App">
       <header className="App-header">

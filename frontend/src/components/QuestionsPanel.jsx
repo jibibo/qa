@@ -11,7 +11,7 @@ class QuestionsPanel extends Component {
   };
 
   componentDidMount() {
-    this.fetchQuestions();
+    this.fetchQuestions(); // doesnt return ALL questions??
   }
 
   handleChange = (event) => {

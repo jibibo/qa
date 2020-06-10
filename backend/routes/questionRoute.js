@@ -7,13 +7,28 @@ let { usernameExists } = require("../util");
 router.route("/").get((req, res) => {
   console.log("ROUTE /question/...");
 
-  QuestionModel.find({})
+  QuestionModel.find({  })
+  
     .then((questions) => {
       console.log(`ROUTE /question/ OK`);
       res.status(200).json(questions);
     })
     .catch((err) => {
       console.log(`ROUTE /question/ ERR: ${err}`);
+      res.status(400).json({ result: "err", err: err });
+    });
+});
+
+router.route("/search:title").get((req, res) => {
+  console.log("ROUTE /question/search...");
+  console.log(req.params)
+  QuestionModel.find({ title: req.params.query }) // should be more options than just _id
+    .then((questions) => {
+      console.log(`ROUTE /question/search OK: found ${questions}`);
+      res.status(200).json(questions);
+    })
+    .catch((err) => {
+      console.log(`ROUTE /user/search ERR: ${err}`);
       res.status(400).json({ result: "err", err: err });
     });
 });

@@ -5,21 +5,21 @@ let { usernameExists } = require("../util");
 // Routes
 
 router.route("/").get((req, res) => {
-  console.log("ROUTE /question/...");
+  console.log("ROUTE /questions/...");
 
   QuestionModel.find({})
     .then((questions) => {
-      console.log(`ROUTE /question/ OK`);
+      console.log(`ROUTE /questions/ OK`);
       res.status(200).json(questions);
     })
     .catch((err) => {
-      console.log(`ROUTE /question/ ERR: ${err}`);
+      console.log(`ROUTE /questions/ ERR: ${err}`);
       res.status(400).json({ result: "err", err: err });
     });
 });
 
 router.route("/submit").post((req, res) => {
-  console.log("ROUTE /question/submit...");
+  console.log("ROUTE /questions/submit...");
 
   let callback = (exists) => {
     if (exists) {
@@ -32,17 +32,17 @@ router.route("/submit").post((req, res) => {
       newQuestion
         .save()
         .then(() => {
-          console.log(`ROUTE /question/submit OK: submitted ${req.body.title}`);
+          console.log(`ROUTE /questions/submit OK: submitted ${req.body.title}`);
           res.status(200).json({ response: "success" });
         })
         .catch((err) => {
-          console.log(`ROUTE /user/register ERR: ${err}`);
+          console.log(`ROUTE /users/register ERR: ${err}`);
           res.status(400).json({ response: "err", err: err });
         });
     } else {
       let err = "User not found";
 
-      console.log(`ROUTE /user/register err: ${err}`);
+      console.log(`ROUTE /users/register err: ${err}`);
       res.status(400).json({ response: "err", err: err });
     }
   };

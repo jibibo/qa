@@ -7,7 +7,7 @@ class QuestionsPanel extends Component {
     questions: [],
   };
 
-  render() {
+  componentDidMount() {
     axios
       .get("http://localhost:3000/questions")
       .then((r) => {
@@ -16,9 +16,13 @@ class QuestionsPanel extends Component {
         });
       })
       .catch((err) => console.log(err));
+  }
+
+  render() {
+    
 
     return (
-      <div className="questionsPanel">
+      <div className="QuestionsPanel">
         <h2>Questions:</h2>
         <ul>
           {this.state.questions.map((question) => {
@@ -27,7 +31,7 @@ class QuestionsPanel extends Component {
                 <div className="col-lg-3">
                   <div className="panel panel-sm">pct%</div>
                 </div>
-                <div className="col-lg-6 align">{question.title}</div>
+                <div className="col-lg-6 align-left">{question.title}</div>
                 <div className="col-lg-3">{question.author}</div>
               </div>
             );

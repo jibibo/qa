@@ -13,7 +13,7 @@ class App extends Component {
           </div>
           <div className="jumbotron">
             <div className="row">
-              <div className="col-lg-11 col-md-10">
+              <div className="col-lg-10 col-md-10">
                 <form>
                   <input
                     type="text"
@@ -23,8 +23,8 @@ class App extends Component {
                   />
                 </form>
               </div>
-              <div className="col-lg-1 col-md-2">
-                <btn className="btn btn-primary">Search</btn>
+              <div className="col-lg-2 col-md-2 fill">
+                <div className="btn btn-lg btn-primary">Search</div>
               </div>
             </div>
             <div className="row">

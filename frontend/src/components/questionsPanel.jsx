@@ -20,17 +20,33 @@ class QuestionsPanel extends Component {
 
   render() {
     return (
-      <div className="QuestionsPanel">
+      <div class="col-md-12">
         <h2>Questions:</h2>
         <ul>
           {this.state.questions.map((question) => {
             return (
-              <div key={question._id} className="row">
-                <div className="col-lg-3">
-                  <div className="panel panel-sm">pct%</div>
+              <div key={question._id} className="col-md-6">
+                <div className="row">
+                  <div className="col-md-3">
+                    <h3>{question.title}</h3>
+                  </div>
+                  <div className="col-md-3">0 answers</div>
                 </div>
-                <div className="col-lg-6 align-left">{question.title}</div>
-                <div className="col-lg-3">{question.author}</div>
+                <div className="row">
+                  <div className="col-md-3">
+                    <div className="btn-group btn-group-lg">
+                      <button type="button" className="btn btn-warning">
+                        ☆
+                      </button>
+                      <button type="button" className="btn btn-danger">
+                        ok
+                      </button>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    by <b>{question.author}</b>
+                  </div>
+                </div>
               </div>
             );
           })}

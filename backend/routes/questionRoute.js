@@ -19,10 +19,10 @@ router.route("/").get((req, res) => {
     });
 });
 
-router.route("/search:title").get((req, res) => {
+router.route("/search").get((req, res) => {
   console.log("ROUTE /question/search...");
-  console.log(req.params)
-  QuestionModel.find({ title: req.params.query }) // should be more options than just _id
+  
+  QuestionModel.find({ title: req.query.title }) // should be more options than just _id
     .then((questions) => {
       console.log(`ROUTE /question/search OK: found ${questions}`);
       res.status(200).json(questions);

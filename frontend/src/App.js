@@ -27,10 +27,11 @@ class App extends Component {
   handleChange = (event) => { 
     
     this.setState({ search: event.target.value })
+    console.log(this.state.search)
     axios
-      .get(`http://localhost:3000/question/search`, {
+      .get(`http://localhost:3000/question/search/`, {
         params: {
-          query: this.state.search
+          title: this.state.search
         }
       })
       .then(r => {

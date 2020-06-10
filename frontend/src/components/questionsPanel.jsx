@@ -19,8 +19,6 @@ class QuestionsPanel extends Component {
   }
 
   render() {
-    
-
     return (
       <div className="QuestionsPanel">
         <h2>Questions:</h2>

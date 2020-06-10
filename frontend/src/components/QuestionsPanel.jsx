@@ -20,12 +20,8 @@ class QuestionsPanel extends Component {
   };
 
   fetchQuestions = (searchValue) => {
-    let title = { title: searchValue } ? searchValue : {};
-
     axios
-      .get(`http://localhost:3000/question/fetch`, {
-        params: title,
-      })
+      .get(`http://localhost:3000/question/fetch?title=${searchValue}`, {})
       .then((r) => {
         this.setState({ questions: r.data });
       });

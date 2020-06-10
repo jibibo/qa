@@ -24,11 +24,6 @@ router.route("/fetch").get((req, res) => {
 
   let params = {};
 
-  console.log(req);
-
-  console.log(req.query);
-
-  console.log(req.query.title);
 
   if (req.query.title) {
     params = { title: req.query.title };

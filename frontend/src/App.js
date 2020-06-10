@@ -13,15 +13,19 @@ class App extends Component {
           </div>
           <div className="jumbotron">
             <div className="row">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  name="search"
-                  placeholder="Search questions..."
-                />
+              <div className="col-lg-11 col-md-10">
+                <form>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="question"
+                    placeholder="Search questions..."
+                  />
+                </form>
               </div>
-              <btn class="btn btn-primary">Search</btn>
+              <div className="col-lg-1 col-md-2">
+                <btn className="btn btn-primary">Search</btn>
+              </div>
             </div>
             <div className="row">
               <QuestionsPanel />

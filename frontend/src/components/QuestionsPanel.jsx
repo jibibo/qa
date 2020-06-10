@@ -11,25 +11,20 @@ class QuestionsPanel extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get("http://localhost:3000/question")
-      .then((r) => {
-        this.setState({
-          questions: r.data,
-        });
-      })
-      .catch((err) => console.log(err));
+    this.fetchQuestions();
   }
 
   handleChange = (event) => {
-    console.log(event);
-    console.log(event.target.value);
     this.setState({ searchValue: event.target.value });
+    this.fetchQuestions(event.target.value);
+  };
+
+  fetchQuestions = (searchValue) => {
+    let title = { title: searchValue } ? searchValue : {};
+
     axios
-      .get(`http://localhost:3000/question/search`, {
-        params: {
-          title: event.target.value,
-        },
+      .get(`http://localhost:3000/question/fetch`, {
+        params: title,
       })
       .then((r) => {
         this.setState({ questions: r.data });
@@ -44,27 +39,29 @@ class QuestionsPanel extends Component {
   render() {
     return (
       <div className="col-md-12">
-        <div className="row">
-          <div className="col-lg-10 col-md-10">
-            <form onSubmit={this.handleSubmit}>
+        {this.props.showSearchBar ? (
+          <div className="row">
+            <div className="col-lg-10 col-md-10">
+              <form onSubmit={this.handleSubmit}>
+                <input
+                  type="text"
+                  name="question"
+                  className="form-control"
+                  onChange={this.handleChange}
+                  value={this.state.searchValue}
+                  placeholder="Search questions..."
+                />
+              </form>
+            </div>
+            <div className="col-lg-2 col-md-2">
               <input
-                type="text"
-                name="question"
-                className="form-control"
-                onChange={this.handleChange}
-                value={this.state.searchValue}
-                placeholder="Search questions..."
+                type="submit"
+                value="Search"
+                className="btn btn-lg btn-primary"
               />
-            </form>
+            </div>
           </div>
-          <div className="col-lg-2 col-md-2">
-            <input
-              type="submit"
-              value="Search"
-              className="btn btn-lg btn-primary"
-            />
-          </div>
-        </div>
+        ) : null}
 
         <div className="row">
           <h2>Questions:</h2>

@@ -12,7 +12,7 @@ class App extends Component {
           </div>
           <div className="jumbotron">
             <div className="row">
-              <QuestionsPanel />
+              <QuestionsPanel showSearchBar={true} />
             </div>
           </div>
         </div>

@@ -2,33 +2,45 @@ const router = require("express").Router();
 let QuestionModel = require("../models/QuestionModel");
 let { usernameExists } = require("../util");
 
-// Routes
+// // Routes
 
-router.route("/").get((req, res) => {
-  console.log("ROUTE /question/...");
+// router.route("/").get((req, res) => {
+//   console.log("ROUTE /question/...");
 
-  QuestionModel.find({  })
-  
+//   QuestionModel.find({})
+
+//     .then((questions) => {
+//       console.log(`ROUTE /question/ OK`);
+//       res.status(200).json(questions);
+//     })
+//     .catch((err) => {
+//       console.log(`ROUTE /question/ ERR: ${err}`);
+//       res.status(400).json({ result: "err", err: err });
+//     });
+// });
+
+router.route("/fetch").get((req, res) => {
+  console.log("ROUTE /question/fetch...");
+
+  let params = {};
+
+  console.log(req);
+
+  console.log(req.query);
+
+  console.log(req.query.title);
+
+  if (req.query.title) {
+    params = { title: req.query.title };
+  }
+
+  QuestionModel.find(params) // should be more options than just _id
     .then((questions) => {
-      console.log(`ROUTE /question/ OK`);
+      console.log(`ROUTE /question/fetch OK: found ${questions}`);
       res.status(200).json(questions);
     })
     .catch((err) => {
-      console.log(`ROUTE /question/ ERR: ${err}`);
-      res.status(400).json({ result: "err", err: err });
-    });
-});
-
-router.route("/search").get((req, res) => {
-  console.log("ROUTE /question/search...");
-  
-  QuestionModel.find({ title: req.query.title }) // should be more options than just _id
-    .then((questions) => {
-      console.log(`ROUTE /question/search OK: found ${questions}`);
-      res.status(200).json(questions);
-    })
-    .catch((err) => {
-      console.log(`ROUTE /user/search ERR: ${err}`);
+      console.log(`ROUTE /question/fetch ERR: ${err}`);
       res.status(400).json({ result: "err", err: err });
     });
 });

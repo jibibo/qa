@@ -48,8 +48,8 @@ class App extends Component {
           </div>
           <div className="jumbotron">
             <div className="row">
-              <div className="col-lg-11 col-md-10">
-                <form onSubmit={e => { e.preventDefault(); }}>>
+              <div className="col-lg-10 col-md-10">
+                <form>
                   <input
                     type="text"
                     className="form-control"
@@ -59,7 +59,9 @@ class App extends Component {
                   />
                 </form>
               </div>
-              
+              <div className="col-lg-2 col-md-2 fill">
+                <div className="btn btn-lg btn-primary">Search</div>
+              </div>
             </div>
             <div className="row">
               {this.state.questions.map(question => {

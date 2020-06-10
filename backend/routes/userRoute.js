@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let UserModel = require("../models/userModel.js");
+let UserModel = require("../models/UserModel.js");
 
 // insert emailExists function to check if duplicate addresses
 
@@ -21,7 +21,7 @@ router.route("/register").post((req, res) => {
       res.status(200).json({ result: "success" });
     })
     .catch((err) => {
-      console.log(`ROUTE /users/register ERROR: ${err}`);
+      console.log(`ROUTE /users/register ERR: ${err}`);
       res.status(400).json({ result: "err", err: err });
     });
 });
@@ -35,7 +35,7 @@ router.route("/search").get((req, res) => {
       res.status(200).json(users);
     })
     .catch((err) => {
-      console.log(`ROUTE /users/search err: ${err}`);
+      console.log(`ROUTE /users/search ERR: ${err}`);
       res.status(400).json({ result: "err", err: err });
     });
 });

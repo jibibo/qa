@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let QuestionModel = require("../models/questionModel");
+let QuestionModel = require("../models/QuestionModel");
 let { usernameExists } = require("../util");
 
 // Routes
@@ -32,7 +32,9 @@ router.route("/submit").post((req, res) => {
       newQuestion
         .save()
         .then(() => {
-          console.log(`ROUTE /questions/submit OK: submitted ${req.body.title}`);
+          console.log(
+            `ROUTE /questions/submit OK: submitted ${req.body.title}`
+          );
           res.status(200).json({ response: "success" });
         })
         .catch((err) => {
@@ -42,7 +44,7 @@ router.route("/submit").post((req, res) => {
     } else {
       let err = "User not found";
 
-      console.log(`ROUTE /users/register err: ${err}`);
+      console.log(`ROUTE /users/register ERR: ${err}`);
       res.status(400).json({ response: "err", err: err });
     }
   };

@@ -14,14 +14,13 @@ mongoose.connect(process.env.URI, {
   useCreateIndex: true,
 });
 
-const connection = mongoose.connection;
-connection.once("open", () => {
+mongoose.connection.once("open", () => {
   console.log("MongoDB connection established");
 });
 
 app.use(express.json());
 app.use("/users", require("./routes/userRoute"));
-app.use("/questions", require("./routes/questionRoute"));
+app.use("/questions", require("./routes/QuestionRoute"));
 
 app.listen(port, () => {
   console.log(`Backend ready on port ${port}`);

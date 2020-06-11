@@ -32,10 +32,10 @@ class QuestionsPanel extends Component {
       });
   };
 
-  handleSubmit(event) {
-    console.log("Submitted: " + this.state.value);
+  handleSubmit = (event) => {
+    console.log("Submitted: " + this.state.searchValue);
     event.preventDefault();
-  }
+  };
 
   render() {
     return (
@@ -43,7 +43,7 @@ class QuestionsPanel extends Component {
         {this.props.showSearchBar ? (
           <div className="row">
             <div className="col-lg-10 col-md-10">
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={this.handleSubmit} autoComplete="off">
                 <input
                   type="text"
                   name="question"
@@ -65,7 +65,7 @@ class QuestionsPanel extends Component {
         ) : null}
 
         <div className="row">
-          <h2>Questions:</h2>
+          <h2>{this.state.searchValue ? "Search results:" : "Questions:"}</h2>
         </div>
         <div className="row">
           {this.state.questions.map((question) => {

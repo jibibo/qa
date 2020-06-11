@@ -20,10 +20,7 @@
     "start": "set PORT=80 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "client": "npm start",
-    "server": "cd ../backend && node server",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

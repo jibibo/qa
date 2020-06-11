@@ -22,14 +22,16 @@ let { usernameExists } = require("../util");
 router.route("/fetch").get((req, res) => {
   let params;
 
-  if (req.query[0] === undefined) params = {};
-  else
+  if (req.query[0] === undefined) {
+    params = {};
+  } else {
     params = {
       title: {
         $regex: req.query[0],
         $options: "i",
       },
     };
+  }
 
   QuestionModel.find(params) // should be more options than just _id
     .then((questions) => {

@@ -4,28 +4,13 @@ let { usernameExists } = require("../util");
 
 // // Routes
 
-// router.route("/").get((req, res) => {
-//   console.log("ROUTE /question/...");
+router.route("/search").get((req, res) => {
+  console.log("ROUTE /question/search...");
 
-//   QuestionModel.find({})
+  let params = {};
 
-//     .then((questions) => {
-//       console.log(`ROUTE /question/ OK`);
-//       res.status(200).json(questions);
-//     })
-//     .catch((err) => {
-//       console.log(`ROUTE /question/ ERR: ${err}`);
-//       res.status(400).json({ result: "err", err: err });
-//     });
-// });
-
-router.route("/fetch").get((req, res) => {
-  let params;
-
-  if (req.query[0] === undefined) {
-    params = {};
-  } else {
-    params = {
+  if (req.query[0] !== undefined) {
+    arams = {
       title: {
         $regex: req.query[0],
         $options: "i",
@@ -33,13 +18,17 @@ router.route("/fetch").get((req, res) => {
     };
   }
 
-  QuestionModel.find(params) // should be more options than just _id
+  console.log(`ROUTE /question/search: querying: ${req.query[0]}`);
+
+  QuestionModel.find(params)
     .then((questions) => {
-      console.log(`ROUTE /question/fetch OK: found `);
+      console.log(
+        `ROUTE /question/search OK: found ${questions.length} matches`
+      );
       res.status(200).json(questions);
     })
     .catch((err) => {
-      console.log(`ROUTE /question/fetch ERR: ${err}`);
+      console.log(`ROUTE /question/search ERR: ${err}`);
       res.status(400).json({ result: "err", err: err });
     });
 });

@@ -24,7 +24,7 @@ class QuestionsPanel extends Component {
   fetchQuestions = (searchValue) => {
     console.log(searchValue);
     axios
-      .get(`http://localhost:3000/question/fetch`, {
+      .get(`http://localhost:3000/question/search`, {
         params: searchValue,
       })
       .then((r) => {

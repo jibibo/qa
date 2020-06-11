@@ -102,7 +102,9 @@ class Navbar extends Component {
     return (
       <>
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-          <a className="navbar-brand">QA</a>
+          <a className="navbar-brand" href="/">
+            QA
+          </a>
           <button
             type="button"
             className="btn btn-outline-info ml-auto"

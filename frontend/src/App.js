@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import QuestionsPanel from "./components/QuestionsPanel";
+import QuestionAdd from "./components/QuestionAdd";
 import Navbar from "./components/Navbar";
 
 class App extends Component {
@@ -13,6 +14,8 @@ class App extends Component {
           </div>
           <div className="jumbotron">
             <div className="row">
+              <QuestionAdd />
+              <br />
               <QuestionsPanel showSearchBar={true} />
             </div>
           </div>

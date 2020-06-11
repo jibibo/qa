@@ -33,7 +33,7 @@ class QuestionsPanel extends Component {
   };
 
   handleSubmit = (event) => {
-    console.log("Submitted: " + this.state.searchValue);
+    console.log("Submitted search: " + this.state.searchValue);
     event.preventDefault();
   };
 

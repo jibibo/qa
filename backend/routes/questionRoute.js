@@ -10,7 +10,7 @@ router.route("/search").get((req, res) => {
   let params = {};
 
   if (req.query[0] !== undefined) {
-    arams = {
+    params = {
       title: {
         $regex: req.query[0],
         $options: "i",

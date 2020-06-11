@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 class QuestionSearch extends Component {
-  // moved to questions panel
   state = {
     searchValue: "",
   };
@@ -21,7 +20,7 @@ class QuestionSearch extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-lg-10 col-md-10">
+        <div className="col-md-10">
           <form onSubmit={this.handleSubmit} autoComplete="off">
             <input
               type="text"
@@ -33,11 +32,11 @@ class QuestionSearch extends Component {
             />
           </form>
         </div>
-        <div className="col-lg-2 col-md-2">
+        <div className="col-md-2">
           <input
             type="submit"
             value="Search"
-            className="btn btn-lg btn-primary"
+            className="btn btn-md btn-primary"
           />
         </div>
       </div>

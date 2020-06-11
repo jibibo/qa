@@ -27,13 +27,11 @@ class QuestionsPanel extends Component {
 
   render() {
     return (
-      <div className="QuestionsPanel">
+      <div id="QuestionsPanel">
         {this.props.showSearchBar ? (
           <QuestionSearch fetchQuestions={this.fetchQuestions} />
         ) : null}
-        <div className="row">
-          <h2>{this.state.searchValue ? "Search results:" : "Questions:"}</h2>
-        </div>
+        <br />
         <div className="row">
           {this.state.questions.map((question) => {
             return <Question key={question._id} question={question} />;

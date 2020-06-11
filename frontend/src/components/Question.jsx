@@ -7,12 +7,12 @@ class Question extends Component {
     const question = this.props.question;
 
     return (
-      <div className="Question col-md-6">
+      <div id="Question" className="col-md-4">
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-10">
             <h3>{question.title}</h3>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-2">
             <div className="btn-group btn-group-sm float-right">
               <button
                 type="button"

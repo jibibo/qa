@@ -10,26 +10,48 @@ class QuestionAdd extends Component {
 
   render() {
     return (
-      <div className="QuestionAdd">
+      <div id="QuestionAdd" className="col-md-12">
         <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            className="form-control"
-            name="title"
-            placeholder="Title"
-          />
-          <input
-            type="text"
-            className="form-control"
-            name="content"
-            placeholder="Content"
-          />
-          <input
-            type="text"
-            className="form-control"
-            name="topics"
-            placeholder="Topic 1, topic 2"
-          />
+          <div className="row">
+            <input
+              type="text"
+              className="form-control"
+              name="title"
+              placeholder="Title*"
+            />
+          </div>
+          <div className="row">
+            <input
+              type="text"
+              className="form-control"
+              name="author"
+              placeholder="Author*"
+            />
+          </div>
+          <div className="row">
+            <input
+              type="text"
+              className="form-control"
+              name="content"
+              placeholder="Content"
+            />
+          </div>
+          <div className="row">
+            <input
+              type="text"
+              className="form-control"
+              name="topics"
+              placeholder="Topic 1, topic 2"
+            />
+          </div>
+          <div className="row">
+            <input
+              type="submit"
+              value="Submit question"
+              className="btn btn-md btn-primary"
+            />
+            <p>* required</p>
+          </div>
         </form>
       </div>
     );

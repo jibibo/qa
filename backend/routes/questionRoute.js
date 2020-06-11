@@ -20,17 +20,20 @@ let { usernameExists } = require("../util");
 // });
 
 router.route("/fetch").get((req, res) => {
-  console.log("ROUTE /question/fetch...");
+  let params;
 
-  let params = {};
-
-  if (req.query.title != "") {
-    params = { title: req.query.title };
-  }
+  if (req.query[0] === undefined) params = {};
+  else
+    params = {
+      title: {
+        $regex: req.query[0],
+        $options: "i",
+      },
+    };
 
   QuestionModel.find(params) // should be more options than just _id
     .then((questions) => {
-      console.log(`ROUTE /question/fetch OK: found ${questions}`);
+      console.log(`ROUTE /question/fetch OK: found `);
       res.status(200).json(questions);
     })
     .catch((err) => {

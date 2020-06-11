@@ -11,17 +11,22 @@ class QuestionsPanel extends Component {
   };
 
   componentDidMount() {
-    this.fetchQuestions(); // doesnt return ALL questions??
+    this.fetchQuestions();
   }
 
   handleChange = (event) => {
-    this.setState({ searchValue: event.target.value });
-    this.fetchQuestions(event.target.value);
+    this.setState(
+      { searchValue: event.target.value },
+      this.fetchQuestions(event.target.value)
+    );
   };
 
   fetchQuestions = (searchValue) => {
+    console.log(searchValue);
     axios
-      .get(`http://localhost:3000/question/fetch?title=${searchValue}`, {})
+      .get(`http://localhost:3000/question/fetch`, {
+        params: searchValue,
+      })
       .then((r) => {
         this.setState({ questions: r.data });
       });

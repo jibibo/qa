@@ -7,28 +7,39 @@ class Question extends Component {
     const question = this.props.question;
 
     return (
-      <div className="col-md-6">
+      <div className="Question col-md-6">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-6">
             <h3>{question.title}</h3>
           </div>
-          <div className="col-md-3">
-            <div className="btn-group btn-group-lg">
-              <button type="button" className="btn btn-warning">
+          <div className="col-md-6">
+            <div className="btn-group btn-group-sm float-right">
+              <button
+                type="button"
+                className="btn btn-warning"
+                style={{ fontSize: 20, padding: 0 }}
+              >
                 ☆
               </button>
-              <button type="button" className="btn btn-danger">
+              <button
+                type="button"
+                className="btn btn-danger"
+                style={{ fontSize: 10, padding: 0 }}
+              >
                 ok
               </button>
             </div>
           </div>
         </div>
         <div className="row">
-          <div className="col-md-3">0 answers</div>
-          <div className="col-md-3">
-            by <b>{question.author}</b>
+          <div className="col-md-6">0 answers</div>
+          <div className="col-md-6">
+            <div className="float-right">
+              by <b>{question.author}</b>
+            </div>
           </div>
         </div>
+        <br />
       </div>
     );
   }

@@ -10,9 +10,26 @@ class QuestionAdd extends Component {
 
   render() {
     return (
-      <div className="QuestionAdd col-md-6">
+      <div className="QuestionAdd">
         <form onSubmit={this.handleSubmit}>
-          <div className="col-md-3"></div>
+          <input
+            type="text"
+            className="form-control"
+            name="title"
+            placeholder="Title"
+          />
+          <input
+            type="text"
+            className="form-control"
+            name="content"
+            placeholder="Content"
+          />
+          <input
+            type="text"
+            className="form-control"
+            name="topics"
+            placeholder="Topic 1, topic 2"
+          />
         </form>
       </div>
     );

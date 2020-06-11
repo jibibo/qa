@@ -39,10 +39,10 @@ class QuestionsPanel extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
+      <div className="QuestionsPanel">
         {this.props.showSearchBar ? (
           <div className="row">
-            <div className="col-lg-10 col-md-10">
+            <div className="col-md-10">
               <form onSubmit={this.handleSubmit} autoComplete="off">
                 <input
                   type="text"
@@ -54,7 +54,7 @@ class QuestionsPanel extends Component {
                 />
               </form>
             </div>
-            <div className="col-lg-2 col-md-2">
+            <div className="col-md-2">
               <input
                 type="submit"
                 value="Search"
@@ -64,9 +64,8 @@ class QuestionsPanel extends Component {
           </div>
         ) : null}
 
-        <div className="row">
-          <h2>{this.state.searchValue ? "Search results:" : "Questions:"}</h2>
-        </div>
+        <h2>{this.state.searchValue ? "Search results:" : "Questions:"}</h2>
+
         <div className="row">
           {this.state.questions.map((question) => {
             return <Question key={question._id} question={question} />;

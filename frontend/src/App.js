@@ -13,10 +13,11 @@ class App extends Component {
             <Navbar />
           </div>
           <div className="jumbotron">
-            <div className="row">
-              <QuestionAdd />
-              <br />
+            <div className="col-md-8">
               <QuestionsPanel showSearchBar={true} />
+            </div>
+            <div className="col-md-4">
+              <QuestionAdd />
             </div>
           </div>
         </div>

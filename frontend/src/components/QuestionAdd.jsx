@@ -14,20 +14,20 @@ class QuestionAdd extends Component {
   };
 
   onUpdate = (e) => {
-    if (e.target.name === "tag") {
-      if (e.key === " ") {
-        var tags = this.state.tags.concat(e.target.value);
-        this.setState({ tags: tags });
-        console.log(this.state.tags);
-        e.target.value = null;
-        e.preventDefault();
-      } else {
-        this.setState({ [e.target.name]: e.target.value });
-        console.log(e.target.name, e.target.value);
-      }
+    if (e.target.name === "tag" && e.key === " ") {
+      var tags = this.state.tags.concat([e.target.value]);
+      this.updateList(tags);
+      e.target.value = null;
+      e.preventDefault();
     } else {
+      console.log(e.target.name, e.target.value);
       this.setState({ [e.target.name]: e.target.value });
     }
+  };
+
+  updateList = (tags) => {
+    this.setState({ tags: tags });
+    console.log(tags);
   };
 
   render() {
@@ -56,7 +56,7 @@ class QuestionAdd extends Component {
           </div>
           <div className="form-group">
             <div className="bg-success rounded p-5 mx-10">
-              topic placeholder
+              {this.state.tags}
             </div>
           </div>
 

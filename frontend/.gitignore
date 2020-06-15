@@ -11,3 +11,5 @@
 
 # misc
 .env
+frontend.bat
+backend.bat

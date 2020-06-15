@@ -10,9 +10,10 @@ class QuestionsPanel extends Component {
     questions: [],
   };
 
-  componentDidMount() {
-    this.fetchQuestions();
-  }
+  //
+  // componentDidMount() { // on window load
+  //   this.fetchQuestions();
+  // }
 
   fetchQuestions = (searchValue) => {
     axios
@@ -31,7 +32,7 @@ class QuestionsPanel extends Component {
           <QuestionSearch fetchQuestions={this.fetchQuestions} />
         ) : null}
         <br />
-        <div className="row">
+        <div className="card-columns">
           {this.state.questions.map((question) => {
             return <Question key={question._id} question={question} />;
           })}

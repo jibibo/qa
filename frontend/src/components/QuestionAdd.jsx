@@ -55,9 +55,16 @@ class QuestionAdd extends Component {
             />
           </div>
           <div className="form-group">
-            <div className="bg-success rounded p-5 mx-10">
-              {this.state.tags}
-            </div>
+            {this.state.tags.map((tag) => {
+              return (
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary rounded-pill m-1"
+                >
+                  {tag} <span aria-hidden="true">&times;</span>
+                </button>
+              );
+            })}
           </div>
 
           <div className="form-group">
@@ -65,14 +72,14 @@ class QuestionAdd extends Component {
               type="text"
               className="form-control"
               name="tag"
-              placeholder="topic 1 topic 2"
+              placeholder="Tags (space to add)"
               onKeyPress={this.onUpdate}
             />
           </div>
           <div className="form-group">
             <input
               type="submit"
-              value="Submit question"
+              value="Submit Question"
               className="btn btn-md btn-primary"
             />
           </div>

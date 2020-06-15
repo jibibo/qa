@@ -26,7 +26,7 @@ class QuestionsPanel extends Component {
 
   render() {
     return (
-      <div id="QuestionsPanel">
+      <div id="QuestionsPanel" className="col-md-12">
         {this.props.showSearchBar ? (
           <QuestionSearch fetchQuestions={this.fetchQuestions} />
         ) : null}

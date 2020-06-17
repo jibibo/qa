@@ -18,16 +18,12 @@ class QuestionAdd extends Component {
       title: this.state.titleValue,
       content: this.state.contentValue,
       tags: this.state.addedTags,
-      sessionToken: null, // set to sessionToken in cookies
+      sessionToken: "deeznutsXD", // set to sessionToken in cookies
     };
 
-    axios
-      .post(`http://localhost:3000/question/add`, {
-        params,
-      })
-      .then((r) => {
-        console.log(`Added question! ${r}`);
-      });
+    axios.post(`http://localhost:3000/question/add`, params).then((r) => {
+      console.log(`Added question! ${r}`);
+    });
 
     event.preventDefault();
   };

@@ -18,7 +18,7 @@ router.route("/search").get((req, res) => {
     };
   }
 
-  console.log(`ROUTE:INFO /question/search: searching, params: ${params}`);
+  console.log(`ROUTE:INFO /question/search: searching, params:sa ${params}`);
 
   QuestionModel.find(params)
     .then((questions) => {
@@ -37,7 +37,7 @@ router.route("/add").post((req, res) => {
   console.log("ROUTE:START /question/add");
 
   sessionTokenValid(req.body.sessionToken, (foundUser) => {
-    console.log(req.json + req.body.json);
+    console.log(req.body);
     if (foundUser) {
       const newQuestion = new QuestionModel({
         title: req.body.title,

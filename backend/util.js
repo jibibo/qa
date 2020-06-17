@@ -6,7 +6,7 @@ sessionTokenValid = async (sessionToken, callback) => {
 
   UserModel.find({ sessionToken: sessionToken }).then((foundUsers) => {
     console.log(`UTIL Users matched: ${foundUsers}`);
-    
+
     // possible bug: different users with identical session tokens will break this
     if (foundUsers[0]) {
       console.log(`UTIL Session token ${sessionToken} is valid`);

@@ -6,7 +6,9 @@ class Question extends Component {
 
     return (
       <div id="Question" className="card">
-        <div className="card-header bg-success">0 answers</div>
+        <div className="card-header bg-info">
+          <b>0 answers</b>
+        </div>
         <div className="card-body">
           <h4 className="card-title">{question.title}</h4>
           <p className="card-text">{question.content}</p>

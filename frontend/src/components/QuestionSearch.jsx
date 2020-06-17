@@ -17,9 +17,9 @@ class QuestionSearch extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-md-10">
-          <form onSubmit={this.handleSubmit} autoComplete="off">
+      <div className="">
+        <form onSubmit={this.handleSubmit} autoComplete="off">
+          <div className="input-group">
             <input
               type="text"
               name="question"
@@ -28,11 +28,13 @@ class QuestionSearch extends Component {
               value={this.state.searchValue}
               placeholder="Search questions..."
             />
-          </form>
-        </div>
-        <div className="col-md-2">
-          <input type="submit" value="Search" className="btn btn-primary" />
-        </div>
+            <span className="input-group-append">
+              <button className="btn btn-primary" type="button">
+                Search
+              </button>
+            </span>
+          </div>
+        </form>
       </div>
     );
   }

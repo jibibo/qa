@@ -10,10 +10,12 @@ In cmd: "FRONTEND" or "BACKEND"
 
 # node_modules required for frontend and backend to run:
 
-- frontend:
+frontend:
 
-  - ?
-  - ?
+- ?
 
-- backend:
-  - ?
+backend:
+
+- mongoose
+- express
+- uuid

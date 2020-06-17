@@ -5,7 +5,7 @@ import axios from "axios";
 class QuestionAdd extends Component {
   state = {
     titleValue: "",
-    contentValue: "",
+    descriptionValue: "",
     addedTags: [],
     duplicateTag: "",
     hideDuplicateAlert: true,
@@ -17,7 +17,7 @@ class QuestionAdd extends Component {
 
     const params = {
       title: this.state.titleValue,
-      content: this.state.contentValue,
+      description: this.state.descriptionValue,
       tags: this.state.addedTags,
       sessionToken: "deeznutsXD", // set to sessionToken in cookies
     };
@@ -26,7 +26,7 @@ class QuestionAdd extends Component {
       console.log(r.data);
       this.setState({
         titleValue: "",
-        contentValue: "",
+        descriptionValue: "",
         addedTags: [],
         duplicateTag: "",
         hideDuplicateAlert: true,
@@ -53,6 +53,7 @@ class QuestionAdd extends Component {
         });
 
         console.log(`Showing duplicate alert for tag ${event.target.value}`);
+
       } else if (event.target.value) {
         // not duplicate and tag is not empty, add to list
 
@@ -69,10 +70,12 @@ class QuestionAdd extends Component {
       // empty the add tag input
       event.target.value = null;
       event.preventDefault();
+
     } else {
       console.log(
-        `Set ${event.target.name + "Value "} to ${event.target.value}`
+        `Set ${event.target.name + "Value"} to ${event.target.value}`
       );
+
       this.setState({ [event.target.name + "Value"]: event.target.value });
     }
   };
@@ -104,9 +107,9 @@ class QuestionAdd extends Component {
           <div className="form-group">
             <textarea
               className="form-control"
-              name="content"
-              value={this.state.contentValue}
-              placeholder="Content"
+              name="description"
+              value={this.state.descriptionValue}
+              placeholder="Description"
               rows="2"
               onChange={this.handleStateUpdate}
             />

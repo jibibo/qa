@@ -46,17 +46,28 @@ class Question extends Component {
     return (
       <div
         id="Question"
-        className={this.state.hovered ? "card shadow-lg" : "card"}
+        className={this.state.hovered ? "card mt-2 shadow" : "card mt-2"}
         style={{ cursor: "pointer" }}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
-        <div className="card-header bg-info">
-          <b>0</b> answers
+        <div className="card-header">
+          <b>0</b> answers{" "}
+          {/* clicking here should open card and scroll down to answers list*/}
+          <span
+            className="float-right"
+            style={
+              dateColor(question.createdDate)
+                ? { color: "green" }
+                : { color: "red" }
+            }
+          >
+            {formatDate(question.createdDate)}
+          </span>
         </div>
         <div className="card-body">
           <h4 className="card-title">{question.title}</h4>
-          <pre className="card-text">{question.content}</pre>
+          <p className="textInheritAll card-text">{question.description}</p>
           <div className="mb-1">
             {question.tags.map((tag) => {
               return (
@@ -72,7 +83,7 @@ class Question extends Component {
           </div>
           <div className="btn-group btn-group-sm">
             <button type="button" className="btn btn-primary">
-              {/* opens the question and instantly goes to answer textarea*/}
+              {/* opens the question and instantly puts cursor in answer textarea*/}
               Answer!
             </button>
             <button type="button" className="btn btn-light">
@@ -92,16 +103,6 @@ class Question extends Component {
           <a href="/" className="text-decoration-none text-dark">
             <b>{question.author}</b>
           </a>
-          <small
-            className="float-right"
-            style={
-              dateColor(question.createdDate)
-                ? { color: "green" }
-                : { color: "red" }
-            }
-          >
-            {formatDate(question.createdDate)}
-          </small>
         </div>
       </div>
     );

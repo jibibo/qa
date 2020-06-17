@@ -1,17 +1,35 @@
 import React, { Component } from "react";
 
 class Question extends Component {
+  state = {
+    hovered: false,
+  };
+
+  handleMouseEnter = (event) => {
+    this.setState({ hovered: true });
+  };
+
+  handleMouseLeave = (event) => {
+    this.setState({ hovered: false });
+  };
+
   render() {
     const question = this.props.question;
 
     return (
-      <div id="Question" className="card">
+      <div
+        id="Question"
+        className={this.state.hovered ? "card shadow-lg" : "card"}
+        style={{ cursor: "pointer" }}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+      >
         <div className="card-header bg-info">
           <b>0</b> answers
         </div>
         <div className="card-body">
           <h4 className="card-title">{question.title}</h4>
-          <p className="card-text clearfix">{question.content}</p>
+          <pre className="card-text">{question.content}</pre>
           <div className="mb-1">
             {question.tags.map((tag) => {
               return (
@@ -27,10 +45,8 @@ class Question extends Component {
           </div>
           <div className="btn-group btn-group-sm">
             <button type="button" className="btn btn-primary">
+              {/* opens the question and instantly goes to answer textarea*/}
               Answer!
-            </button>
-            <button type="button" className="btn btn-secondary">
-              View all
             </button>
             <button type="button" className="btn btn-light">
               {/* more options button (report, fav etc) */}

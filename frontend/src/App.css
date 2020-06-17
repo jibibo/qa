@@ -6,3 +6,11 @@ body {
   color: white;
   text-align: center;
 }
+
+pre {
+  font-size: inherit;
+  color: inherit;
+  border: initial;
+  padding: initial;
+  font-family: inherit;
+}

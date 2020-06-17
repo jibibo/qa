@@ -13,6 +13,7 @@ module.exports = mongoose.model(
     },
     answers: {
       type: Array,
+      required: true,
     },
     tags: {
       type: Array,

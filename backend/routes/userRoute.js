@@ -9,7 +9,6 @@ router.route("/register").post((req, res) => {
   const newUser = new UserModel({
     username: req.body.username,
     password: req.body.password,
-    registered: Date.now(),
   });
 
   console.log("ROUTE:INFO /user/register: created new UserModel");

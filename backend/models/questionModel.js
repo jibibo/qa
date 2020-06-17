@@ -8,19 +8,25 @@ module.exports = mongoose.model(
       type: String,
       required: true,
     },
-    content: {
+    description: {
       type: String,
     },
     tags: {
       type: Array,
     },
-    author: {
+    authorId: {
       type: String,
       required: true,
+    },
+    answerIds: {
+      type: Array,
     },
     createdDate: {
       type: Date,
       default: Date.now(),
     },
+    editedDate: {
+      type: Date,
+    }
   })
 );

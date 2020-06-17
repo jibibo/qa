@@ -41,9 +41,9 @@ router.route("/add").post((req, res) => {
     if (foundUser) {
       const newQuestion = new QuestionModel({
         title: req.body.title,
-        content: req.body.content,
+        description: req.body.description,
         tags: req.body.tags,
-        author: foundUser.username,
+        authorId: foundUser._id,
       });
 
       console.log("ROUTE:INFO /question/add: created new QuestionModel");

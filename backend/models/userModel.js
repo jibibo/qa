@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+import { v4 as uuidv4 } from "uuid";
+
 module.exports = mongoose.model(
   "User",
   new Schema({
@@ -8,12 +10,35 @@ module.exports = mongoose.model(
       type: String,
       required: true,
     },
+    email: {
+      type: String,
+    },
     password: {
       type: String,
       required: true,
     },
+    verified: {
+      type: Boolean,
+      default: false,
+    },
+    moderator: {
+      type: Boolean,
+      default: false,
+    },
+    followerIds: {
+      type: Array,
+    },
+    followingIds: {
+      type: Array,
+    },
+    registeredDate: {
+      type: Date,
+      default: Date.now(),
+    },
     sessionToken: {
+      // should support multiple session tokens (atleast, somehow handle multiple devices)
       type: String,
+      default: uuidv4(),
     },
   })
 );

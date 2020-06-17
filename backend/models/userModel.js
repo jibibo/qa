@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
-import { v4 as uuidv4 } from "uuid";
+const uuid = require("uuid");
 
 module.exports = mongoose.model(
   "User",
@@ -38,7 +37,7 @@ module.exports = mongoose.model(
     sessionToken: {
       // should support multiple session tokens (atleast, somehow handle multiple devices)
       type: String,
-      default: uuidv4(),
+      default: uuid.v4(),
     },
   })
 );

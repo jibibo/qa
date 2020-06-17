@@ -1,22 +1,23 @@
 let UserModel = require("./models/UserModel.js");
 let QuestionModel = require("./models/QuestionModel");
 
-usernameExists = async (username, callback) => {
-  // should check sessionToken instead
-  console.log(`Checking if user ${username} exists...`);
+sessionTokenValid = async (sessionToken, callback) => {
+  console.log(`UTIL Checking if session token ${sessionToken} is valid...`);
 
-  UserModel.find({ username: username }).then((foundUsers) => {
-    console.log(foundUsers);
+  UserModel.find({ sessionToken: sessionToken }).then((foundUsers) => {
+    console.log(`UTIL Users matched: ${foundUsers}`);
+    
+    // possible bug: different users with identical session tokens will break this
     if (foundUsers[0]) {
-      console.log(`Username ${username} exists`);
-      callback(true);
+      console.log(`UTIL Session token ${sessionToken} is valid`);
+      callback(foundUsers[0]);
     } else {
-      console.log(`Username ${username} doesn't exist`);
-      callback(false);
+      console.log(`UTIL Session token ${sessionToken} is not valid`);
+      callback(null);
     }
   });
 };
 
 module.exports = {
-  usernameExists,
+  sessionTokenValid,
 };

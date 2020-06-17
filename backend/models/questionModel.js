@@ -11,6 +11,9 @@ module.exports = mongoose.model(
     content: {
       type: String,
     },
+    tags: {
+      type: Array,
+    },
     author: {
       type: String,
       required: true,

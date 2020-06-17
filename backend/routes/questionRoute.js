@@ -1,13 +1,13 @@
 const router = require("express").Router();
 let QuestionModel = require("../models/QuestionModel");
-let { usernameExists } = require("../util");
+let { sessionTokenValid } = require("../util");
 
 // // Routes
 
 router.route("/search").get((req, res) => {
-  console.log("ROUTE START /question/search");
+  console.log("ROUTE:START /question/search");
 
-  let params = {};
+  var params = {};
 
   if (req.query[0] !== undefined) {
     params = {
@@ -18,53 +18,53 @@ router.route("/search").get((req, res) => {
     };
   }
 
-  console.log(`ROUTE INFO /question/search: querying: ${req.query[0]}`);
+  console.log(`ROUTE:INFO /question/search: searching, params: ${params}`);
 
   QuestionModel.find(params)
     .then((questions) => {
       console.log(
-        `ROUTE OK /question/search: found ${questions.length} matches`
+        `ROUTE:OK /question/search: found ${questions.length} matches`
       );
       res.status(200).json(questions);
     })
     .catch((err) => {
-      console.log(`ROUTE ERR/question/search: ${err}`);
+      console.log(`ROUTE:ERR /question/search: ${err}`);
       res.status(400).json({ result: "err", err: err });
     });
 });
 
-router.route("/submit").post((req, res) => {
-  console.log("ROUTE START /question/submit");
+router.route("/add").post((req, res) => {
+  console.log("ROUTE:START /question/add");
 
-  let callback = (exists) => {
-    if (exists) {
+  sessionTokenValid(req.body.sessionToken, (foundUser) => {
+    console.log(req.json + req.body.json);
+    if (foundUser) {
       const newQuestion = new QuestionModel({
         title: req.body.title,
         content: req.body.content,
-        author: req.body.author,
+        tags: req.body.tags,
+        author: foundUser.username,
       });
 
-      console.log("ROUTE INFO /question/submit: created new QuestionModel");
+      console.log("ROUTE:INFO /question/add: created new QuestionModel");
 
       newQuestion
         .save()
         .then(() => {
-          console.log(`ROUTE OK /question/submit: submitted ${req.body.title}`);
+          console.log(`ROUTE:OK /question/add: added ${req.body.title}`);
           res.status(200).json({ response: "success" });
         })
         .catch((err) => {
-          console.log(`ROUTE ERR /question/submit: ${err}`);
+          console.log(`ROUTE:ERR /question/add: ${err}`);
           res.status(400).json({ response: "err", err: err });
         });
     } else {
-      let err = "User not found";
+      let err = "Invalid session token";
 
-      console.log(`ROUTE ERR /question/submit: ${err}`);
+      console.log(`ROUTE:ERR /question/add: ${err}`);
       res.status(400).json({ response: "err", err: err });
     }
-  };
-
-  usernameExists(req.body.author, callback);
+  });
 });
 
 module.exports = router;

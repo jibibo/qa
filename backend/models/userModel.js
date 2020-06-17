@@ -12,5 +12,8 @@ module.exports = mongoose.model(
       type: String,
       required: true,
     },
+    sessionToken: {
+      type: String,
+    },
   })
 );

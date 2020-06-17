@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
 class Question extends Component {
-  state = {};
-
   render() {
     const question = this.props.question;
 
@@ -36,7 +34,7 @@ class Question extends Component {
           <a href="/" className="text-decoration-none text-dark">
             <b>{question.author}</b>
           </a>
-          <span class="float-right">15 juni 2020</span>
+          <span className="float-right">15 juni 2020</span>
         </div>
       </div>
     );

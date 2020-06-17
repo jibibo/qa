@@ -6,14 +6,12 @@ class QuestionSearch extends Component {
   };
 
   handleChange = (event) => {
-    this.setState(
-      { searchValue: event.target.value },
-      this.props.fetchQuestions(event.target.value)
-    );
+    this.setState({ searchValue: event.target.value });
+    this.props.searchQuestions(event.target.value);
   };
 
   handleSubmit = (event) => {
-    console.log("Submitted: " + this.state.searchValue);
+    console.log(`Submitted search for ${this.state.searchValue}`);
     event.preventDefault();
   };
 
@@ -33,11 +31,7 @@ class QuestionSearch extends Component {
           </form>
         </div>
         <div className="col-md-2">
-          <input
-            type="submit"
-            value="Search"
-            className="btn btn-md btn-primary"
-          />
+          <input type="submit" value="Search" className="btn btn-primary" />
         </div>
       </div>
     );

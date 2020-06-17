@@ -15,7 +15,7 @@ class QuestionsPanel extends Component {
   //   this.fetchQuestions();
   // }
 
-  fetchQuestions = (searchValue) => {
+  searchQuestions = (searchValue) => {
     axios
       .get(`http://localhost:3000/question/search`, {
         params: searchValue,
@@ -29,7 +29,7 @@ class QuestionsPanel extends Component {
     return (
       <div id="QuestionsPanel" className="col-md-12">
         {this.props.showSearchBar ? (
-          <QuestionSearch fetchQuestions={this.fetchQuestions} />
+          <QuestionSearch searchQuestions={this.searchQuestions} />
         ) : null}
         <br />
         <div className="card-columns">

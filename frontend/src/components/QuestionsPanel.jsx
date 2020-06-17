@@ -10,10 +10,10 @@ class QuestionsPanel extends Component {
     questions: [],
   };
 
-  //
-  // componentDidMount() { // on window load
-  //   this.fetchQuestions();
-  // }
+  componentDidMount() {
+    // on window load
+    this.searchQuestions();
+  }
 
   searchQuestions = (searchValue) => {
     axios

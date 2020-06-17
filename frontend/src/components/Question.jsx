@@ -7,11 +7,24 @@ class Question extends Component {
     return (
       <div id="Question" className="card">
         <div className="card-header bg-info">
-          <b>0 answers</b>
+          <b>0</b> answers
         </div>
         <div className="card-body">
           <h4 className="card-title">{question.title}</h4>
-          <p className="card-text">{question.content}</p>
+          <p className="card-text clearfix">{question.content}</p>
+          <div className="mb-1">
+            {question.tags.map((tag) => {
+              return (
+                <a
+                  href="/"
+                  key={tag}
+                  className="badge badge-info badge-secondary m-1"
+                >
+                  {tag}
+                </a>
+              );
+            })}
+          </div>
           <div className="btn-group btn-group-sm">
             <button type="button" className="btn btn-primary">
               Answer!

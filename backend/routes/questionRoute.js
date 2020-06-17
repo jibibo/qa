@@ -52,7 +52,7 @@ router.route("/add").post((req, res) => {
         .save()
         .then(() => {
           console.log(`ROUTE:OK /question/add: added ${req.body.title}`);
-          res.status(200).json({ response: "success" });
+          res.status(200).json({ response: "success", title: req.body.title });
         })
         .catch((err) => {
           console.log(`ROUTE:ERR /question/add: ${err}`);

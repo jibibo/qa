@@ -9,6 +9,7 @@ class QuestionAdd extends Component {
     addedTags: [],
     duplicateTag: "",
     hideDuplicateAlert: true,
+    hideAddedAlert: true,
   };
 
   handleSubmit = (event) => {
@@ -22,6 +23,17 @@ class QuestionAdd extends Component {
     };
 
     axios.post(`http://localhost:3000/question/add`, params).then((r) => {
+      console.log(r.data);
+      this.setState({
+        titleValue: "",
+        contentValue: "",
+        addedTags: [],
+        duplicateTag: "",
+        hideDuplicateAlert: true,
+        addedTag: r.data.title,
+        hideAddedAlert: false,
+      });
+
       console.log(`Added question! ${r}`);
     });
 
@@ -90,12 +102,12 @@ class QuestionAdd extends Component {
             />
           </div>
           <div className="form-group">
-            <input
-              type="text"
+            <textarea
               className="form-control"
               name="content"
               value={this.state.contentValue}
               placeholder="Content"
+              rows="2"
               onChange={this.handleStateUpdate}
             />
           </div>
@@ -114,6 +126,12 @@ class QuestionAdd extends Component {
             })}
           </div>
           <div
+            className="alert alert-success"
+            hidden={this.state.hideAddedAlert}
+          >
+            Successfully submitted question <b>{this.state.addedTag}</b>!
+          </div>
+          <div
             className="alert alert-danger"
             hidden={this.state.hideDuplicateAlert}
           >
@@ -130,9 +148,10 @@ class QuestionAdd extends Component {
           </div>
           <div className="form-group">
             <input
+              disabled={this.state.titleValue ? false : true}
               type="submit"
               className="btn btn-primary"
-              value="Submit Question"
+              value="Ask!"
             />
           </div>
         </form>

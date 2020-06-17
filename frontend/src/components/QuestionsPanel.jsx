@@ -12,8 +12,12 @@ class QuestionsPanel extends Component {
 
   componentDidMount() {
     // on window load
-    this.searchQuestions();
+    this.refreshQuestions();
   }
+
+  refreshQuestions = () => {
+    this.searchQuestions();
+  };
 
   searchQuestions = (searchValue) => {
     axios
@@ -29,7 +33,10 @@ class QuestionsPanel extends Component {
     return (
       <div id="QuestionsPanel" className="col-md-12">
         {this.props.showSearchBar ? (
-          <QuestionSearch searchQuestions={this.searchQuestions} />
+          <QuestionSearch
+            searchQuestions={this.searchQuestions}
+            refreshQuestions={this.refreshQuestions}
+          />
         ) : null}
         <br />
         <div className="card-columns">

@@ -13,35 +13,42 @@ class Question extends Component {
     this.setState({ hovered: false });
   };
 
+  isOldQuestion = (dateString) => {
+    var date = new Date(dateString);
+    var now = Date.now();
+    var delta = now - date.getTime();
+
+    if (delta > 86400000) {
+      return true;
+    }
+
+    return false;
+  };
+
+  formatDate = (dateString) => {
+    var date = new Date(dateString);
+    var now = Date.now();
+    var delta = now - date.getTime();
+
+    if (delta < 0) {
+      return "TeneT?";
+    } else if (delta === 0) {
+      return "now!";
+    } else if (delta <= 60000) {
+      return Math.ceil(delta / 1000) + " s";
+    } else if (delta <= 3600000) {
+      return Math.ceil(delta / 60000) + " min";
+    } else if (delta <= 86400000) {
+      return Math.floor(delta / 3600000) + " h";
+    } else {
+      return [date.getDate(), date.getMonth() + 1, date.getFullYear()].join(
+        "-"
+      );
+    }
+  };
+
   render() {
-    const question = this.props.question;
-
-    const dateColor = (date) => {
-      var questionDate = new Date(date).getDate();
-      var dayAgo = new Date();
-      dayAgo.setDate(dayAgo.getDate() - 1);
-      console.log(questionDate);
-      console.log(dayAgo);
-      if (
-        questionDate < dayAgo &&
-        new Date(date).getFullYear() === dayAgo.getFullYear()
-      ) {
-        return true;
-      }
-      return false;
-    };
-
-    const formatDate = (date) => {
-      var d = new Date(date),
-        month = "" + (d.getMonth() + 1),
-        day = "" + d.getDate(),
-        year = d.getFullYear();
-
-      if (month.length < 2) month = "0" + month;
-      if (day.length < 2) day = "0" + day;
-
-      return [day, month, year].join("-");
-    };
+    const q = this.props.question;
 
     return (
       <div
@@ -52,24 +59,23 @@ class Question extends Component {
         onMouseLeave={this.handleMouseLeave}
       >
         <div className="card-header">
-          <b>0</b> answers{" "}
+          <span className="badge badge-danger">0</span> answers{" "}
           {/* clicking here should open card and scroll down to answers list*/}
           <span
-            className="float-right"
-            style={
-              dateColor(question.createdDate)
-                ? { color: "green" }
-                : { color: "red" }
+            className={
+              this.isOldQuestion(q.createdDate)
+                ? "float-right text-danger"
+                : "float-right"
             }
           >
-            {formatDate(question.createdDate)}
+            {this.formatDate(q.createdDate)}
           </span>
         </div>
         <div className="card-body">
-          <h4 className="card-title">{question.title}</h4>
-          <p className="textInheritAll card-text">{question.description}</p>
+          <h4 className="card-title">{q.title}</h4>
+          <p className="textInheritAll card-text">{q.description}</p>
           <div className="mb-1">
-            {question.tags.map((tag) => {
+            {q.tags.map((tag) => {
               return (
                 <a
                   href="/"
@@ -93,15 +99,9 @@ class Question extends Component {
           </div>
         </div>
         <div className="card-footer">
-          {/* if question older than a day:
-          - color red
-          - date is "x Month 2020" localized in language (march 15th, 2020 for USA for example) 
-          else:
-          - color normal
-          - date is only timestamp, HH:MM:SS (converted to local timezone) */}
           by{" "}
           <a href="/" className="text-decoration-none text-dark">
-            <b>{question.author}</b>
+            <b>{q.author}</b>
           </a>
         </div>
       </div>

@@ -26,7 +26,7 @@ module.exports = mongoose.model(
     },
     createdDate: {
       type: Date,
-      default: Date.now(),
+      default: Date.now,
     },
     lastEditedDate: {
       type: Date,

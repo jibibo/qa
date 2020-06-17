@@ -25,10 +25,10 @@ class QuestionSearch extends Component {
       <div className="">
         <form onSubmit={this.handleSubmit} autoComplete="off">
           <div className="input-group">
-            <span class="refresh-icon input-group-prepend">
+            <span className="refresh-icon input-group-prepend">
               <button
                 onClick={this.refreshClicked}
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 type="button"
               >
                 Refresh

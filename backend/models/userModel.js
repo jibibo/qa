@@ -32,12 +32,12 @@ module.exports = mongoose.model(
     },
     registeredDate: {
       type: Date,
-      default: Date.now(),
+      default: Date.now,
     },
     sessionToken: {
       // should support multiple session tokens (atleast, somehow handle multiple devices)
       type: String,
-      default: uuid.v4(),
+      default: uuid.v4,
     },
   })
 );

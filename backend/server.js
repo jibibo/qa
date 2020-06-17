@@ -19,8 +19,10 @@ mongoose.connection.once("open", () => {
 });
 
 app.use(express.json());
+
 app.use("/user", require("./routes/UserRoute"));
 app.use("/question", require("./routes/QuestionRoute"));
+app.user("/answer", require("./routes/AnswerRoute"))
 
 app.listen(port, () => {
   console.log(`Backend ready on port ${port}`);

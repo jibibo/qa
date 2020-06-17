@@ -21,12 +21,15 @@ module.exports = mongoose.model(
     answerIds: {
       type: Array,
     },
+    markedAnswerId: {
+      type: String,
+    },
     createdDate: {
       type: Date,
       default: Date.now(),
     },
-    editedDate: {
+    lastEditedDate: {
       type: Date,
-    }
+    },
   })
 );

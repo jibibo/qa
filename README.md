@@ -15,7 +15,8 @@ frontend:
 - ?
 
 backend:
-
-- mongoose
+- cors
+- dotenv
 - express
+- mongoose
 - uuid

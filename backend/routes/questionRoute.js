@@ -2,7 +2,7 @@ const router = require("express").Router();
 let QuestionModel = require("../models/QuestionModel");
 let { sessionTokenValid } = require("../util");
 
-// // Routes
+// Routes
 
 router.route("/search").get((req, res) => {
   console.log("ROUTE:START /question/search");

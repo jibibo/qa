@@ -7,10 +7,10 @@ let { sessionTokenValid } = require("../util");
 router.route("/search").get((req, res) => {
   console.log("ROUTE:START /question/search");
 
-  var params = {};
+  var filter = {};
 
   if (req.query[0] !== undefined) {
-    params = {
+    filter = {
       title: {
         $regex: req.query[0],
         $options: "i",
@@ -18,9 +18,10 @@ router.route("/search").get((req, res) => {
     };
   }
 
-  console.log(`ROUTE:INFO /question/search: searching, params:sa ${params}`);
+  console.log(`ROUTE:INFO /question/search: searching, params:sa ${filter}`);
 
-  QuestionModel.find(params)
+  QuestionModel.find(filter)
+    .sort("-createdDate")
     .then((questions) => {
       console.log(
         `ROUTE:OK /question/search: found ${questions.length} matches`

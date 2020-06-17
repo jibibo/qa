@@ -18,5 +18,9 @@ module.exports = mongoose.model(
       type: String,
       required: true,
     },
+    createdDate: {
+      type: Date,
+      default: Date.now(),
+    },
   })
 );

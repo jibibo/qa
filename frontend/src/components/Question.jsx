@@ -4,6 +4,33 @@ class Question extends Component {
   render() {
     const question = this.props.question;
 
+    const dateColor = (date) => {
+      var questionDate = new Date(date).getDate();
+      var dayAgo = new Date();
+      dayAgo.setDate(dayAgo.getDate() - 1);
+      console.log(questionDate);
+      console.log(dayAgo);
+      if (
+        questionDate < dayAgo &&
+        new Date(date).getFullYear() === dayAgo.getFullYear()
+      ) {
+        return true;
+      }
+      return false;
+    };
+
+    const formatDate = (date) => {
+      var d = new Date(date),
+        month = "" + (d.getMonth() + 1),
+        day = "" + d.getDate(),
+        year = d.getFullYear();
+
+      if (month.length < 2) month = "0" + month;
+      if (day.length < 2) day = "0" + day;
+
+      return [day, month, year].join("-");
+    };
+
     return (
       <div id="Question" className="card">
         <div className="card-header bg-info">
@@ -49,7 +76,16 @@ class Question extends Component {
           <a href="/" className="text-decoration-none text-dark">
             <b>{question.author}</b>
           </a>
-          <span className="float-right">15 juni 2020</span>
+          <small
+            className="float-right"
+            style={
+              dateColor(question.createdDate)
+                ? { color: "green" }
+                : { color: "red" }
+            }
+          >
+            {formatDate(question.createdDate)}
+          </small>
         </div>
       </div>
     );

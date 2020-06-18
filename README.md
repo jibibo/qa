@@ -12,9 +12,10 @@ In cmd: "FRONTEND" or "BACKEND"
 
 frontend:
 
-- ?
+- axios
 
 backend:
+
 - cors
 - dotenv
 - express

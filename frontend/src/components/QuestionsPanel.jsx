@@ -41,7 +41,13 @@ class QuestionsPanel extends Component {
         <br />
         <div className="card-columns">
           {this.state.questions.map((question) => {
-            return <Question key={question._id} question={question} />;
+            return (
+              <Question
+                key={question._id}
+                question={question}
+                answers={Math.floor(Math.random() * 6)}
+              />
+            );
           })}
         </div>
       </div>

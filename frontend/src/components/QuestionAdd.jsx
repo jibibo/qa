@@ -7,6 +7,7 @@ class QuestionAdd extends Component {
     titleValue: "",
     descriptionValue: "",
     addedTags: [],
+    answersValue: [],
     duplicateTag: "",
     hideDuplicateAlert: true,
     hideAddedAlert: true,
@@ -19,6 +20,7 @@ class QuestionAdd extends Component {
       title: this.state.titleValue,
       description: this.state.descriptionValue,
       tags: this.state.addedTags,
+      answers: this.state.answersValue,
       sessionToken: "deeznutsXD", // set to sessionToken in cookies
     };
 
@@ -77,6 +79,7 @@ class QuestionAdd extends Component {
       );
 
       this.setState({ [event.target.name + "Value"]: event.target.value });
+      console.log(this.state.answersValue);
     }
   };
 
@@ -139,6 +142,16 @@ class QuestionAdd extends Component {
             hidden={this.state.hideDuplicateAlert}
           >
             You already used <b>{this.state.duplicateTag}</b>!
+          </div>
+          <div className="form-group">
+            <textarea
+              className="form-control"
+              name="answers"
+              value={this.state.answersValue}
+              placeholder="Answers"
+              rows="2"
+              onChange={this.handleStateUpdate}
+            />
           </div>
           <div className="form-group">
             <input

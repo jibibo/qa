@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let AnswerModel = require("../models/AnswerModel");
+let AnswerModel = require("../models/answerModel");
 let { sessionTokenValid } = require("../util");
 
 // Routes

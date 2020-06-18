@@ -11,6 +11,10 @@ module.exports = mongoose.model(
     description: {
       type: String,
     },
+    answers: {
+      type: Array,
+      required: true,
+    },
     tags: {
       type: Array,
     },

@@ -15,11 +15,25 @@ class QuestionSearch extends Component {
     event.preventDefault();
   };
 
+  refreshClicked = (event) => {
+    this.setState({ searchValue: "" });
+    this.props.refreshQuestions();
+  };
+
   render() {
     return (
       <div className="">
         <form onSubmit={this.handleSubmit} autoComplete="off">
           <div className="input-group">
+            <span className="refresh-icon input-group-prepend">
+              <button
+                onClick={this.refreshClicked}
+                className="btn btn-secondary"
+                type="button"
+              >
+                Refresh
+              </button>
+            </span>
             <input
               type="text"
               name="question"

@@ -2,31 +2,19 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 module.exports = mongoose.model(
-  "Question",
+  "Answer",
   new Schema({
-    title: {
+    text: {
       type: String,
       required: true,
-    },
-    description: {
-      type: String,
-    },
-    answers: {
-      type: Array,
-      required: true,
-    },
-    tags: {
-      type: Array,
     },
     authorId: {
       type: String,
       required: true,
     },
-    answerIds: {
+    questionId: {
       type: Array,
-    },
-    markedAnswerId: {
-      type: String,
+      required: true,
     },
     createdDate: {
       type: Date,
@@ -35,5 +23,11 @@ module.exports = mongoose.model(
     lastEditedDate: {
       type: Date,
     },
+    likedByIds: {
+        type: Array,
+    },
+    dislikedByIds: {
+        type: Array,
+    }
   })
 );

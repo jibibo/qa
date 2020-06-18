@@ -2,15 +2,15 @@ const router = require("express").Router();
 let QuestionModel = require("../models/QuestionModel");
 let { sessionTokenValid } = require("../util");
 
-// // Routes
+// Routes
 
 router.route("/search").get((req, res) => {
   console.log("ROUTE:START /question/search");
 
-  var params = {};
+  var filter = {};
 
   if (req.query[0] !== undefined) {
-    params = {
+    filter = {
       title: {
         $regex: req.query[0],
         $options: "i",
@@ -18,9 +18,10 @@ router.route("/search").get((req, res) => {
     };
   }
 
-  console.log(`ROUTE:INFO /question/search: searching, params:sa ${params}`);
+  console.log(`ROUTE:INFO /question/search: searching, params:sa ${filter}`);
 
-  QuestionModel.find(params)
+  QuestionModel.find(filter)
+    .sort("-createdDate")
     .then((questions) => {
       console.log(
         `ROUTE:OK /question/search: found ${questions.length} matches`
@@ -41,9 +42,9 @@ router.route("/add").post((req, res) => {
     if (foundUser) {
       const newQuestion = new QuestionModel({
         title: req.body.title,
-        content: req.body.content,
+        description: req.body.description,
         tags: req.body.tags,
-        author: foundUser.username,
+        authorId: foundUser._id,
       });
 
       console.log("ROUTE:INFO /question/add: created new QuestionModel");

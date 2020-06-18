@@ -3,10 +3,15 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
-const app = express();
-app.use(cors());
+console.log("Setting up Express app...");
+
+const expressApp = express();
+expressApp.use(cors());
+expressApp.use(express.json());
 
 const port = process.env.PORT;
+
+console.log("Connecting to MongoDB...");
 
 mongoose.connect(process.env.URI, {
   useNewUrlParser: true,
@@ -15,13 +20,13 @@ mongoose.connect(process.env.URI, {
 });
 
 mongoose.connection.once("open", () => {
-  console.log("MongoDB connection established");
+  console.log("Connected to MongoDB");
 });
 
-app.use(express.json());
-app.use("/user", require("./routes/UserRoute"));
-app.use("/question", require("./routes/QuestionRoute"));
+expressApp.use("/user", require("./routes/UserRoute"));
+expressApp.use("/question", require("./routes/QuestionRoute"));
+expressApp.use("/answer", require("./routes/AnswerRoute"));
 
-app.listen(port, () => {
-  console.log(`Backend ready on port ${port}`);
+expressApp.listen(port, () => {
+  console.log(`Express listening on port ${port}`);
 });

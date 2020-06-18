@@ -13,6 +13,7 @@ In cmd: "FRONTEND" or "BACKEND"
 frontend:
 
 - axios
+- react-bootstrap
 
 backend:
 

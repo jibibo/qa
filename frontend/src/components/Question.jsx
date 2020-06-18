@@ -48,15 +48,17 @@ class Question extends Component {
   };
 
   getCardClass = () => {
-    var c = "";
-    c += this.state.hovered ? "card mt-2 shadow " : "card mt-2 ";
+    var c = "card mt-2 ";
+    c += this.state.hovered ? "shadow " : "";
     c += this.props.answers ? "border-success " : "border-danger ";
-    c += this.isOldQuestion() ? "bg-secondary text-white" : "";
+    c += this.isOldQuestion() ? "bg-secondary text-white " : "";
     return c;
   };
 
   render() {
     const q = this.props.question;
+
+    // NEEDS TO BE PROPER MASONRY PATTERN, OLDEST QUESTIONS NOT AT TOP!
 
     return (
       <div
@@ -81,7 +83,7 @@ class Question extends Component {
         <div className="card-body">
           <h4 className="card-title">{q.title}</h4>
           <p className="textInheritAll card-text">{q.description}</p>
-          <div className="mb-1">
+          <div className="mb-2">
             {q.tags.map((tag) => {
               return (
                 <a

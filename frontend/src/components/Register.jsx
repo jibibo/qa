@@ -5,143 +5,176 @@ import axios from "axios";
 class Register extends Component {
   state = {
     usernameValue: "",
+    withEmail: false,
+    emailValue: "",
     passwordValue: "",
-    registeredUser: "",
-    passwordConfirmationValue: "",
-    hideUserExistsAlert: true,
-    hideMatchPasswordAlert: true,
-    hideUserRegisteredAlert: true,
+    confirmPasswordValue: "",
+    hideDangerAlert: true,
+    dangerAlertText: "",
+    hideSuccessAlert: true,
+    successAlertText: "",
   };
 
-  registerUser = (event) => {
-    const [password, passwordConfirmation] = [
-      this.state.passwordValue,
-      this.state.passwordConfirmationValue,
-    ];
+  handleSubmit = (event) => {
     const user = {
       username: this.state.usernameValue,
+      withEmail: this.state.withEmail,
+      email: this.state.emailValue,
       password: this.state.passwordValue,
+      confirmPassword: this.state.confirmPasswordValue,
     };
 
-    if (password === passwordConfirmation) {
+    if (user.password === user.confirmPassword) {
       axios
         .post("http://localhost/user/register", user)
         .then((res) => {
           this.setState({
             usernameValue: "",
+            emailValue: "",
             passwordValue: "",
-            passwordConfirmationValue: "",
-            hideMatchPasswordAlert: true,
-            hideUserRegisteredAlert: false,
-            registeredUser: res.data.username,
+            confirmPasswordValue: "",
+            hideDangerAlert: true,
+            dangerAlertText: "",
+            hideSuccessAlert: true,
+            successAlertText: "",
           });
 
-          console.log(`Added User! ${res.data}`);
+          this.showSuccessAlert(`Registered ${res.data.username}!`);
+          console.log(
+            `Registered! ${res.data.username}, session token: ${res.data.sessionToken}`
+          );
         })
-        .catch((e) => {
-          this.setState({
-            hideMatchPasswordAlert: true,
-            hideUserExistsAlert: false,
-          });
-          console.log(e);
+        .catch((error) => {
+          console.log(error.error);
+          // this.showDangerAlert(error);
         });
-    } else {
-      this.setState({ hideMatchPasswordAlert: false });
     }
 
     event.preventDefault();
   };
 
-  handleUsernameChange = (event) => {
+  // alerts
+
+  showDangerAlert = (text) => {
+    this.setState({ hideDangerAlert: false, dangerAlertText: text });
+  };
+
+  hideDangerAlert = () => {
+    this.setState({ hideDangerAlert: true, dangerAlertText: "" });
+  };
+
+  showSuccessAlert = (text) => {
+    this.setState({ hideSuccessAlert: false, successAlertText: text });
+  };
+
+  hideSuccessAlert = () => {
+    this.setState({ hideSuccessAlert: true, successAlertText: "" });
+  };
+
+  // handle input updates
+
+  handleUsernameUpdate = (event) => {
     this.setState({
       usernameValue: event.target.value,
-      hideUserExistsAlert: true,
+    });
+  };
+
+  handleWithEmailUpdate = (event) => {
+    this.setState({
+      withEmail: !this.state.withEmail,
+    });
+  };
+
+  handleEmailUpdate = (event) => {
+    this.setState({
+      emailValue: event.target.value,
+    });
+  };
+
+  handlePasswordUpdate = (event) => {
+    this.setState({
+      passwordValue: event.target.value,
+    });
+  };
+
+  handleConfirmPasswordUpdate = (event) => {
+    this.setState({
+      confirmPasswordValue: event.target.value,
     });
   };
 
   render() {
     return (
-      <div id="Register">
-        <form onSubmit={this.registerUser} autoComplete="off">
+      <div>
+        <form onSubmit={this.handleSubmit} autoComplete="off">
           <div className="form-group">
             <input
               type="text"
               className="form-control"
-              name="username"
               value={this.state.usernameValue}
               placeholder="Username"
-              onChange={this.handleUsernameChange}
+              onChange={this.handleUsernameUpdate}
             />
+          </div>
+          <div className="form-group">
+            <div className="input-group">
+              <div className="input-group-prepend">
+                <div className="input-group-text">
+                  <input
+                    type="checkbox"
+                    checked={this.state.withEmail}
+                    onChange={this.handleWithEmailUpdate}
+                  />
+                </div>
+              </div>
+              <input
+                type="text"
+                className="form-control"
+                value={this.state.emailValue}
+                placeholder="E-mail address"
+                onChange={this.handleEmailUpdate}
+                disabled={!this.state.withEmail}
+              />
+            </div>
           </div>
           <div className="form-group">
             <input
               type="password"
               className="form-control"
-              name="password"
               value={this.state.passwordValue}
               placeholder="Password"
               autoComplete="off"
-              onChange={(event) =>
-                this.setState({ passwordValue: event.target.value })
-              }
+              onChange={this.handlePasswordUpdate}
             />
           </div>
           <div className="form-group">
             <input
               type="password"
               className="form-control"
-              name="passwordConfirmation"
-              value={this.state.passwordConfirmationValue}
-              placeholder="Password Confirmation"
+              value={this.state.confirmPasswordValue}
+              placeholder="Confirm password"
               autoComplete="off"
-              onChange={(event) =>
-                this.setState({
-                  passwordConfirmationValue: event.target.value,
-                })
-              }
+              onChange={this.handleConfirmPasswordUpdate}
             />
-          </div>
-          <div
-            className="alert alert-danger"
-            hidden={this.state.hideMatchPasswordAlert}
-          >
-            Password does not match!
-          </div>
-          <div
-            className="alert alert-danger"
-            hidden={this.state.hideUserExistsAlert}
-          >
-            Username <b>{this.state.usernameValue}</b> already exists!
           </div>
           <div
             className="alert alert-success"
-            hidden={this.state.hideUserRegisteredAlert}
+            hidden={this.state.hideSuccessAlert}
           >
-            User <b>{this.state.registeredUser}</b> successfully registered! Go
-            back to{" "}
-            <a
-              href="/"
-              onClick={this.props.toggleRegister}
-              style={{ cursor: "pointer", textDecoration: "underline" }}
-            >
-              Log in
-            </a>{" "}
-            to login with your credentials!
+            {this.state.successAlertText}
+          </div>
+          <div
+            className="alert alert-danger"
+            hidden={this.state.hideDangerAlert}
+          >
+            {this.state.dangerAlertText}
           </div>
           <div>
             <input
-              type="button"
-              className="btn btn-primary"
-              value="Back"
-              onClick={this.props.toggleRegister}
+              type="submit"
+              className="btn btn-primary ml-1"
+              value="Register"
             />
-            <div className="d-inline ml-1">
-              <input
-                type="submit"
-                className="btn btn-primary"
-                value="Register"
-              />
-            </div>
           </div>
         </form>
       </div>

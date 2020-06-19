@@ -43,7 +43,7 @@ class Authentication extends Component {
           <input
             type="button"
             className="btn btn-primary ml-1"
-            value="Login"
+            value="Log in"
             onClick={this.showLogin}
           />
         </div>

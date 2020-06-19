@@ -6,9 +6,11 @@ class Register extends Component {
   state = {
     usernameValue: "",
     passwordValue: "",
+    registeredUser: "",
     passwordConfirmationValue: "",
     hideUserExistsAlert: true,
     hideMatchPasswordAlert: true,
+    hideUserRegisteredAlert: true,
   };
 
   registerUser = (event) => {
@@ -30,6 +32,8 @@ class Register extends Component {
             passwordValue: "",
             passwordConfirmationValue: "",
             hideMatchPasswordAlert: true,
+            hideUserRegisteredAlert: false,
+            registeredUser: res.data.username,
           });
 
           console.log(`Added User! ${res.data}`);
@@ -48,6 +52,13 @@ class Register extends Component {
     event.preventDefault();
   };
 
+  handleUsernameChange = (event) => {
+    this.setState({
+      usernameValue: event.target.value,
+      hideUserExistsAlert: true,
+    });
+  };
+
   render() {
     return (
       <div id="Register" className="col-md-12">
@@ -62,9 +73,7 @@ class Register extends Component {
               name="username"
               value={this.state.usernameValue}
               placeholder="Username"
-              onChange={(event) =>
-                this.setState({ usernameValue: event.target.value })
-              }
+              onChange={this.handleUsernameChange}
             />
           </div>
           <div className="form-group">
@@ -106,6 +115,20 @@ class Register extends Component {
             hidden={this.state.hideUserExistsAlert}
           >
             Username <b>{this.state.usernameValue}</b> already exists!
+          </div>
+          <div
+            className="alert alert-success"
+            hidden={this.state.hideUserRegisteredAlert}
+          >
+            User <b>{this.state.registeredUser}</b> successfully registered! Go
+            back to&nbsp;
+            <a
+              onClick={this.props.toggleRegister}
+              style={{ cursor: "pointer", textDecoration: "underline" }}
+            >
+              Log in
+            </a>
+            &nbsp;to login with your credentials!
           </div>
           <div>
             <input

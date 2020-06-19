@@ -170,11 +170,7 @@ class Register extends Component {
             {this.state.dangerAlertText}
           </div>
           <div>
-            <input
-              type="submit"
-              className="btn btn-primary ml-1"
-              value="Register"
-            />
+            <input type="submit" className="btn btn-primary" value="Register" />
           </div>
         </form>
       </div>

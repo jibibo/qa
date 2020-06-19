@@ -36,6 +36,9 @@ class LogIn extends Component {
               }
             />
           </div>
+          <div>
+            <input type="submit" className="btn btn-primary" value="Log in" />
+          </div>
         </form>
       </div>
     );

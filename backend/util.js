@@ -4,11 +4,15 @@ filterUsers = async (filter) => {
   UserModel.find(filter).then((users) => {
     if (users == null) {
       console.log(
-        `INFO /util Filter ${filter[0]} gave ${users.length} results: ${users}`
+        `INFO /util Filter ${JSON.stringify(filter)} gave ${
+          users.length
+        } results: ${users}`
       );
       return users;
     } else {
-      console.log(`INFO /util Filter ${filter[0]} gave no results`);
+      console.log(
+        `INFO /util Filter ${JSON.stringify(filter)} gave no results`
+      );
       return null;
     }
   });

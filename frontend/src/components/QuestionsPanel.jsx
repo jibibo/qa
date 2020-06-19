@@ -4,6 +4,7 @@ import axios from "axios";
 
 import Question from "./Question";
 import QuestionSearch from "./QuestionSearch";
+import QuestionDetail from "./QuestionDetail";
 
 class QuestionsPanel extends Component {
   state = {
@@ -32,6 +33,13 @@ class QuestionsPanel extends Component {
   render() {
     return (
       <div id="QuestionsPanel">
+        {this.state.showQuestionModal ? (
+          <QuestionDetail
+            question={this.state.question}
+            showModal={this.state.showQuestionDetail}
+            closeModal={this.closeQuestion}
+          />
+        ) : null}
         {this.props.showSearchBar ? (
           <QuestionSearch
             searchQuestions={this.searchQuestions}

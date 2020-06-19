@@ -6,10 +6,13 @@ const uuid = require("uuid");
 
 // Routes
 
-router.route("/register").post((req, res) => {
+router.route("/register").post(async (req, res) => {
   console.log("START /user/register");
 
-  if (filterUsers({ username: req.body.username })) {
+  usernameMatches = await filterUsers({ username: req.body.username });
+  console.log(usernameMatches);
+
+  if (usernameMatches) {
     console.log(`ERROR /user/register: Username ${req.body.username} is taken`);
     res.status(400).json({ error: "username_taken" });
   } else if (

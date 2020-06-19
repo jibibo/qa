@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import QuestionDetail from "./QuestionDetail";
+
 class Question extends Component {
   state = {
     hovered: false,
@@ -62,7 +64,6 @@ class Question extends Component {
       question: question,
       showQuestionDetail: true,
     });
-    console.log(question);
   };
 
   closeQuestion = () => {

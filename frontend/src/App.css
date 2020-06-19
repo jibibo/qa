@@ -18,3 +18,7 @@ body {
 .vertical-align-center {
   vertical-align: middle;
 }
+
+.card {
+  border-width: 2px;
+}

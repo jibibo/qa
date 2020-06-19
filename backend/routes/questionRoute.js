@@ -18,7 +18,7 @@ router.route("/search").get((req, res) => {
     };
   }
 
-  console.log(`ROUTE:INFO /question/search: searching, params:sa ${filter}`);
+  console.log(`ROUTE:INFO /question/search: searching, filter: ${filter}`);
 
   QuestionModel.find(filter)
     .sort("-createdDate")

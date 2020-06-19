@@ -13,8 +13,8 @@ class Question extends Component {
     this.setState({ hovered: false });
   };
 
-  isOldQuestion = (dateString) => {
-    var date = new Date(dateString);
+  isOldQuestion = () => {
+    var date = new Date(this.props.question.createdDate);
     var now = Date.now();
     var delta = now - date.getTime();
 
@@ -47,34 +47,43 @@ class Question extends Component {
     }
   };
 
+  getCardClass = () => {
+    var c = "card mt-2 ";
+    c += this.state.hovered ? "shadow " : "";
+    c += this.props.answers ? "border-success " : "border-danger ";
+    c += this.isOldQuestion() ? "bg-secondary text-white " : "";
+    return c;
+  };
+
   render() {
     const q = this.props.question;
+
+    // NEEDS TO BE PROPER MASONRY PATTERN, OLDEST QUESTIONS NOT AT TOP!
 
     return (
       <div
         id="Question"
-        className={this.state.hovered ? "card mt-2 shadow-sm" : "card mt-2"}
+        className={this.getCardClass()}
         style={{ cursor: "pointer" }}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
         <div className="card-header">
-          <span className="badge badge-danger">0</span> answers{" "}
           {/* clicking here should open card and scroll down to answers list*/}
           <span
             className={
-              this.isOldQuestion(q.createdDate)
-                ? "float-right text-danger"
-                : "float-right"
+              this.props.answers ? "badge badge-success" : "badge badge-danger"
             }
           >
-            {this.formatDate(q.createdDate)}
-          </span>
+            {this.props.answers}
+          </span>{" "}
+          answers
+          <span className="float-right">{this.formatDate(q.createdDate)}</span>
         </div>
         <div className="card-body">
           <h4 className="card-title">{q.title}</h4>
           <p className="textInheritAll card-text">{q.description}</p>
-          <div className="mb-1">
+          <div className="mb-2">
             {q.tags.map((tag) => {
               return (
                 <a

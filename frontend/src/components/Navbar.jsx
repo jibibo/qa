@@ -102,20 +102,20 @@ class Navbar extends Component {
     return (
       <>
         <div>
-          <nav className="navbar navbar-expand-sm navbar-dark bg-dark ">
+          <nav id="main-navbar" className="navbar navbar-expand-sm navbar-dark">
             <a className="navbar-brand" href="/">
               QA
             </a>
             <button
               type="button"
-              className="btn btn-outline-info ml-auto"
+              className="btn btn-outline-light ml-auto"
               onClick={this.onOpenLogin}
             >
               Log in
             </button>
             <button
               type="button"
-              className="btn btn-outline-info ml-3"
+              className="btn btn-outline-light ml-3"
               onClick={this.onOpenRegister}
             >
               Register

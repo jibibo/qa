@@ -31,7 +31,7 @@ class QuestionsPanel extends Component {
 
   render() {
     return (
-      <div id="QuestionsPanel" className="col-md-12">
+      <div id="QuestionsPanel">
         {this.props.showSearchBar ? (
           <QuestionSearch
             searchQuestions={this.searchQuestions}

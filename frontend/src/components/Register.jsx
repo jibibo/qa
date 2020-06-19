@@ -61,10 +61,7 @@ class Register extends Component {
 
   render() {
     return (
-      <div id="Register" className="col-md-12">
-        <h4>
-          <b>Register</b>
-        </h4>
+      <div id="Register">
         <form onSubmit={this.registerUser} autoComplete="off">
           <div className="form-group">
             <input
@@ -121,14 +118,15 @@ class Register extends Component {
             hidden={this.state.hideUserRegisteredAlert}
           >
             User <b>{this.state.registeredUser}</b> successfully registered! Go
-            back to&nbsp;
+            back to{" "}
             <a
+              href="/"
               onClick={this.props.toggleRegister}
               style={{ cursor: "pointer", textDecoration: "underline" }}
             >
               Log in
-            </a>
-            &nbsp;to login with your credentials!
+            </a>{" "}
+            to login with your credentials!
           </div>
           <div>
             <input

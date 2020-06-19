@@ -21,6 +21,7 @@ class App extends Component {
               </div>
               <div className="col-md-4">
                 <QuestionAdd />
+                <br />
                 <Authentication />
               </div>
             </div>

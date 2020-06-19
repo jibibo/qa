@@ -93,85 +93,88 @@ class QuestionAdd extends Component {
 
   render() {
     return (
-      <div id="QuestionAdd" className="col-md-12">
-        <h4>
-          <b>Add Question</b>
-        </h4>
-        <form onSubmit={this.handleSubmit} autoComplete="off">
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              name="title"
-              value={this.state.titleValue}
-              placeholder="Title (required)"
-              onChange={this.handleStateUpdate}
-            />
-          </div>
-          <div className="form-group">
-            <textarea
-              className="form-control"
-              name="description"
-              value={this.state.descriptionValue}
-              placeholder="Description"
-              rows="2"
-              onChange={this.handleStateUpdate}
-            />
-          </div>
-          <div className="form-group">
-            {this.state.addedTags.map((tag) => {
-              return (
-                <button
-                  key={tag}
-                  type="button"
-                  className="btn btn-outline-secondary rounded-pill m-1"
-                  onClick={() => this.removeTag(tag)}
-                >
-                  {tag} <span>&times;</span>
-                </button>
-              );
-            })}
-          </div>
-          <div
-            className="alert alert-success"
-            hidden={this.state.hideAddedAlert}
-          >
-            Successfully submitted question <b>{this.state.addedTag}</b>!
-          </div>
-          <div
-            className="alert alert-danger"
-            hidden={this.state.hideDuplicateAlert}
-          >
-            You already used <b>{this.state.duplicateTag}</b>!
-          </div>
-          <div className="form-group">
-            <textarea
-              className="form-control"
-              name="answers"
-              value={this.state.answersValue}
-              placeholder="Answers"
-              rows="2"
-              onChange={this.handleStateUpdate}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              name="addTag"
-              placeholder="Add tags (add with space)"
-              onKeyPress={this.handleStateUpdate}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              disabled={this.state.titleValue ? false : true}
-              type="submit"
-              className="btn btn-primary"
-              value="Ask!"
-            />
-          </div>
-        </form>
+      <div id="QuestionAdd" className="card">
+        <div className="card-header">
+          <h5 className="d-inline">Add question</h5>
+        </div>
+
+        <div className="card-body">
+          <form onSubmit={this.handleSubmit} autoComplete="off">
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                name="title"
+                value={this.state.titleValue}
+                placeholder="Title (required)"
+                onChange={this.handleStateUpdate}
+              />
+            </div>
+            <div className="form-group">
+              <textarea
+                className="form-control"
+                name="description"
+                value={this.state.descriptionValue}
+                placeholder="Description"
+                rows="2"
+                onChange={this.handleStateUpdate}
+              />
+            </div>
+            <div className="form-group">
+              {this.state.addedTags.map((tag) => {
+                return (
+                  <button
+                    key={tag}
+                    type="button"
+                    className="btn btn-outline-secondary rounded-pill m-1"
+                    onClick={() => this.removeTag(tag)}
+                  >
+                    {tag} <span>&times;</span>
+                  </button>
+                );
+              })}
+            </div>
+            <div
+              className="alert alert-success"
+              hidden={this.state.hideAddedAlert}
+            >
+              Successfully submitted question <b>{this.state.addedTag}</b>!
+            </div>
+            <div
+              className="alert alert-danger"
+              hidden={this.state.hideDuplicateAlert}
+            >
+              You already used <b>{this.state.duplicateTag}</b>!
+            </div>
+            <div className="form-group">
+              <textarea
+                className="form-control"
+                name="answers"
+                value={this.state.answersValue}
+                placeholder="Answers"
+                rows="2"
+                onChange={this.handleStateUpdate}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                name="addTag"
+                placeholder="Add tags (add with space)"
+                onKeyPress={this.handleStateUpdate}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                disabled={this.state.titleValue ? false : true}
+                type="submit"
+                className="btn btn-primary"
+                value="Ask!"
+              />
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

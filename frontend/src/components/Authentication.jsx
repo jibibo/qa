@@ -1,58 +1,66 @@
 import React, { Component } from "react";
 
-import Login from "./Login";
+import LogIn from "./LogIn";
 import Register from "./Register";
 
 class Authentication extends Component {
   state = {
-    showLogin: false,
+    showLogIn: true,
     showRegister: false,
   };
 
-  showLogin = () => {
+  showLogIn = () => {
     this.setState({
-      showLogin: !this.state.showLogin,
+      showLogIn: true,
+      showRegister: false,
     });
   };
 
   showRegister = () => {
     this.setState({
-      showRegister: !this.state.showRegister,
+      showLogIn: false,
+      showRegister: true,
     });
   };
 
-  showLoginRegister = () => {
-    if (this.state.showLogin) return <Login toggleLogin={this.showLogin} />;
-    else if (this.state.showRegister)
-      return <Register toggleRegister={this.showRegister} />;
-    else return this.showAuthentication();
-  };
-
-  showAuthentication = () => {
-    return (
-      <div className="container text-center">
-        <div className="d-inline">
-          <input
-            type="button"
-            className="btn btn-primary"
-            value="Register"
-            onClick={this.showRegister}
-          />
-        </div>
-        <div className="d-inline">
-          <input
-            type="button"
-            className="btn btn-primary ml-1"
-            value="Log in"
-            onClick={this.showLogin}
-          />
-        </div>
-      </div>
-    );
+  renderCurrentAuthentication = () => {
+    if (this.state.showRegister) {
+      return <Register />;
+    } else {
+      return <LogIn />;
+    }
   };
 
   render() {
-    return <div>{this.showLoginRegister()}</div>;
+    return (
+      <div className="card">
+        <div className="card-header">
+          <ul className="nav nav-tabs card-header-tabs">
+            <li className="nav-item">
+              <button
+                type="button"
+                className={`nav-link ${this.state.showLogIn ? "active" : ""}`}
+                onClick={this.showLogIn}
+              >
+                Log in
+              </button>
+            </li>
+            <li className="nav-item">
+              <button
+                type="button"
+                className={`nav-link ${
+                  this.state.showRegister ? "active" : ""
+                }`}
+                onClick={this.showRegister}
+              >
+                Register
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div className="card-body">{this.renderCurrentAuthentication()}</div>
+      </div>
+    );
   }
 }
 

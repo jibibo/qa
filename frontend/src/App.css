@@ -1,5 +1,9 @@
 body {
-  background-color: #34495e;
+  background-color: #303952;
+}
+
+#main-navbar {
+  background-color: #130f40;
 }
 
 .page-header {

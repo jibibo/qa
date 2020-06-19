@@ -51,7 +51,7 @@ class Question extends Component {
     var c = "card mt-2 ";
     c += this.state.hovered ? "shadow " : "";
     c += this.props.answers ? "border-success " : "border-danger ";
-    c += this.isOldQuestion() ? "bg-secondary text-white " : "";
+    c += this.isOldQuestion() ? "bg-dark text-white " : "";
     return c;
   };
 
@@ -85,11 +85,13 @@ class Question extends Component {
           <p className="textInheritAll card-text">{q.description}</p>
           <div className="mb-2">
             {q.tags.map((tag) => {
+              // tags here
+
               return (
                 <a
                   href="/"
                   key={tag}
-                  className="badge badge-info badge-secondary m-1"
+                  className="badge badge-secondary text-light m-1"
                 >
                   {tag}
                 </a>

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
-import axios from "axios";
-
-class Login extends Component {
+class LogIn extends Component {
   state = {
     usernameValue: "",
     emailValue: "",
@@ -12,10 +10,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div id="Login" className="col-md-12">
-        <h4>
-          <b>Login</b>
-        </h4>
+      <div id="LogIn">
         <form autoComplete="off">
           <div className="form-group">
             <input
@@ -41,18 +36,10 @@ class Login extends Component {
               }
             />
           </div>
-          <div>
-            <input
-              type="button"
-              className="btn btn-primary"
-              value="Back"
-              onClick={this.props.toggleLogin}
-            />
-          </div>
         </form>
       </div>
     );
   }
 }
 
-export default Login;
+export default LogIn;

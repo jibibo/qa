@@ -55,7 +55,6 @@ class QuestionAdd extends Component {
         });
 
         console.log(`Showing duplicate alert for tag ${event.target.value}`);
-
       } else if (event.target.value) {
         // not duplicate and tag is not empty, add to list
 
@@ -72,7 +71,6 @@ class QuestionAdd extends Component {
       // empty the add tag input
       event.target.value = null;
       event.preventDefault();
-
     } else {
       console.log(
         `Set ${event.target.name + "Value"} to ${event.target.value}`

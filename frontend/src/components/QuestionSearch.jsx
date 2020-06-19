@@ -22,7 +22,7 @@ class QuestionSearch extends Component {
 
   render() {
     return (
-      <div className="">
+      <div>
         <form onSubmit={this.handleSubmit} autoComplete="off">
           <div className="input-group">
             <span className="refresh-icon input-group-prepend">

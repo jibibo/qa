@@ -53,7 +53,7 @@ class Question extends Component {
     return (
       <div
         id="Question"
-        className={this.state.hovered ? "card mt-2 shadow" : "card mt-2"}
+        className={this.state.hovered ? "card mt-2 shadow-sm" : "card mt-2"}
         style={{ cursor: "pointer" }}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}

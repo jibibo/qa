@@ -6,13 +6,55 @@ class Register extends Component {
   state = {
     usernameValue: "",
     passwordValue: "",
-    passwordConfirmationvalue: "",
+    passwordConfirmationValue: "",
+    hideUserExistsAlert: true,
+    hideMatchPasswordAlert: true,
+  };
+
+  registerUser = (event) => {
+    const [password, passwordConfirmation] = [
+      this.state.passwordValue,
+      this.state.passwordConfirmationValue,
+    ];
+    const user = {
+      username: this.state.usernameValue,
+      password: this.state.passwordValue,
+    };
+
+    if (password === passwordConfirmation) {
+      axios
+        .post("http://localhost/user/register", user)
+        .then((res) => {
+          this.setState({
+            usernameValue: "",
+            passwordValue: "",
+            passwordConfirmationValue: "",
+            hideMatchPasswordAlert: true,
+          });
+
+          console.log(`Added User! ${res.data}`);
+        })
+        .catch((e) => {
+          this.setState({
+            hideMatchPasswordAlert: true,
+            hideUserExistsAlert: false,
+          });
+          console.log(e);
+        });
+    } else {
+      this.setState({ hideMatchPasswordAlert: false });
+    }
+
+    event.preventDefault();
   };
 
   render() {
     return (
-      <div id="QuestionAdd" className="col-md-12 sticky-top">
-        <form autoComplete="off">
+      <div id="Register" className="col-md-12">
+        <h4>
+          <b>Register</b>
+        </h4>
+        <form onSubmit={this.registerUser} autoComplete="off">
           <div className="form-group">
             <input
               type="text"
@@ -32,6 +74,7 @@ class Register extends Component {
               name="password"
               value={this.state.passwordValue}
               placeholder="Password"
+              autoComplete="off"
               onChange={(event) =>
                 this.setState({ passwordValue: event.target.value })
               }
@@ -42,14 +85,27 @@ class Register extends Component {
               type="password"
               className="form-control"
               name="passwordConfirmation"
-              value={this.state.passwordConfirmationvalue}
+              value={this.state.passwordConfirmationValue}
               placeholder="Password Confirmation"
+              autoComplete="off"
               onChange={(event) =>
                 this.setState({
                   passwordConfirmationValue: event.target.value,
                 })
               }
             />
+          </div>
+          <div
+            className="alert alert-danger"
+            hidden={this.state.hideMatchPasswordAlert}
+          >
+            Password does not match!
+          </div>
+          <div
+            className="alert alert-danger"
+            hidden={this.state.hideUserExistsAlert}
+          >
+            Username <b>{this.state.usernameValue}</b> already exists!
           </div>
           <div>
             <input
@@ -58,6 +114,13 @@ class Register extends Component {
               value="Back"
               onClick={this.props.toggleRegister}
             />
+            <div className="d-inline ml-1">
+              <input
+                type="submit"
+                className="btn btn-primary"
+                value="Register"
+              />
+            </div>
           </div>
         </form>
       </div>

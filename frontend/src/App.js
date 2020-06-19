@@ -4,9 +4,7 @@ import QuestionsPanel from "./components/QuestionsPanel";
 import QuestionAdd from "./components/QuestionAdd";
 import Navbar from "./components/Navbar";
 
-import Authentication from "./components/Authentication";
-import Register from "./components/Register";
-import Login from "./components/Login";
+import Authentication from "./components/Authentication"; 
 
 class App extends Component {
   render() {

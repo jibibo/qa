@@ -94,6 +94,9 @@ class QuestionAdd extends Component {
   render() {
     return (
       <div id="QuestionAdd" className="col-md-12">
+        <h4>
+          <b>Add Question</b>
+        </h4>
         <form onSubmit={this.handleSubmit} autoComplete="off">
           <div className="form-group">
             <input

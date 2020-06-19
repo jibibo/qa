@@ -1,5 +1,4 @@
 let UserModel = require("./models/UserModel.js");
-let QuestionModel = require("./models/QuestionModel");
 
 sessionTokenValid = async (sessionToken, callback) => {
   console.log(`UTIL Checking if session token ${sessionToken} is valid...`);

@@ -12,7 +12,10 @@ class Login extends Component {
 
   render() {
     return (
-      <div id="QuestionAdd" className="col-md-12 sticky-top">
+      <div id="Login" className="col-md-12">
+        <h4>
+          <b>Login</b>
+        </h4>
         <form autoComplete="off">
           <div className="form-group">
             <input

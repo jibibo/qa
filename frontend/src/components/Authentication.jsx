@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import Login from "./Login";
 import Register from "./Register";
-import axios from "axios";
 
 class Authentication extends Component {
   state = {

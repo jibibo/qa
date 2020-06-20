@@ -7,21 +7,29 @@ class QuestionDetail extends Component {
   render() {
     const q = this.props.question ? this.props.question : "";
     return (
-      <>
-        <Modal show={this.props.showModal} centered>
+      <div onClick={this.props.closeModal}>
+        <Modal
+          show={this.props.showModal}
+          centered
+          onHide={() => console.log()}
+          onExited={this.props.clearQuestion}
+        >
           <Modal.Header>
             <Modal.Title>{q.title}</Modal.Title>
+            <button type="button" className="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </Modal.Header>
-          <Modal.Body>{q.description}</Modal.Body>
-          <Modal.Footer>
-            <div className="mb-2">
+          <Modal.Body>
+            {q.description}
+            <div className="mb-2 mt-1">
               {q
                 ? q.tags.map((tag) => {
                     // tags here
 
                     return (
                       <a
-                        href="/"
+                        href="#"
                         key={tag}
                         className="badge badge-secondary text-light m-1"
                       >
@@ -31,12 +39,14 @@ class QuestionDetail extends Component {
                   })
                 : null}
             </div>
-            <Button variant="primary" onClick={this.props.closeModal}>
-              Close
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={() => console.log("Answer!")}>
+              Answer
             </Button>
           </Modal.Footer>
         </Modal>
-      </>
+      </div>
     );
   }
 }

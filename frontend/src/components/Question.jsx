@@ -72,6 +72,12 @@ class Question extends Component {
     });
   };
 
+  clearQuestion = () => {
+    this.setState({
+      question: "",
+    });
+  };
+
   render() {
     const q = this.props.question;
 
@@ -83,11 +89,13 @@ class Question extends Component {
           question={this.state.question}
           showModal={this.state.showQuestionDetail}
           closeModal={this.closeQuestion}
+          getCardClass={this.getCardClass()}
+          clearQuestion={this.clearQuestion}
         />
         <div
           id="Question"
           className={this.getCardClass()}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", borderRadius: "10px" }}
           onClick={() => this.openQuestion(q)}
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
@@ -117,7 +125,7 @@ class Question extends Component {
 
                 return (
                   <a
-                    href="/"
+                    href="#"
                     key={tag}
                     className="badge badge-secondary text-light m-1"
                   >
@@ -129,7 +137,7 @@ class Question extends Component {
             <div className="btn-group btn-group-sm">
               <button type="button" className="btn btn-primary">
                 {/* opens the question and instantly puts cursor in answer textarea*/}
-                Answer!
+                Answer
               </button>
               <button type="button" className="btn btn-light">
                 {/* more options button (report, fav etc) */}

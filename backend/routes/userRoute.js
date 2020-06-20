@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let UserModel = require("../models/UserModel.js");
+let UserModel = require("../models/userModel");
 let { filterUsers, saveModel } = require("../util");
 
 const uuid = require("uuid");
@@ -9,8 +9,10 @@ const uuid = require("uuid");
 router.route("/register").post(async (req, res) => {
   console.log("START /user/register");
 
-  usernameMatches = await filterUsers({ username: req.body.username });
-  console.log(usernameMatches);
+  var usernameMatches;
+  await filterUsers({ username: req.body.username }, (matches) => {
+    usernameMatches = matches;
+  });
 
   if (usernameMatches) {
     console.log(`ERROR /user/register: Username ${req.body.username} is taken`);

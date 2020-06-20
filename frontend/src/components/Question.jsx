@@ -53,9 +53,9 @@ class Question extends Component {
 
   getCardClass = () => {
     var c = "card mt-2 ";
-    c += this.state.hovered ? "shadow " : "";
-    c += this.props.answers ? "border-success " : "border-danger ";
-    c += this.isOldQuestion() ? "bg-dark text-white " : "";
+    c += this.state.hovered && "shadow ";
+    c += this.isOldQuestion() && "bg-dark text-white ";
+    c += this.props.answers ? "border-success" : "border-danger";
     return c;
   };
 

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let QuestionModel = require("../models/QuestionModel");
+let QuestionModel = require("../models/questionModel");
 let { sessionTokenValid } = require("../util");
 
 // Routes
@@ -23,9 +23,7 @@ router.route("/search").get((req, res) => {
   QuestionModel.find(filter)
     .sort("-createdDate")
     .then((questions) => {
-      console.log(
-        `OK /question/search: found ${questions.length} matches`
-      );
+      console.log(`OK /question/search: found ${questions.length} matches`);
       res.status(200).json(questions);
     })
     .catch((err) => {

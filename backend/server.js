@@ -23,9 +23,9 @@ mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
 });
 
-expressApp.use("/user", require("./routes/UserRoute"));
-expressApp.use("/question", require("./routes/QuestionRoute"));
-expressApp.use("/answer", require("./routes/AnswerRoute"));
+expressApp.use("/user", require("./routes/userRoute"));
+expressApp.use("/question", require("./routes/questionRoute"));
+expressApp.use("/answer", require("./routes/answerRoute"));
 
 expressApp.listen(port, () => {
   console.log(`Express listening on port ${port}`);

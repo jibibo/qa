@@ -22,11 +22,7 @@ class Question extends Component {
     var now = Date.now();
     var delta = now - date.getTime();
 
-    if (delta > 86400000) {
-      return true;
-    }
-
-    return false;
+    return delta > 86400000; // > 24 hours
   };
 
   formatDate = (dateString) => {
@@ -52,11 +48,9 @@ class Question extends Component {
   };
 
   getCardClass = () => {
-    var c = "card mt-2 ";
-    c += this.state.hovered && "shadow ";
-    c += this.isOldQuestion() && "bg-dark text-white ";
-    c += this.props.answers ? "border-success" : "border-danger";
-    return c;
+    return `card mt-2 ${this.state.hovered ? "shadow " : ""}${
+      this.isOldQuestion() ? "bg-dark text-white " : ""
+    }${this.props.answers ? "border-success" : "border-danger"}`;
   };
 
   openQuestion = (question) => {

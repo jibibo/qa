@@ -1,11 +1,11 @@
 const router = require("express").Router();
 let AnswerModel = require("../models/answerModel");
-let { sessionTokenValid } = require("../util");
+let { sessionTokenValid, saveModel } = require("../util");
 
 // Routes
 
 router.route("/add").post((req, res) => {
-  console.log("ROUTE:START /answer/add");
+  console.log("START /answer/add");
 
   sessionTokenValid(req.body.sessionToken, (foundUser) => {
     console.log(req.body);
@@ -19,23 +19,20 @@ router.route("/add").post((req, res) => {
         questionId: req.body.questionId,
       });
 
-      console.log("ROUTE:INFO /answer/add: created new AnswerModel");
-
-      newAnswer
-        .save()
-        .then(() => {
-          console.log(`ROUTE:OK /answer/add: added ${req.body.text}`);
+      saveModel(
+        newAnswer,
+        () => {
+          console.log(`OK /answer/add: added ${req.body.text}`);
           res.status(200).json({ response: "success" });
-        })
-        .catch((err) => {
-          console.log(`ROUTE:ERR /answer/add: ${err}`);
-          res.status(400).json({ response: "err", err: err });
-        });
+        },
+        (error) => {
+          console.log(`ERROR /answer/add: ${error}`);
+          res.status(400).json({ error: error });
+        }
+      );
     } else {
-      let err = "Invalid session token";
-
-      console.log(`ROUTE:ERR /answer/add: ${err}`);
-      res.status(400).json({ response: "err", err: err });
+      console.log(`ERROR /answer/add: invalid session token`);
+      res.status(400).json({ error: "session_token_invalid" });
     }
   });
 });

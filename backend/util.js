@@ -36,7 +36,12 @@ filterQuestions = async (filter, callback) => {
 };
 
 filterUsers = async (filter, callback) => {
-  await filterModel(UserModel, filter, null, callback);
+  await filterModel(
+    UserModel,
+    { _id: "5eed1b7f98270c306819e7d4" },
+    null,
+    callback
+  );
 };
 
 sessionTokenValid = async (sessionToken, callback) => {

@@ -26,14 +26,11 @@ router.route("/search").get(async (req, res) => {
   await filterQuestions(filter, async (questions) => {
     console.log(`OK /question/search: found ${questions.length} matches`);
 
-    console.log(`badrandsteve plz ${questions}`);
+    const sendQuestions = [];
 
-    for (q in questions) {
-      console.log(`auth q id ${q.authorId}`);
-      await filterUsers({ _id: q.authorId }, (foundUser) => {
-        q.author = foundUser.username;
-      });
-    }
+    questions.forEach(async (q) => {
+      await filterUsers({ _id: q.authorId }, (foundUser) => {});
+    });
 
     res.status(200).json(questions);
   });

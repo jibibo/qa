@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let UserModel = require("../models/UserModel.js");
+let UserModel = require("../models/userModel");
 let { filterUsers, saveModel } = require("../util");
 
 const uuid = require("uuid");
@@ -9,21 +9,28 @@ const uuid = require("uuid");
 router.route("/register").post(async (req, res) => {
   console.log("START /user/register");
 
-  usernameMatches = await filterUsers({ username: req.body.username });
-  console.log(usernameMatches);
+  var usernameMatches;
+  await filterUsers({ username: req.body.username }, (matches) => {
+    usernameMatches = matches;
+  });
+
+  var emailMatches;
+  await filterUsers({ email: req.body.email }, (matches) => {
+    emailMatches = matches;
+  });
 
   if (usernameMatches) {
     console.log(`ERROR /user/register: Username ${req.body.username} is taken`);
     res.status(400).json({ error: "username_taken" });
+  } else if (req.body.withEmail && emailMatches) {
+    console.log(`ERROR /user/register: Email ${req.body.email} is taken`);
+    res.status(400).json({ error: "email_taken" });
   } else if (
-    req.body.password !== undefined &&
+    req.body.password && // test if this could be true by accident
     req.body.password !== req.body.confirmPassword
   ) {
     console.log("ERROR /user/register: Passwords don't match");
     res.status(400).json({ error: "passwords_dont_match" });
-  } else if (req.body.withEmail && filterUsers({ email: req.body.email })) {
-    console.log(`ERROR /user/register: Email ${req.body.email} is taken`);
-    res.status(400).json({ error: "email_taken" });
   } else {
     // we good
 
@@ -35,9 +42,7 @@ router.route("/register").post(async (req, res) => {
       email: req.body.withEmail ? req.body.email : null,
       sessionToken: sessionToken,
     });
-
-    console.log("INFO /user/register: Created new UserModel");
-
+    
     saveModel(
       newUser,
       () => {
@@ -48,24 +53,25 @@ router.route("/register").post(async (req, res) => {
         });
       },
       (error) => {
+        console.log(`ERROR /user/register: ${error}`);
         res.status(400).json({ error: error });
       }
     );
   }
 });
 
-router.route("/search").get((req, res) => {
+router.route("/search").get(async (req, res) => {
   console.log("START /user/search");
 
-  users = filterUsers({ username: req.body.username }); // more options
-
-  if (users) {
-    console.log(`OK /user/search: found ${users.length}`);
-    res.status(200).json(users);
-  } else {
-    console.log(`ERROR /user/search: ${error}`);
-    res.status(400).json({ error: error });
-  }
+  await filterUsers({ username: req.body.username }, (users) => {
+    if (users) {
+      console.log(`OK /user/search: found ${users.length}`);
+      res.status(200).json(users);
+    } else {
+      console.log(`ERROR /user/search: ${error}`);
+      res.status(400).json({ error: error });
+    }
+  });
 });
 
 module.exports = router;

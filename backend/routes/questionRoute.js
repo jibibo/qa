@@ -1,10 +1,15 @@
 const router = require("express").Router();
-let QuestionModel = require("../models/QuestionModel");
-let { sessionTokenValid } = require("../util");
+let QuestionModel = require("../models/questionModel");
+let {
+  sessionTokenValid,
+  filterQuestions,
+  saveModel,
+  filterUsers,
+} = require("../util");
 
 // Routes
 
-router.route("/search").get((req, res) => {
+router.route("/search").get(async (req, res) => {
   console.log("START /question/search");
 
   var filter = {};
@@ -18,20 +23,20 @@ router.route("/search").get((req, res) => {
     };
   }
 
-  console.log(`INFO /question/search: searching, filter: ${filter}`);
+  await filterQuestions(filter, async (questions) => {
+    console.log(`OK /question/search: found ${questions.length} matches`);
 
-  QuestionModel.find(filter)
-    .sort("-createdDate")
-    .then((questions) => {
-      console.log(
-        `OK /question/search: found ${questions.length} matches`
-      );
-      res.status(200).json(questions);
-    })
-    .catch((err) => {
-      console.log(`ERR /question/search: ${err}`);
-      res.status(400).json({ result: "err", err: err });
-    });
+    console.log(`badrandsteve plz ${questions}`);
+
+    for (q in questions) {
+      console.log(`auth q id ${q.authorId}`);
+      await filterUsers({ _id: q.authorId }, (foundUser) => {
+        q.author = foundUser.username;
+      });
+    }
+
+    res.status(200).json(questions);
+  });
 });
 
 router.route("/add").post((req, res) => {
@@ -47,8 +52,7 @@ router.route("/add").post((req, res) => {
         authorId: foundUser._id,
       });
 
-      console.log("INFO /question/add: created new QuestionModel");
-
+      saveModel;
       newQuestion
         .save()
         .then(() => {

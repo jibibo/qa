@@ -5,13 +5,13 @@ import QuestionAdd from "./components/QuestionAdd";
 import Navbar from "./components/Navbar";
 
 import Authentication from "./components/Authentication";
-import QuestionsDetail from "./components/QuestionDetail";
+// import QuestionsDetail from "./components/QuestionDetail";
 
 class App extends Component {
   render() {
     return (
       <>
-        <QuestionsDetail />
+        {/* <QuestionsDetail /> */}
         <div className="App">
           <div className="container">
             <div className="page-header">

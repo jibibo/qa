@@ -52,7 +52,7 @@ class QuestionsPanel extends Component {
             })}
           </div>
         ) : (
-          <h4>Nothing here (yet)!</h4>
+          <p>Nothing here (yet)!</p>
         )}
       </div>
     );

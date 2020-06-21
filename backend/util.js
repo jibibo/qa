@@ -65,7 +65,7 @@ saveModel = async (model, onSuccess, onError) => {
 addAuthorNamesToQuestions = async (questions) => {
   let newQuestions = [];
 
-  questions.forEach(async (q) => {
+  await asyncForEach(questions, async (q) => {
     let newQ = {};
     let jsonQuestion = JSON.parse(JSON.stringify(q));
 
@@ -91,6 +91,12 @@ addAuthorNamesToQuestions = async (questions) => {
 
   return newQuestions;
 };
+
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index]);
+  }
+}
 
 module.exports = {
   filterAnswers,

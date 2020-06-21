@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import QuestionDetail from "./QuestionDetail";
+import QuestionDetail from "./OutdatedQuestionModal";
 
 class Question extends Component {
   state = {

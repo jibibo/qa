@@ -65,11 +65,11 @@ saveModel = async (model, onSuccess, onError) => {
 addAuthorNamesToQuestions = async (questions) => {
   let newQuestions = [];
 
-  await asyncForEach(questions, async (q) => {
+  for (let q of questions) { // iterate over an array
     let newQ = {};
     let jsonQuestion = JSON.parse(JSON.stringify(q));
 
-    for (key in jsonQuestion) {
+    for (key in jsonQuestion) { // iterate over object's keys
       console.log(`key: ${key}`);
       newQ[key] = jsonQuestion[key];
     }
@@ -84,19 +84,13 @@ addAuthorNamesToQuestions = async (questions) => {
 
       newQuestions.push(newQ);
     });
-  });
+  }
 
   console.info("Questions with author names:");
   console.info(newQuestions);
 
   return newQuestions;
 };
-
-async function asyncForEach(array, callback) {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index]);
-  }
-}
 
 module.exports = {
   filterAnswers,

@@ -105,7 +105,7 @@ class Register extends Component {
 
   render() {
     return (
-      <div>
+      <div id="Register">
         <form onSubmit={this.handleSubmit} autoComplete="off">
           <div className="form-group" style={{ borderRadius: "15px" }}>
             <input

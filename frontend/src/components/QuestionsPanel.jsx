@@ -30,6 +30,7 @@ class QuestionsPanel extends Component {
   };
 
   render() {
+    console.log(this.state.questions);
     return (
       <div id="QuestionsPanel">
         {this.props.showSearchBar ? (
@@ -39,17 +40,21 @@ class QuestionsPanel extends Component {
           />
         ) : null}
         <br />
-        <div className="card-columns">
-          {this.state.questions.map((question) => {
-            return (
-              <Question
-                key={question._id}
-                question={question}
-                answers={Math.floor(Math.random() * 6)}
-              />
-            );
-          })}
-        </div>
+        {this.state.questions.length ? (
+          <div className="card-columns">
+            {this.state.questions.map((question) => {
+              return (
+                <Question
+                  key={question._id}
+                  question={question}
+                  answers={Math.floor(Math.random() * 6)}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <h4>Nothing here (yet)!</h4>
+        )}
       </div>
     );
   }

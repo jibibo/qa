@@ -7,7 +7,7 @@ class QuestionDetail extends Component {
   render() {
     const q = this.props.question ? this.props.question : "";
     return (
-      <div onClick={this.props.closeModal}>
+      <div id="QuestionDetail" onClick={this.props.closeModal}>
         <Modal
           show={this.props.showModal}
           centered

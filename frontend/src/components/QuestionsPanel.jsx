@@ -32,6 +32,10 @@ class QuestionsPanel extends Component {
       });
   };
 
+  handleShowQuestion = (showQuestion) => {
+    this.setState({ showQuestion });
+  };
+
   renderColumns = () => {
     return this.state.questions.length ? (
       <div className="card-columns">
@@ -41,6 +45,7 @@ class QuestionsPanel extends Component {
               key={question._id}
               question={question}
               answers={Math.floor(Math.random() * 6)}
+              onShowQuestion={this.handleShowQuestion}
             />
           );
         })}
@@ -60,7 +65,9 @@ class QuestionsPanel extends Component {
           />
         ) : null}
         <br />
-        <Question />
+        {this.state.showQuestion ? (
+          <Question question={this.state.showQuestion} />
+        ) : null}
         <br />
         {this.renderColumns()}
       </div>

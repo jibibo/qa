@@ -19,7 +19,7 @@ class QuestionCard extends Component {
     var now = Date.now();
     var delta = now - date.getTime();
 
-    return delta > 86400000; // > 24 hours
+    return delta > 86400000; // > 24 hours true/false
   };
 
   formatDate = () => {
@@ -57,20 +57,16 @@ class QuestionCard extends Component {
   };
 
   render() {
-    // NEEDS TO BE PROPER MASONRY PATTERN, OLDEST QUESTIONS NOT AT TOP!
-
     return (
       <div
-        id="Question"
+        id="QuestionCard"
         className={this.getCardClass()}
-        style={{ cursor: "pointer", borderRadius: "10px" }}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
+        style={{ borderRadius: "10px" }}
       >
         <div className="card-header">
-          <a href="/" className="text-decoration-none text-dark">
+          <button className="btn btn-link btn-sm text-dark">
             <b>{this.props.question.author}</b>
-          </a>
+          </button>
           <span title={this.formatDateTitle()} className="float-right">
             {this.formatDate()}
           </span>
@@ -78,7 +74,10 @@ class QuestionCard extends Component {
 
         <div
           className="card-body"
-          onClick={() => this.props.showQuestion(this.props.question)}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
+          style={{ cursor: "pointer" }}
+          onClick={() => this.props.onShowQuestion(this.props.question)}
         >
           <h4 className="card-title">{this.props.question.title}</h4>
           <p className="textInheritAll card-text">

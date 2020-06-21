@@ -26,13 +26,9 @@ router.route("/search").get(async (req, res) => {
   await filterQuestions(filter, async (questions) => {
     console.log(`OK /question/search: found ${questions.length} matches`);
 
-    const sendQuestions = [];
-
-    questions.forEach(async (q) => {
-      await filterUsers({ _id: q.authorId }, (foundUser) => {});
-    });
-
-    res.status(200).json(questions);
+    await addAuthorNamesToQuestions(questions).then((newQuestions) =>
+      res.status(200).json(newQuestions)
+    );
   });
 });
 

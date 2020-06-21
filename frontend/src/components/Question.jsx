@@ -74,6 +74,7 @@ class Question extends Component {
 
   render() {
     const q = this.props.question;
+    console.log(q);
 
     // NEEDS TO BE PROPER MASONRY PATTERN, OLDEST QUESTIONS NOT AT TOP!
 

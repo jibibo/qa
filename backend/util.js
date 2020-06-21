@@ -3,16 +3,17 @@ let QuestionModel = require("./models/questionModel");
 let UserModel = require("./models/userModel");
 
 filterModel = async (model, filter, sort, onSuccess) => {
+  console.log(`filter ${JSON.stringify(filter)}`);
   await model
     .find(filter)
-    .sort(sort)
     .then((found) => {
+      console.log(`found ${JSON.stringify(found)}`);
       console.log(`Found type: ${typeof found}`);
-      if (found === undefined) {
+      if (found.length === 0) {
         console.log(
           `INFO util: Filter ${JSON.stringify(filter)} gave no results`
         );
-        onSuccess(null);
+        onSuccess([]);
       } else {
         console.log(
           `INFO util: Filter ${JSON.stringify(filter)} gave ${
@@ -36,12 +37,7 @@ filterQuestions = async (filter, callback) => {
 };
 
 filterUsers = async (filter, callback) => {
-  await filterModel(
-    UserModel,
-    { _id: "5eed1b7f98270c306819e7d4" },
-    null,
-    callback
-  );
+  await filterModel(UserModel, filter, null, callback);
 };
 
 sessionTokenValid = async (sessionToken, callback) => {
@@ -72,6 +68,37 @@ saveModel = async (model, onSuccess, onError) => {
       console.log(`ERROR util/saveModel: ${error}`);
       onError(error);
     });
+};
+
+addAuthorNamesToQuestions = async (questions) => {
+  let newQuestions = [];
+
+  questions.forEach(async (q) => {
+    let newQ = {};
+    let jsonQuestion = JSON.parse(JSON.stringify(q));
+    for (key in jsonQuestion) {
+      console.log(key);
+      newQ[key] = jsonQuestion[key];
+    }
+    await filterUsers({ _id: jsonQuestion.authorId }, (foundUser) => {
+      newQ["author"] = foundUser;
+    });
+    console.log(newQ);
+    newQuestions.push(newQ);
+  });
+
+  // for (q in questions) {
+  //   let newQ = {};
+  //   console.log(q);
+  //   for (key in q) {
+  //     q[key] = newQ[key];
+  //   }
+  //   newQuestions.push(newQ);
+  // }
+
+  console.log(newQuestions);
+
+  return questions;
 };
 
 module.exports = {

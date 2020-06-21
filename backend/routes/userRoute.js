@@ -18,8 +18,8 @@ router.route("/register").post(async (req, res) => {
   await filterUsers({ email: req.body.email }, (matches) => {
     emailMatches = matches;
   });
-
-  if (usernameMatches) {
+  console.log(`usernameMatches ${usernameMatches}`);
+  if (usernameMatches.length > 0) {
     console.log(`ERROR /user/register: Username ${req.body.username} is taken`);
     res.status(400).json({ error: "username_taken" });
   } else if (req.body.withEmail && emailMatches) {
@@ -42,7 +42,7 @@ router.route("/register").post(async (req, res) => {
       email: req.body.withEmail ? req.body.email : null,
       sessionToken: sessionToken,
     });
-    
+
     saveModel(
       newUser,
       () => {

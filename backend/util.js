@@ -5,6 +5,7 @@ let UserModel = require("./models/userModel");
 filterModel = async (model, modelName, filter, sort, onSuccess) => {
   await model
     .find(filter)
+    .sort(sort)
     .then((matches) => {
       // console.log(`matches ${JSON.stringify(found)}`);
 

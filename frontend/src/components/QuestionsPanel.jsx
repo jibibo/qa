@@ -2,11 +2,13 @@ import React, { Component } from "react";
 
 import axios from "axios";
 
+import QuestionCard from "./QuestionCard";
 import Question from "./Question";
 import QuestionSearch from "./QuestionSearch";
 
 class QuestionsPanel extends Component {
   state = {
+    showQuestion: null,
     questions: [],
   };
 
@@ -26,7 +28,26 @@ class QuestionsPanel extends Component {
       })
       .then((r) => {
         this.setState({ questions: r.data });
+        console.log(r.data);
       });
+  };
+
+  renderColumns = () => {
+    return this.state.questions.length ? (
+      <div className="card-columns">
+        {this.state.questions.map((question) => {
+          return (
+            <QuestionCard
+              key={question._id}
+              question={question}
+              answers={Math.floor(Math.random() * 6)}
+            />
+          );
+        })}
+      </div>
+    ) : (
+      <p>Nothing here (yet)!</p>
+    );
   };
 
   render() {
@@ -39,21 +60,9 @@ class QuestionsPanel extends Component {
           />
         ) : null}
         <br />
-        {this.state.questions.length ? (
-          <div className="card-columns">
-            {this.state.questions.map((question) => {
-              return (
-                <Question
-                  key={question._id}
-                  question={question}
-                  answers={Math.floor(Math.random() * 6)}
-                />
-              );
-            })}
-          </div>
-        ) : (
-          <p>Nothing here (yet)!</p>
-        )}
+        <Question />
+        <br />
+        {this.renderColumns()}
       </div>
     );
   }

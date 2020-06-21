@@ -11,6 +11,12 @@ class QuestionAdd extends Component {
     duplicateTag: "",
     hideDuplicateAlert: true,
     hideAddedAlert: true,
+    answersInput: [""],
+  };
+
+  componentDidMount = () => {
+    var newAnswer = this.state.answersValue.concat("");
+    this.setState({ answersValue: newAnswer });
   };
 
   handleSubmit = (event) => {
@@ -42,8 +48,11 @@ class QuestionAdd extends Component {
     event.preventDefault();
   };
 
-  handleStateUpdate = (event) => {
-    if (event.target.name === "addTag" && event.key === " ") {
+  handleStateUpdate = (event, i) => {
+    if (
+      event.target.name === "addTag" &&
+      (event.key === " " || event.key === ",")
+    ) {
       // if space pressed in add tag input
 
       if (this.state.addedTags.includes(event.target.value.toLowerCase())) {
@@ -71,6 +80,15 @@ class QuestionAdd extends Component {
       // empty the add tag input
       event.target.value = null;
       event.preventDefault();
+
+      // answers
+    } else if (event.target.name === "answers") {
+      console.log(this.state.answersValue);
+      this.setState({
+        answersValue: this.state.answersValue.map((item, index) =>
+          i === index ? event.target.value : item
+        ),
+      });
     } else {
       console.log(
         `Set ${event.target.name + "Value"} to ${event.target.value}`
@@ -91,7 +109,32 @@ class QuestionAdd extends Component {
     console.log(`Set added tags to ${tags}`);
   };
 
+  addAnswersInput = () => {
+    var newAnswer = this.state.answersInput.concat("");
+    var newAnswers = this.state.answersValue.concat("");
+    this.setState({
+      answersInput: newAnswer,
+      answersValue: newAnswers,
+    });
+  };
+
+  displayAnswersInput = () => {
+    return this.state.answersInput.map((_, i) => (
+      <textarea
+        key={i}
+        className="form-control"
+        name="answers"
+        value={this.state.answersValue[i]}
+        placeholder="Answers"
+        rows="1"
+        onChange={(e) => this.handleStateUpdate(e, i)}
+      />
+    ));
+  };
+
   render() {
+    console.log("answersInput", this.state.answersInput);
+    console.log("answersValue", this.state.answersValue);
     return (
       <div id="QuestionAdd" className="card">
         <div className="card-header">
@@ -146,15 +189,17 @@ class QuestionAdd extends Component {
             >
               You already used <b>{this.state.duplicateTag}</b>!
             </div>
-            <div className="form-group">
-              <textarea
-                className="form-control"
-                name="answers"
-                value={this.state.answersValue}
-                placeholder="Answers"
-                rows="2"
-                onChange={this.handleStateUpdate}
-              />
+            <div className="form-group ">
+              {this.displayAnswersInput()}
+              <button
+                type="button"
+                className="close"
+                aria-label="Close"
+                onClick={this.addAnswersInput}
+              >
+                <span aria-hidden="true">&#43;</span>
+              </button>
+              <br />
             </div>
             <div className="form-group">
               <input

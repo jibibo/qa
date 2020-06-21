@@ -48,20 +48,6 @@ filterUsers = async (filter, callback) => {
   await filterModel(UserModel, "User", filter, null, callback);
 };
 
-sessionTokenValid = async (sessionToken, callback) => {
-  console.info(`INFO util: Checking session token ${sessionToken}...`);
-
-  await filterUsers({ sessionToken: sessionToken }, (matches) => {
-    if (matches.length > 0) {
-      console.info(`INFO util: Session token is valid`);
-      callback(matches[0]);
-    } else {
-      console.info(`INFO util: Session token is not valid`);
-      callback(false);
-    }
-  });
-};
-
 saveModel = async (model, onSuccess, onError) => {
   console.info("INFO util/saveModel: Saving model...");
   await model
@@ -79,18 +65,25 @@ saveModel = async (model, onSuccess, onError) => {
 addAuthorNamesToQuestions = async (questions) => {
   let newQuestions = [];
 
-  await questions.forEach(async (q) => {
+  questions.forEach(async (q) => {
     let newQ = {};
     let jsonQuestion = JSON.parse(JSON.stringify(q));
+
     for (key in jsonQuestion) {
-      // console.log(key);
+      console.log(`key: ${key}`);
       newQ[key] = jsonQuestion[key];
     }
-    await filterUsers({ _id: jsonQuestion.authorId }, (foundUser) => {
-      newQ["author"] = foundUser.username;
+
+    await filterUsers({ _id: jsonQuestion.authorId }, (matches) => {
+      newQ["author"] = matches[0].username;
+      console.log("Author:");
+      console.log(matches[0]);
+
+      console.log("newQ:");
+      console.log(newQ);
+
+      newQuestions.push(newQ);
     });
-    // console.log(newQ);
-    newQuestions.push(newQ);
   });
 
   console.info("Questions with author names:");
@@ -100,7 +93,6 @@ addAuthorNamesToQuestions = async (questions) => {
 };
 
 module.exports = {
-  sessionTokenValid,
   filterAnswers,
   filterQuestions,
   filterUsers,

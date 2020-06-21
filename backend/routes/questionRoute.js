@@ -18,14 +18,16 @@ router.route("/search").get(async (req, res) => {
     filter = {
       title: {
         $regex: req.query[0],
-        $options: "i",
+        $options: "xi",
       },
     };
   }
 
   await filterQuestions(filter, async (questions) => {
     await addAuthorNamesToQuestions(questions).then((newQuestions) => {
-      console.log(`OK /question/search`);
+      console.log(
+        `OK /question/search, sending length: ${newQuestions.length}`
+      );
       res.status(200).json(newQuestions);
     });
   });
@@ -34,17 +36,17 @@ router.route("/search").get(async (req, res) => {
 router.route("/add").post((req, res) => {
   console.log("START /question/add");
 
-  sessionTokenValid(req.body.sessionToken, (foundUser) => {
+  filterUsers({ sessionToken: req.body.sessionToken }, (matches) => {
     // console.log(req.body);
-    if (foundUser) {
+    if (matches) {
       console.log("Author:");
-      console.log(foundUser);
+      console.log(matches[0]);
 
       const newQuestion = new QuestionModel({
         title: req.body.title,
         description: req.body.description,
         tags: req.body.tags,
-        authorId: foundUser._id,
+        authorId: matches[0]._id,
       });
 
       saveModel;
@@ -56,7 +58,7 @@ router.route("/add").post((req, res) => {
         })
         .catch((error) => {
           console.log(`ERR /question/add: ${error}`);
-          res.status(400).json({ error: error });
+          res.status(500).json({ error: error });
         });
     } else {
       let error = "Invalid session token";

@@ -65,45 +65,47 @@ class Question extends Component {
             })}
           </div>
         ) : null}
-        <div className="card-body">
-          <div className="media mb-3">
-            <img
-              className="mr-3"
-              src="https://via.placeholder.com/64"
-              alt="Profile"
-            />
-            <div className="media-body">
-              <h6 className="mt-0">Answeree username</h6>
-              YA YEE Cras sit amet nibh libero, in gravida nulla. Nulla vel
-              metus scelerisque ante sollicitudin. Cras purus odio, vestibulum
-              in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-              nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              T
-            </div>
-          </div>
-        </div>
-        <div className="card-body">
-          <div className="media mb-3">
-            <img
-              className="mr-3"
-              src="https://via.placeholder.com/64"
-              alt="Profile"
-            />
-            <div className="media-body">
-              <h6 className="mt-0">Answeree username</h6>
-              YA YEE Cras sit amet nibh libero, in gravida nulla. Nulla vel
-              metus scelerisque ante sollicitudin. Cras purus odio, vestibulum
-              in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-              nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              T
-            </div>
-          </div>
-        </div>
+
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Answer maybe like this</li>
           <li class="list-group-item">Dapibus ac facilisis in</li>
           <li class="list-group-item">Vestibulum at eros</li>
         </ul>
+        
+        <div className="card-body">
+          <div className="media mb-3">
+            <img
+              className="mr-3"
+              src="https://via.placeholder.com/64"
+              alt="Profile"
+            />
+            <div className="media-body">
+              <h6 className="mt-0">Answeree username</h6>
+              YA YEE Cras sit amet nibh libero, in gravida nulla. Nulla vel
+              metus scelerisque ante sollicitudin. Cras purus odio, vestibulum
+              in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
+              nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              T
+            </div>
+          </div>
+        </div>
+        <div className="card-body">
+          <div className="media mb-3">
+            <img
+              className="mr-3"
+              src="https://via.placeholder.com/64"
+              alt="Profile"
+            />
+            <div className="media-body">
+              <h6 className="mt-0">Answeree username</h6>
+              YA YEE Cras sit amet nibh libero, in gravida nulla. Nulla vel
+              metus scelerisque ante sollicitudin. Cras purus odio, vestibulum
+              in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
+              nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              T
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

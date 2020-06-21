@@ -77,7 +77,7 @@ class QuestionAdd extends Component {
       );
 
       this.setState({ [event.target.name + "Value"]: event.target.value });
-      console.log(this.state.answersValue);
+      // console.log(this.state.answersValue);
     }
   };
 

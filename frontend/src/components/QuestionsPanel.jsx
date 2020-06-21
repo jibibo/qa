@@ -30,7 +30,6 @@ class QuestionsPanel extends Component {
   };
 
   render() {
-    console.log(this.state.questions);
     return (
       <div id="QuestionsPanel">
         {this.props.showSearchBar ? (

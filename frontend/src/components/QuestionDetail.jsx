@@ -29,7 +29,7 @@ class QuestionDetail extends Component {
 
                     return (
                       <a
-                        href="#"
+                        href="/"
                         key={tag}
                         className="badge badge-secondary text-light m-1"
                       >

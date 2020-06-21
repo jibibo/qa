@@ -35,8 +35,11 @@ router.route("/add").post((req, res) => {
   console.log("START /question/add");
 
   sessionTokenValid(req.body.sessionToken, (foundUser) => {
-    console.log(req.body);
+    // console.log(req.body);
     if (foundUser) {
+      console.log("Author:");
+      console.log(foundUser);
+
       const newQuestion = new QuestionModel({
         title: req.body.title,
         description: req.body.description,
@@ -49,17 +52,17 @@ router.route("/add").post((req, res) => {
         .save()
         .then(() => {
           console.log(`OK /question/add: added ${req.body.title}`);
-          res.status(200).json({ response: "success", title: req.body.title });
+          res.status(200).json({ title: req.body.title });
         })
-        .catch((err) => {
-          console.log(`ERR /question/add: ${err}`);
-          res.status(400).json({ response: "err", err: err });
+        .catch((error) => {
+          console.log(`ERR /question/add: ${error}`);
+          res.status(400).json({ error: error });
         });
     } else {
-      let err = "Invalid session token";
+      let error = "Invalid session token";
 
-      console.log(`ERR /question/add: ${err}`);
-      res.status(400).json({ response: "err", err: err });
+      console.error(`ERROR /question/add: ${error}`);
+      res.status(400).json({ error: error });
     }
   });
 });

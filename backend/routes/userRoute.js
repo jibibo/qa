@@ -61,14 +61,14 @@ router.route("/register").post(async (req, res) => {
 });
 
 router.route("/search").get(async (req, res) => {
-  console.log("START /user/search");
+  console.info("START /user/search");
 
   await filterUsers({ username: req.body.username }, (users) => {
     if (users) {
-      console.log(`OK /user/search: found ${users.length}`);
+      console.info(`OK /user/search: found ${users.length}`);
       res.status(200).json(users);
     } else {
-      console.log(`ERROR /user/search: ${error}`);
+      console.error(`ERROR /user/search: ${error}`);
       res.status(400).json({ error: error });
     }
   });

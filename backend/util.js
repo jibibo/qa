@@ -65,11 +65,13 @@ saveModel = async (model, onSuccess, onError) => {
 addAuthorNamesToQuestions = async (questions) => {
   let newQuestions = [];
 
-  for (let q of questions) { // iterate over an array
+  for (q of questions) {
+    // iterate over an array
     let newQ = {};
     let jsonQuestion = JSON.parse(JSON.stringify(q));
 
-    for (key in jsonQuestion) { // iterate over object's keys
+    for (key in jsonQuestion) {
+      // iterate over object's keys
       console.log(`key: ${key}`);
       newQ[key] = jsonQuestion[key];
     }

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import QuestionDetail from "./QuestionDetail";
-
 class Question extends Component {
   state = {
     hovered: false,
@@ -77,77 +75,69 @@ class Question extends Component {
     // console.log(q);
 
     // NEEDS TO BE PROPER MASONRY PATTERN, OLDEST QUESTIONS NOT AT TOP!
-
+    // <QuestionDetail
+    // question={this.state.question}
+    // showModal={this.state.showQuestionDetail}
+    // closeModal={this.closeQuestion}
+    // getCardClass={this.getCardClass()}
+    // clearQuestion={this.clearQuestion}
     return (
-      <>
-        <QuestionDetail
-          question={this.state.question}
-          showModal={this.state.showQuestionDetail}
-          closeModal={this.closeQuestion}
-          getCardClass={this.getCardClass()}
-          clearQuestion={this.clearQuestion}
-        />
-        <div
-          id="Question"
-          className={this.getCardClass()}
-          style={{ cursor: "pointer", borderRadius: "10px" }}
-          onClick={() => this.openQuestion(q)}
-          onMouseEnter={this.handleMouseEnter}
-          onMouseLeave={this.handleMouseLeave}
-        >
-          <div className="card-header">
-            {/* clicking here should open card and scroll down to answers list*/}
-            <span
-              className={
-                this.props.answers
-                  ? "badge badge-success"
-                  : "badge badge-danger"
-              }
-            >
-              {this.props.answers}
-            </span>{" "}
-            answers
-            <span className="float-right">
-              {this.formatDate(q.createdDate)}
-            </span>
-          </div>
-          <div className="card-body">
-            <h4 className="card-title">{q.title}</h4>
-            <p className="textInheritAll card-text">{q.description}</p>
-            <div className="mb-2">
-              {q.tags.map((tag) => {
-                // tags here
+      <div
+        id="Question"
+        className={this.getCardClass()}
+        style={{ cursor: "pointer", borderRadius: "10px" }}
+        onClick={() => this.openQuestion(q)}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+      >
+        <div className="card-header">
+          {/* clicking here should open card and scroll down to answers list*/}
+          <span
+            className={
+              this.props.answers ? "badge badge-success" : "badge badge-danger"
+            }
+          >
+            {this.props.answers}
+          </span>{" "}
+          answers
+          <span className="float-right">{this.formatDate(q.createdDate)}</span>
+        </div>
+        <div className="card-body">
+          <h4 className="card-title">{q.title}</h4>
+          <p className="textInheritAll card-text">{q.description}</p>
+          <div className="mb-2">
+            {q.tags.map((tag) => {
+              // tags here
 
-                return (
-                  <a
-                    href="/"
-                    key={tag}
-                    className="badge badge-secondary text-light m-1"
-                  >
-                    {tag}
-                  </a>
-                );
-              })}
-            </div>
-            <div className="btn-group btn-group-sm">
-              <button type="button" className="btn btn-primary">
-                {/* opens the question and instantly puts cursor in answer textarea*/}
-                Answer
-              </button>
-              <button type="button" className="btn btn-light">
-                {/* more options button (report, fav etc) */}
-                ...
-              </button>
-            </div>
+              return (
+                <a
+                  href="/"
+                  key={tag}
+                  className="badge badge-secondary text-light m-1"
+                >
+                  {tag}
+                </a>
+              );
+            })}
           </div>
-          <div className="card-footer">
-            by{" "}
-            <a href="/" className="text-decoration-none text-dark">
-              <b>{q.author}</b>
-            </a>
+          <div className="btn-group btn-group-sm">
+            <button type="button" className="btn btn-primary">
+              {/* opens the question and instantly puts cursor in answer textarea*/}
+              Answer
+            </button>
+            <button type="button" className="btn btn-light">
+              {/* more options button (report, fav etc) */}
+              ...
+            </button>
           </div>
         </div>
-      </>
+        <div className="card-footer">
+          by{" "}
+          <a href="/" className="text-decoration-none text-dark">
+            <b>{q.author}</b>
+          </a>
+        </div>
+      </div>
     );
   }
 }

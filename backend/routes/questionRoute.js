@@ -18,7 +18,7 @@ router.route("/search").get(async (req, res) => {
     filter = {
       title: {
         $regex: req.query[0],
-        $options: "xi",
+        $options: "i",
       },
     };
   }

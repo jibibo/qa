@@ -33,11 +33,7 @@ class Authentication extends Component {
 
   render() {
     return (
-      <div
-        id="Authentication"
-        className="card"
-        style={{ borderRadius: "15px" }}
-      >
+      <div id="Authentication" className="card">
         <div className="card-header">
           <ul className="nav nav-tabs card-header-tabs">
             <li className="nav-item">

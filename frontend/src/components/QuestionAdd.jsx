@@ -21,7 +21,7 @@ class QuestionAdd extends Component {
       description: this.state.descriptionValue,
       tags: this.state.addedTags,
       answers: this.state.answersValue,
-      sessionToken: "deeznutsXD", // set to sessionToken in cookies
+      sessionToken: "1c005cd0-f7a8-42cb-9776-67543bbcf723", // set to sessionToken in cookies
     };
 
     axios.post(`http://localhost:3000/question/add`, params).then((r) => {

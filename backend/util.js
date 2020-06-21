@@ -2,42 +2,50 @@ let AnswerModel = require("./models/answerModel");
 let QuestionModel = require("./models/questionModel");
 let UserModel = require("./models/userModel");
 
-filterModel = async (model, filter, sort, onSuccess) => {
-  console.log(`filter ${JSON.stringify(filter)}`);
+filterModel = async (model, modelName, filter, sort, onSuccess) => {
   await model
     .find(filter)
     .then((found) => {
       console.log(`found ${JSON.stringify(found)}`);
-      console.log(`Found type: ${typeof found}`);
+
       if (found.length === 0) {
         console.log(
-          `INFO util: Filter ${JSON.stringify(filter)} gave no results`
+          `INFO util/filterModel: Filter ${JSON.stringify(
+            filter
+          )} for model ${modelName} gave no results`
         );
         onSuccess([]);
       } else {
         console.log(
-          `INFO util: Filter ${JSON.stringify(filter)} gave ${
-            found.length
-          } results`
+          `INFO util/filterModel: Filter ${JSON.stringify(
+            filter
+          )} for model ${modelName}  gave ${found.length} results`
         );
         onSuccess(found);
       }
     })
     .catch((error) => {
-      console.log(`what happened??? ${error}`);
+      console.log(`ERROR util/filterModel: ${error}`);
+      onSuccess([]);
     });
 };
 
 filterAnswers = async (filter, callback) => {
-  await filterModel(AnswerModel, filter, null, callback);
+  await filterModel(AnswerModel, "Answer", filter, null, callback);
 };
 
 filterQuestions = async (filter, callback) => {
-  await filterModel(QuestionModel, filter, "-createdDate", callback);
+  await filterModel(
+    QuestionModel,
+    "Question",
+    filter,
+    "-createdDate",
+    callback
+  );
 };
 
 filterUsers = async (filter, callback) => {
-  await filterModel(UserModel, filter, null, callback);
+  await filterModel(UserModel, "User", filter, null, callback);
 };
 
 sessionTokenValid = async (sessionToken, callback) => {

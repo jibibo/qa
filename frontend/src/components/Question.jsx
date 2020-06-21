@@ -88,7 +88,7 @@ class Question extends Component {
           clearQuestion={this.clearQuestion}
         />
         <div
-          id={`Question ${this.state.question._id}`}
+          id="Question"
           className={this.getCardClass()}
           style={{ cursor: "pointer", borderRadius: "10px" }}
           onClick={() => this.openQuestion(q)}

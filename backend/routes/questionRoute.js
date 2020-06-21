@@ -24,11 +24,10 @@ router.route("/search").get(async (req, res) => {
   }
 
   await filterQuestions(filter, async (questions) => {
-    console.log(`OK /question/search: found ${questions.length} matches`);
-
-    await addAuthorNamesToQuestions(questions).then((newQuestions) =>
-      res.status(200).json(newQuestions)
-    );
+    await addAuthorNamesToQuestions(questions).then((newQuestions) => {
+      console.log(`OK /question/search`);
+      res.status(200).json(newQuestions);
+    });
   });
 });
 

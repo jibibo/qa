@@ -93,7 +93,7 @@ class QuestionAdd extends Component {
 
   render() {
     return (
-      <div id="QuestionAdd" className="card" style={{ borderRadius: "10px" }}>
+      <div id="QuestionAdd" className="card">
         <div className="card-header">
           <h5 className="d-inline">Add question</h5>
         </div>

@@ -48,7 +48,7 @@ class QuestionCard extends Component {
     return new Date(this.props.question.createdDate).toString();
   };
 
-  getCardClass = () => {
+  getCardClasses = () => {
     return `card mt-2 ${this.state.hovered ? "shadow " : ""}${
       this.isOldQuestion() ? "bg-dark text-white " : ""
     }${
@@ -56,15 +56,21 @@ class QuestionCard extends Component {
     }`;
   };
 
+  getAuthorButtonClasses = () => {
+    return `btn btn-link btn-sm ${
+      this.isOldQuestion() ? "text-light" : "text-dark"
+    }`;
+  };
+
   render() {
     return (
       <div
         id="QuestionCard"
-        className={this.getCardClass()}
+        className={this.getCardClasses()}
         style={{ borderRadius: "10px" }}
       >
         <div className="card-header">
-          <button className="btn btn-link btn-sm text-dark">
+          <button className={this.getAuthorButtonClasses()}>
             <b>{this.props.question.author}</b>
           </button>
           <span title={this.formatDateTitle()} className="float-right">

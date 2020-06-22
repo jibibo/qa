@@ -36,6 +36,10 @@ class QuestionsPanel extends Component {
     this.setState({ showQuestion });
   };
 
+  handleHideQuestion = () => {
+    this.setState({ showQuestion: null });
+  };
+
   renderColumns = () => {
     return this.state.questions.length ? (
       <div className="card-columns">
@@ -66,7 +70,10 @@ class QuestionsPanel extends Component {
         ) : null}
         <br />
         {this.state.showQuestion ? (
-          <Question question={this.state.showQuestion} />
+          <Question
+            question={this.state.showQuestion}
+            onHideQuestion={this.handleHideQuestion}
+          />
         ) : null}
         <br />
         {this.renderColumns()}

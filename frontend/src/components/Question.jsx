@@ -31,15 +31,39 @@ class Question extends Component {
     return new Date(this.props.question.createdDate).toString();
   };
 
+  isOldQuestion = () => {
+    var date = new Date(this.props.question.createdDate);
+    var now = Date.now();
+    var delta = now - date.getTime();
+
+    return delta > 86400000; // > 24 hours true/false
+  };
+
+  getCardClasses = () => {
+    return `card ${this.isOldQuestion() ? "bg-dark text-white " : ""}${
+      this.props.question.answers.length ? "border-success" : "border-danger"
+    }`;
+  };
+
+  getAuthorButtonClasses = () => {
+    return `btn btn-link btn-sm ${
+      this.isOldQuestion() ? "text-light" : "text-dark"
+    }`;
+  };
+
   render() {
     return (
-      <div id="Question" className="card" style={{ borderRadius: "10px" }}>
+      <div
+        id="Question"
+        className={this.getCardClasses()}
+        style={{ borderRadius: "10px" }}
+      >
         <div className="card-header">
-          <button className="btn btn-link text-dark ml-0">
+          <button className={this.getAuthorButtonClasses()}>
             <b>{this.props.question.author}</b>
           </button>
           <span title={this.formatDateTitle()} className="float-right">
-            {this.formatDate()} ago
+            {this.formatDate()}
           </span>
         </div>
         <div className="card-body">
@@ -47,6 +71,13 @@ class Question extends Component {
           <p className="textInheritAll card-text">
             {this.props.question.description}
           </p>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={this.props.onHideQuestion}
+          >
+            Hide
+          </button>
         </div>
         {this.props.question.tags.length > 0 ? (
           <div id="QuestionCardTags" className="card-footer">
@@ -66,12 +97,20 @@ class Question extends Component {
           </div>
         ) : null}
 
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Answer maybe like this</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+        <div className="card-body">
+          <p className="card-text">Or answers like this?</p>
+        </div>
+
+        <div className="card-body">
+          <p className="card-text">Or answers like this?</p>
+        </div>
+
+        <ul className="list-group list-group-flush text-dark">
+          <li className="list-group-item">Answer maybe like this</li>
+          <li className="list-group-item">Dapibus ac facilisis in</li>
+          <li className="list-group-item">Vestibulum at eros</li>
         </ul>
-        
+
         <div className="card-body">
           <div className="media mb-3">
             <img

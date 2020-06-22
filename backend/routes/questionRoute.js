@@ -46,6 +46,7 @@ router.route("/add").post((req, res) => {
         title: req.body.title,
         description: req.body.description,
         tags: req.body.tags,
+        answers: req.body.answers,
         authorId: matches[0]._id,
       });
 

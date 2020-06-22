@@ -21,7 +21,7 @@ class QuestionAdd extends Component {
 
   handleSubmit = (event) => {
     console.log(`Adding question: ${this.state.titleValue}`);
-
+    console.log(`handleSubmit ${this.state.answersValue}`)
     const params = {
       title: this.state.titleValue,
       description: this.state.descriptionValue,
@@ -36,6 +36,8 @@ class QuestionAdd extends Component {
         titleValue: "",
         descriptionValue: "",
         addedTags: [],
+        answersValue: [""],
+        answersInput: [""],
         duplicateTag: "",
         hideDuplicateAlert: true,
         addedTag: r.data.title,
@@ -54,7 +56,6 @@ class QuestionAdd extends Component {
       (event.key === " " || event.key === ",")
     ) {
       // if space pressed in add tag input
-
       if (this.state.addedTags.includes(event.target.value.toLowerCase())) {
         // duplicate
 
@@ -122,19 +123,25 @@ class QuestionAdd extends Component {
     return this.state.answersInput.map((_, i) => (
       <textarea
         key={i}
+        ref={(input) => { this.answerRef = input; }}
         className="form-control"
         name="answers"
         value={this.state.answersValue[i]}
         placeholder="Answers"
         rows="1"
-        onChange={(e) => this.handleStateUpdate(e, i)}
+        onKeyDown={(e) => {
+          if(e.shiftKey && e.key === " ") {
+            this.addAnswersInput();
+            this.answerRef.focus();
+            
+          }
+        }}
+        onChange={(event) => this.handleStateUpdate(event, i)}
       />
     ));
   };
 
   render() {
-    console.log("answersInput", this.state.answersInput);
-    console.log("answersValue", this.state.answersValue);
     return (
       <div id="QuestionAdd" className="card">
         <div className="card-header">
@@ -163,26 +170,6 @@ class QuestionAdd extends Component {
                 onChange={this.handleStateUpdate}
               />
             </div>
-            <div className="form-group">
-              {this.state.addedTags.map((tag) => {
-                return (
-                  <button
-                    key={tag}
-                    type="button"
-                    className="btn btn-outline-secondary rounded-pill m-1"
-                    onClick={() => this.removeTag(tag)}
-                  >
-                    {tag} <span>&times;</span>
-                  </button>
-                );
-              })}
-            </div>
-            <div
-              className="alert alert-success"
-              hidden={this.state.hideAddedAlert}
-            >
-              Successfully submitted question <b>{this.state.addedTag}</b>!
-            </div>
             <div
               className="alert alert-danger"
               hidden={this.state.hideDuplicateAlert}
@@ -202,6 +189,20 @@ class QuestionAdd extends Component {
               <br />
             </div>
             <div className="form-group">
+              {this.state.addedTags.map((tag) => {
+                return (
+                  <button
+                    key={tag}
+                    type="button"
+                    className="btn btn-outline-secondary rounded-pill m-1"
+                    onClick={() => this.removeTag(tag)}
+                  >
+                    {tag} <span>&times;</span>
+                  </button>
+                );
+              })}
+            </div>
+            <div className="form-group">
               <input
                 type="text"
                 className="form-control"
@@ -209,6 +210,12 @@ class QuestionAdd extends Component {
                 placeholder="Add tags (add with space)"
                 onKeyPress={this.handleStateUpdate}
               />
+            </div>
+            <div
+              className="alert alert-success"
+              hidden={this.state.hideAddedAlert}
+            >
+              Successfully submitted question <b>{this.state.addedTag}</b>!
             </div>
             <div className="form-group">
               <input

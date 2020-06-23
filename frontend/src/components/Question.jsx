@@ -97,19 +97,39 @@ class Question extends Component {
           </div>
         ) : null}
 
-        <div className="card-body">
-          <p className="card-text">Or answers like this?</p>
-        </div>
+        {this.props.question.answers.map((answer, i) => {
+          return (
+            <>
+              <div className="card-body">
+                <div className="d-flex rounded m-2">
+                  <div className="d-inline rounded p-1">
+                    <i
+                      className="fa fa-arrow-up"
+                      style={{ color: "green" }}
+                    ></i>
+                    <span className="m-1">
+                      <b>{i}</b>
+                    </span>
+                    <i
+                      className="fa fa-arrow-down"
+                      style={{ color: "red" }}
+                    ></i>
+                  </div>
+                  <br />
+                  <p className="card-text ml-2" key={i}>
+                    {answer}
+                  </p>
+                </div>
+              </div>
+            </>
+          );
+        })}
 
-        <div className="card-body">
-          <p className="card-text">Or answers like this?</p>
-        </div>
-
-        <ul className="list-group list-group-flush text-dark">
+        {/* <ul className="list-group list-group-flush text-dark">
           <li className="list-group-item">Answer maybe like this</li>
           <li className="list-group-item">Dapibus ac facilisis in</li>
           <li className="list-group-item">Vestibulum at eros</li>
-        </ul>
+        </ul> */}
 
         <div className="card-body">
           <div className="media mb-3">

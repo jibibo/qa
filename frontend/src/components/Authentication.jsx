@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import LogIn from "./Login";
+import LogIn from "./LogIn";
 import Register from "./Register";
 
 class Authentication extends Component {

@@ -21,7 +21,7 @@ class QuestionAdd extends Component {
 
   handleSubmit = (event) => {
     console.log(`Adding question: ${this.state.titleValue}`);
-    
+
     const params = {
       title: this.state.titleValue,
       description: this.state.descriptionValue,
@@ -123,17 +123,18 @@ class QuestionAdd extends Component {
     return this.state.choicesInput.map((_, i) => (
       <textarea
         key={i}
-        ref={(input) => { this.choiceRef = input; }}
+        ref={(input) => {
+          this.choiceRef = input;
+        }}
         className="form-control"
         name="choices"
         value={this.state.choicesValue[i]}
         placeholder="Choices"
         rows="1"
         onKeyDown={(e) => {
-          if(e.shiftKey && e.key === " ") {
+          if (e.shiftKey && e.key === " ") {
             this.addChoicesInput();
             this.choiceRef.focus();
-            
           }
         }}
         onChange={(event) => this.handleStateUpdate(event, i)}
@@ -182,7 +183,7 @@ class QuestionAdd extends Component {
                 type="button"
                 className="close"
                 aria-label="Close"
-                onClick={this.addAnswersInput}
+                onClick={this.addChoicesInput}
               >
                 <span aria-hidden="true">&#43;</span>
               </button>

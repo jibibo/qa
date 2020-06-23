@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Question extends Component {
   state = {
-    answerValue: "",
+    choiceValue: "",
   };
 
   formatDate = () => {
@@ -41,7 +41,7 @@ class Question extends Component {
 
   getCardClasses = () => {
     return `card ${this.isOldQuestion() ? "bg-dark text-white " : ""}${
-      this.props.question.answers.length ? "border-success" : "border-danger"
+      this.props.question.choices.length ? "border-success" : "border-danger"
     }`;
   };
 
@@ -97,7 +97,7 @@ class Question extends Component {
           </div>
         ) : null}
 
-        {this.props.question.answers.map((answer, i) => {
+        {this.props.question.choices.map((choice, i) => {
           return (
             <>
               <div className="card-body">
@@ -119,7 +119,7 @@ class Question extends Component {
                       </div>
                       <br />
                       <p className="card-text ml-2" key={i}>
-                        {answer}
+                        {choice}
                       </p>
                     </div>
                   </li>

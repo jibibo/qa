@@ -32,12 +32,11 @@ class QuestionsPanel extends Component {
       });
   };
 
-  handleShowQuestion = (showQuestion) => {
+  handleShowQuestion = async (showQuestion) => {
     this.setState({ showQuestion });
-    window.scrollTo({
-      top: 100,
-      behavior: "smooth",
 
+    window.scrollTo({
+      top: 150,
     });
   };
 

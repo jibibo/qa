@@ -101,25 +101,29 @@ class Question extends Component {
           return (
             <>
               <div className="card-body">
-                <div className="d-flex rounded m-2">
-                  <div className="d-inline rounded p-1">
-                    <i
-                      className="fa fa-arrow-up"
-                      style={{ color: "green" }}
-                    ></i>
-                    <span className="m-1">
-                      <b>{i}</b>
-                    </span>
-                    <i
-                      className="fa fa-arrow-down"
-                      style={{ color: "red" }}
-                    ></i>
-                  </div>
-                  <br />
-                  <p className="card-text ml-2" key={i}>
-                    {answer}
-                  </p>
-                </div>
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item">
+                    <div className="d-flex rounded m-2">
+                      <div className="d-inline rounded p-1">
+                        <i
+                          className="fa fa-arrow-up"
+                          style={{ color: "green" }}
+                        ></i>
+                        <span className="m-1">
+                          <b>{i}</b>
+                        </span>
+                        <i
+                          className="fa fa-arrow-down"
+                          style={{ color: "red" }}
+                        ></i>
+                      </div>
+                      <br />
+                      <p className="card-text ml-2" key={i}>
+                        {answer}
+                      </p>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </>
           );
@@ -132,7 +136,7 @@ class Question extends Component {
         </ul> */}
 
         <div className="card-body">
-          <div className="media mb-3">
+          <div id="Answer" className="media mb-3">
             <img
               className="mr-3"
               src="https://via.placeholder.com/64"
@@ -148,8 +152,8 @@ class Question extends Component {
             </div>
           </div>
         </div>
-        <div className="card-body">
-          <div className="media mb-3">
+        <div id="Answer" className="card-body">
+          <div id="Answer" className="media mb-3">
             <img
               className="mr-3"
               src="https://via.placeholder.com/64"

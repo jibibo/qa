@@ -11,9 +11,15 @@ module.exports = mongoose.model(
     description: {
       type: String,
     },
-    answers: {
+    choices: {
       type: Array,
       required: true,
+    },
+    choiceIds: {
+      type: Array,
+    },
+    markedChoiceId: {
+      type: String,
     },
     tags: {
       type: Array,
@@ -21,12 +27,6 @@ module.exports = mongoose.model(
     authorId: {
       type: String,
       required: true,
-    },
-    answerIds: {
-      type: Array,
-    },
-    markedAnswerId: {
-      type: String,
     },
     createdDate: {
       type: Date,

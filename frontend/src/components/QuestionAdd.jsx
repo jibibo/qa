@@ -7,26 +7,26 @@ class QuestionAdd extends Component {
     titleValue: "",
     descriptionValue: "",
     addedTags: [],
-    answersValue: [],
+    choicesValue: [],
     duplicateTag: "",
     hideDuplicateAlert: true,
     hideAddedAlert: true,
-    answersInput: [""],
+    choicesInput: [""],
   };
 
   componentDidMount = () => {
-    var newAnswer = this.state.answersValue.concat("");
-    this.setState({ answersValue: newAnswer });
+    var newChoice = this.state.choicesValue.concat("");
+    this.setState({ choicesValue: newChoice });
   };
 
   handleSubmit = (event) => {
     console.log(`Adding question: ${this.state.titleValue}`);
-    console.log(`handleSubmit ${this.state.answersValue}`)
+    
     const params = {
       title: this.state.titleValue,
       description: this.state.descriptionValue,
       tags: this.state.addedTags,
-      answers: this.state.answersValue,
+      choices: this.state.choicesValue,
       sessionToken: "5eb5b31a-0acc-450c-85c2-c5b36da29b08", // TestUserMike
     };
 
@@ -36,8 +36,8 @@ class QuestionAdd extends Component {
         titleValue: "",
         descriptionValue: "",
         addedTags: [],
-        answersValue: [""],
-        answersInput: [""],
+        choicesValue: [""],
+        choicesInput: [""],
         duplicateTag: "",
         hideDuplicateAlert: true,
         addedTag: r.data.title,
@@ -83,11 +83,11 @@ class QuestionAdd extends Component {
       event.preventDefault();
 
       // answers
-    } else if (event.target.name === "answers") {
-      console.log(this.state.answersValue);
+    } else if (event.target.name === "choices") {
+      console.log(this.state.choicesValue);
       this.setState({
-        answersValue: this.state.answersValue.map((item, index) =>
-          i === index ? event.target.value : item
+        choicesValue: this.state.choicesValue.map((choice, index) =>
+          i === index ? event.target.value : choice
         ),
       });
     } else {
@@ -110,29 +110,29 @@ class QuestionAdd extends Component {
     console.log(`Set added tags to ${tags}`);
   };
 
-  addAnswersInput = () => {
-    var newAnswer = this.state.answersInput.concat("");
-    var newAnswers = this.state.answersValue.concat("");
+  addChoicesInput = () => {
+    var newChoice = this.state.choicesInput.concat("");
+    var newChoices = this.state.choicesValue.concat("");
     this.setState({
-      answersInput: newAnswer,
-      answersValue: newAnswers,
+      choicesInput: newChoice,
+      choicesValue: newChoices,
     });
   };
 
-  displayAnswersInput = () => {
-    return this.state.answersInput.map((_, i) => (
+  displayChoicesInput = () => {
+    return this.state.choicesInput.map((_, i) => (
       <textarea
         key={i}
-        ref={(input) => { this.answerRef = input; }}
+        ref={(input) => { this.choiceRef = input; }}
         className="form-control"
-        name="answers"
-        value={this.state.answersValue[i]}
-        placeholder="Answers"
+        name="choices"
+        value={this.state.choicesValue[i]}
+        placeholder="Choices"
         rows="1"
         onKeyDown={(e) => {
           if(e.shiftKey && e.key === " ") {
-            this.addAnswersInput();
-            this.answerRef.focus();
+            this.addChoicesInput();
+            this.choiceRef.focus();
             
           }
         }}
@@ -177,7 +177,7 @@ class QuestionAdd extends Component {
               You already used <b>{this.state.duplicateTag}</b>!
             </div>
             <div className="form-group ">
-              {this.displayAnswersInput()}
+              {this.displayChoicesInput()}
               <button
                 type="button"
                 className="close"

@@ -52,7 +52,7 @@ class QuestionCard extends Component {
     return `card mt-2 ${this.state.hovered ? "shadow " : ""}${
       this.isOldQuestion() ? "bg-dark text-white " : ""
     }${
-      this.props.question.answers.length ? "border-success" : "border-danger"
+      this.props.question.choices.length ? "border-success" : "border-danger"
     }`;
   };
 
@@ -109,17 +109,17 @@ class QuestionCard extends Component {
           </div>
         ) : null}
 
-        <div id="QuestionCardAnswers" className="card-footer" onClick={null}>
+        <div id="QuestionCardChoices" className="card-footer" onClick={null}>
           <span
             className={
-              this.props.question.answers.length
+              this.props.question.choices.length
                 ? "badge badge-success"
                 : "badge badge-danger"
             }
           >
-            {this.props.question.answers.length}
+            {this.props.question.choices.length}
           </span>{" "}
-          answers
+          choices
         </div>
       </div>
     );

@@ -106,16 +106,16 @@ class Question extends Component {
                     <div className="d-flex rounded m-2">
                       <div className="d-inline rounded p-1">
                         <i
-                          className="fa fa-arrow-up"
+                          className=""
                           style={{ color: "green" }}
-                        ></i>
+                        >up arrow</i>
                         <span className="m-1">
                           <b>{i}</b>
                         </span>
                         <i
-                          className="fa fa-arrow-down"
+                          className=""
                           style={{ color: "red" }}
-                        ></i>
+                        >down arrow</i>
                       </div>
                       <br />
                       <p className="card-text ml-2" key={i}>

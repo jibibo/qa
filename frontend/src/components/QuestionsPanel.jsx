@@ -21,10 +21,14 @@ class QuestionsPanel extends Component {
     this.searchQuestions();
   };
 
-  searchQuestions = (searchValue) => {
+  searchQuestions = (searchValue, options) => {
+    console.log(`React ${(searchValue, options)}`);
     axios
       .get(`http://localhost:3000/question/search`, {
-        params: searchValue,
+        params: {
+          searchValue,
+          options,
+        },
       })
       .then((r) => {
         this.setState({ questions: r.data });

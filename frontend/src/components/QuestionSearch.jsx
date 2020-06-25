@@ -3,6 +3,7 @@ import React, { Component } from "react";
 class QuestionSearch extends Component {
   state = {
     searchValue: "",
+    tagValue: "",
   };
 
   handleChange = (event) => {
@@ -28,10 +29,10 @@ class QuestionSearch extends Component {
             <span className="refresh-icon input-group-prepend">
               <button
                 onClick={this.refreshClicked}
-                className="btn btn-secondary"
+                className="btn btn-primary"
                 type="button"
               >
-                Refresh
+                &#x21bb;
               </button>
             </span>
             <input
@@ -48,6 +49,30 @@ class QuestionSearch extends Component {
               </button>
             </span>
           </div>
+          <br />
+          <span className="refresh-icon input-group-prepend d-inline">
+            <button
+              onClick={() => {
+                this.props.searchQuestions(this.state.tagValue);
+              }}
+              className="btn btn-primary mb-1"
+              type="button"
+            >
+              &#x21bb;
+            </button>
+          </span>
+          <input
+            style={{ borderRadius: "0px 50px 50px 0px" }}
+            type="text"
+            name="tag"
+            className="form-control d-inline col-lg-3 col-md-3 col-sm-3 col-xs-3 center-align"
+            onChange={(e) => {
+              this.setState({ tagValue: e.target.value });
+              this.props.searchQuestions(e.target.value, "tag");
+            }}
+            value={this.state.tagValue}
+            placeholder="Search tag..."
+          />
         </form>
       </div>
     );

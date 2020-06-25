@@ -14,21 +14,35 @@ router.route("/search").get(async (req, res) => {
 
   var filter = {};
 
-  if (req.query[0] !== undefined) {
+  // trying to implement search by tag
+
+  if (req.query.searchValue !== undefined && req.query.options !== undefined) {
+    filter = {
+      tags: {
+        $regex: req.query.searchValue,
+        $options: "i",
+      },
+    };
+  } else if (
+    req.query.searchValue !== undefined &&
+    req.query.tag === undefined
+  ) {
     filter = {
       title: {
-        $regex: req.query[0],
+        $regex: req.query.searchValue,
         $options: "i",
       },
     };
   }
 
   await filterQuestions(filter, async (questions) => {
+    console.log(questions);
     await addAuthorNamesToQuestions(questions).then((newQuestions) => {
       console.log(
         `OK /question/search, sending length: ${newQuestions.length}`
       );
       res.status(200).json(newQuestions);
+      // addAuthorNamesToQuestions doesnt work with options query?
     });
   });
 });

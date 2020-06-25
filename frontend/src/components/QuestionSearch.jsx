@@ -21,6 +21,12 @@ class QuestionSearch extends Component {
     this.props.refreshQuestions();
   };
 
+  removeTag = () => {
+    console.log("Remove tag");
+    this.setState({ tagValue: "" });
+    this.props.refreshQuestions();
+  };
+
   render() {
     return (
       <div>
@@ -77,6 +83,7 @@ class QuestionSearch extends Component {
             <button
               type="button"
               className="btn btn-outline-secondary rounded-pill m-1 mb-1 ml-2"
+              onClick={this.removeTag}
             >
               {this.state.tagValue} <span>&times;</span>
             </button>

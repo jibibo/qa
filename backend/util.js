@@ -73,24 +73,24 @@ addAuthorNamesToQuestions = async (questions) => {
 
     for (key in jsonQuestion) {
       // iterate over object's keys
-      console.log(`key: ${key}`);
+      // console.log(`key: ${key}`);
       newQ[key] = jsonQuestion[key];
     }
 
     await filterUsers({ _id: jsonQuestion.authorId }, (matches) => {
       newQ["author"] = matches[0].username;
-      console.log("Author:");
-      console.log(matches[0]);
+      // console.log("Author:");
+      // console.log(matches[0]);
 
-      console.log("newQ:");
-      console.log(newQ);
+      // console.log("newQ:");
+      // console.log(newQ);
 
       newQuestions.push(newQ);
     });
   }
 
-  console.info("Questions with author names:");
-  console.info(newQuestions);
+  // console.info("Questions with author names:");
+  // console.info(newQuestions);
 
   return newQuestions;
 };

@@ -102,26 +102,21 @@ class Question extends Component {
             <>
               <div className="card-body">
                 <ul className="list-group list-group-flush">
-                  <li className="list-group-item">
-                    <div className="d-flex rounded m-2">
-                      <div className="d-inline rounded p-1">
-                        <i
-                          className=""
-                          style={{ color: "green" }}
-                        >up arrow</i>
-                        <span className="m-1">
-                          <b>{i}</b>
-                        </span>
-                        <i
-                          className=""
-                          style={{ color: "red" }}
-                        >down arrow</i>
-                      </div>
-                      <br />
-                      <p className="card-text ml-2" key={i}>
-                        {choice}
-                      </p>
-                    </div>
+                  <li className="list-group-item ">
+                    <button className="btn btn-primary btn-sm" type="button">
+                      <b>↓</b>
+                    </button>
+                    <span>
+                      {" "}
+                      <b>{Math.floor(Math.random() * 1000)}</b>{" "}
+                    </span>
+                    <button className="btn btn-danger btn-sm" type="button">
+                      <b>↑</b>
+                    </button>
+                    <br />
+                    <p className="card-text">
+                      <b>{choice}</b>
+                    </p>
                   </li>
                 </ul>
               </div>

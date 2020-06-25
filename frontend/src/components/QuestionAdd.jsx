@@ -157,9 +157,19 @@ class QuestionAdd extends Component {
                 className="form-control"
                 name="title"
                 value={this.state.titleValue}
-                placeholder="Title (required)"
+                placeholder="Title"
                 onChange={this.handleStateUpdate}
               />
+              <h4
+                style={{
+                  position: "absolute",
+                  top: 60,
+                  left: 15,
+                  color: "black",
+                }}
+              >
+                <b>*</b>
+              </h4>
             </div>
             <div className="form-group">
               <textarea

@@ -18,12 +18,12 @@ class LoadingCards extends Component {
         {this.state.test.map((_, i) => {
           return (
             <div
+              key={i}
               id="LoadingCards"
               className="card"
               style={{
                 borderRadius: 10,
                 backgroundColor: "#d9d9d9",
-                border: "none",
                 height: Math.floor(Math.random() * 300) + 200,
                 opacity: this.state.opacity,
               }}

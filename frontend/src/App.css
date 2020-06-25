@@ -26,3 +26,7 @@ body {
 #Question {
   border-width: 2px;
 }
+
+#LoadingCards {
+  transition: opacity 1s;
+}

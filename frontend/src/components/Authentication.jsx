@@ -33,7 +33,7 @@ class Authentication extends Component {
 
   render() {
     return (
-      <div id="Authentication" className="card">
+      <div id="Authentication" className="card shadow-sm">
         <div className="card-header">
           <ul className="nav nav-tabs card-header-tabs">
             <li className="nav-item">

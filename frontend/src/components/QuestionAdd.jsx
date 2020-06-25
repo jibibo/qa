@@ -144,7 +144,7 @@ class QuestionAdd extends Component {
 
   render() {
     return (
-      <div id="QuestionAdd" className="card">
+      <div id="QuestionAdd" className="card shadow-sm">
         <div className="card-header">
           <h5 className="d-inline">Add question</h5>
         </div>

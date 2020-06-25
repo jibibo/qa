@@ -6,6 +6,8 @@ import QuestionCard from "./QuestionCard";
 import Question from "./Question";
 import QuestionSearch from "./QuestionSearch";
 
+import LoadingCards from "./LoadingCards";
+
 class QuestionsPanel extends Component {
   state = {
     showQuestion: null,
@@ -64,7 +66,7 @@ class QuestionsPanel extends Component {
         })}
       </div>
     ) : (
-      <p>Nothing here (yet)!</p>
+      <LoadingCards />
     );
   };
 

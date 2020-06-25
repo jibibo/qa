@@ -58,7 +58,7 @@ class QuestionSearch extends Component {
               className="btn btn-primary mb-1"
               type="button"
             >
-              &#x21bb;
+              ☑
             </button>
           </span>
           <input
@@ -73,6 +73,14 @@ class QuestionSearch extends Component {
             value={this.state.tagValue}
             placeholder="Search tag..."
           />
+          {this.state.tagValue ? (
+            <button
+              type="button"
+              className="btn btn-outline-secondary rounded-pill m-1 mb-1 ml-2"
+            >
+              {this.state.tagValue} <span>&times;</span>
+            </button>
+          ) : null}
         </form>
       </div>
     );

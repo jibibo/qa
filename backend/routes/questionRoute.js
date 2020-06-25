@@ -18,10 +18,7 @@ router.route("/search").get(async (req, res) => {
 
   if (req.query.searchValue !== undefined && req.query.options !== undefined) {
     filter = {
-      tags: {
-        $regex: req.query.searchValue,
-        $options: "i",
-      },
+      tags: req.query.searchValue,
     };
   } else if (
     req.query.searchValue !== undefined &&

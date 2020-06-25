@@ -57,6 +57,7 @@ class QuestionsPanel extends Component {
               key={question._id}
               question={question}
               answers={Math.floor(Math.random() * 6)}
+              searchQuestions={this.searchQuestions}
               onShowQuestion={this.handleShowQuestion}
             />
           );

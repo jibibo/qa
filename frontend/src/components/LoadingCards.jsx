@@ -25,6 +25,7 @@ class LoadingCards extends Component {
                 borderRadius: 10,
                 backgroundColor: "#d9d9d9",
                 height: Math.floor(Math.random() * 300) + 200,
+                border: "none",
                 opacity: this.state.opacity,
               }}
             >

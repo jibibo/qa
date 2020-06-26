@@ -107,19 +107,25 @@ class Register extends Component {
     return (
       <div id="Register">
         <form onSubmit={this.handleSubmit} autoComplete="off">
+          <small className="form-text text-white mb-1">Username *</small>
           <div className="form-group" style={{ borderRadius: "15px" }}>
             <input
               type="text"
               className="form-control"
+              style={{ backgroundColor: "rgb(33, 37, 41)", border: "none" }}
               value={this.state.usernameValue}
               placeholder="Username"
               onChange={this.handleUsernameUpdate}
             />
           </div>
           <div className="form-group">
+            <small className="form-text text-white mb-1">Email</small>
             <div className="input-group">
               <div className="input-group-prepend">
-                <div className="input-group-text">
+                <div
+                  className="input-group-text"
+                  style={{ backgroundColor: "rgb(33, 37, 41)", border: "none" }}
+                >
                   <input
                     type="checkbox"
                     checked={this.state.withEmail}
@@ -130,6 +136,7 @@ class Register extends Component {
               <input
                 type="text"
                 className="form-control"
+                style={{ backgroundColor: "rgb(33, 37, 41)", border: "none" }}
                 value={this.state.emailValue}
                 placeholder="E-mail address"
                 onChange={this.handleEmailUpdate}
@@ -141,6 +148,7 @@ class Register extends Component {
             <input
               type="password"
               className="form-control"
+              style={{ backgroundColor: "rgb(33, 37, 41)", border: "none" }}
               value={this.state.passwordValue}
               placeholder="Password"
               autoComplete="off"
@@ -151,6 +159,7 @@ class Register extends Component {
             <input
               type="password"
               className="form-control"
+              style={{ backgroundColor: "rgb(33, 37, 41)", border: "none" }}
               value={this.state.confirmPasswordValue}
               placeholder="Confirm password"
               autoComplete="off"
@@ -170,7 +179,12 @@ class Register extends Component {
             {this.state.dangerAlertText}
           </div>
           <div>
-            <input type="submit" className="btn btn-primary" value="Register" />
+            <input
+              type="submit"
+              className="btn text-white"
+              style={{ backgroundColor: "#121517" }}
+              value="Register"
+            />
           </div>
         </form>
       </div>

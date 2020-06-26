@@ -126,7 +126,11 @@ class QuestionAdd extends Component {
         ref={(input) => {
           this.choiceRef = input;
         }}
-        className="form-control"
+        className="form-control mt-1"
+        style={{
+          backgroundColor: "rgb(33, 37, 41)",
+          border: "none",
+        }}
         name="choices"
         value={this.state.choicesValue[i]}
         placeholder="Choices"
@@ -152,28 +156,28 @@ class QuestionAdd extends Component {
         <div className="card-body">
           <form onSubmit={this.handleSubmit} autoComplete="off">
             <div className="form-group">
+              <small className="form-text text-white mb-1">Title *</small>
               <input
                 type="text"
                 className="form-control"
+                style={{
+                  backgroundColor: "rgb(33, 37, 41)",
+                  border: "none",
+                }}
                 name="title"
                 value={this.state.titleValue}
                 placeholder="Title"
                 onChange={this.handleStateUpdate}
               />
-              <h4
-                style={{
-                  position: "absolute",
-                  top: 60,
-                  left: 15,
-                  color: "white",
-                }}
-              >
-                <b>*</b>
-              </h4>
             </div>
             <div className="form-group">
+              <small className="form-text text-white mb-1">Description</small>
               <textarea
                 className="form-control"
+                style={{
+                  backgroundColor: "rgb(33, 37, 41)",
+                  border: "none",
+                }}
                 name="description"
                 value={this.state.descriptionValue}
                 placeholder="Description"
@@ -188,10 +192,12 @@ class QuestionAdd extends Component {
               You already used <b>{this.state.duplicateTag}</b>!
             </div>
             <div className="form-group ">
+              <small className="form-text text-white mb-1">Choices</small>
               {this.displayChoicesInput()}
               <button
                 type="button"
                 className="close"
+                style={{ outline: "none" }}
                 aria-label="Close"
                 onClick={this.addChoicesInput}
               >
@@ -207,7 +213,7 @@ class QuestionAdd extends Component {
                   <button
                     key={tag}
                     type="button"
-                    className="btn btn-outline-secondary rounded-pill m-1"
+                    className="btn btn-outline-light rounded-pill m-1"
                     onClick={() => this.removeTag(tag)}
                   >
                     {tag} <span>&times;</span>
@@ -216,9 +222,14 @@ class QuestionAdd extends Component {
               })}
             </div>
             <div className="form-group">
+              <small className="form-text text-white mb-1">Tags</small>
               <input
                 type="text"
                 className="form-control"
+                style={{
+                  backgroundColor: "rgb(33, 37, 41)",
+                  border: "none",
+                }}
                 name="addTag"
                 placeholder="Add tags (add with space)"
                 onKeyPress={this.handleStateUpdate}
@@ -234,7 +245,8 @@ class QuestionAdd extends Component {
               <input
                 disabled={this.state.titleValue ? false : true}
                 type="submit"
-                className="btn btn-primary"
+                className="btn text-white"
+                style={{ backgroundColor: "#121517" }}
                 value="Ask!"
               />
             </div>

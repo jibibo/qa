@@ -20,10 +20,9 @@ class LoadingCards extends Component {
             <div
               key={i}
               id="LoadingCards"
-              className="card"
+              className="card bg-dark"
               style={{
                 borderRadius: 10,
-                backgroundColor: "#d9d9d9",
                 height: Math.floor(Math.random() * 300) + 200,
                 border: "none",
                 opacity: this.state.opacity,
@@ -32,7 +31,10 @@ class LoadingCards extends Component {
               <div className="card-body">
                 <div
                   className="card-title"
-                  style={{ borderRadius: 10, backgroundColor: "#c9c9c9" }}
+                  style={{
+                    borderRadius: 10,
+                    backgroundColor: "#212529",
+                  }}
                 >
                   <span>&#8203;</span>
                 </div>
@@ -40,7 +42,7 @@ class LoadingCards extends Component {
                   style={{
                     borderRadius: 10,
                     marginBottom: "10px",
-                    backgroundColor: "#d4d4d4",
+                    backgroundColor: "#2b3036",
                     display: "inline-block",
                     width: 150,
                   }}
@@ -51,7 +53,7 @@ class LoadingCards extends Component {
                   style={{
                     borderRadius: 10,
                     marginBottom: "10px",
-                    backgroundColor: "#a3a3a3",
+                    backgroundColor: "#1e2226",
                     display: "inline-block",
                     width: 100,
                   }}
@@ -62,7 +64,7 @@ class LoadingCards extends Component {
                   style={{
                     borderRadius: 10,
                     marginBottom: "10px",
-                    backgroundColor: "#b8b8b8",
+                    backgroundColor: "#24292e",
                     display: "inline-block",
                     width: 170,
                   }}
@@ -72,7 +74,7 @@ class LoadingCards extends Component {
                 <div
                   style={{
                     borderRadius: 10,
-                    backgroundColor: "#a3a3a3",
+                    backgroundColor: "#1a1e21",
                     display: "inline-block",
                     width: 90,
                   }}
@@ -82,7 +84,7 @@ class LoadingCards extends Component {
                 <div
                   style={{
                     borderRadius: 10,
-                    backgroundColor: "#a3a3a3",
+                    backgroundColor: "#242a2e",
                     width: 35,
                     display: "inline-block",
                     float: "right",

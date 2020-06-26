@@ -13,9 +13,11 @@ class LogIn extends Component {
       <div id="LogIn">
         <form autoComplete="off">
           <div className="form-group">
+            <small className="form-text text-white mb-1">Username</small>
             <input
               type="text"
               className="form-control"
+              style={{ backgroundColor: "rgb(33, 37, 41)", border: "none" }}
               name="username"
               value={this.state.usernameValue}
               placeholder="Username"
@@ -25,9 +27,12 @@ class LogIn extends Component {
             />
           </div>
           <div className="form-group">
+            <small className="form-text text-white mb-1">Password</small>
+
             <input
               type="password"
               className="form-control"
+              style={{ backgroundColor: "rgb(33, 37, 41)", border: "none" }}
               name="password"
               value={this.state.passwordValue}
               placeholder="Password"
@@ -37,7 +42,12 @@ class LogIn extends Component {
             />
           </div>
           <div>
-            <input type="submit" className="btn btn-primary" value="Log in" />
+            <input
+              type="submit"
+              className="btn text-white"
+              style={{ backgroundColor: "#121517" }}
+              value="Log in"
+            />
           </div>
         </form>
       </div>

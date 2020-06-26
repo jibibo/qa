@@ -35,7 +35,8 @@ class QuestionSearch extends Component {
             <span className="refresh-icon input-group-prepend">
               <button
                 onClick={this.refreshClicked}
-                className="btn btn-primary"
+                className="btn text-white"
+                style={{ backgroundColor: "#121517" }}
                 type="button"
               >
                 &#x21bb;
@@ -45,12 +46,17 @@ class QuestionSearch extends Component {
               type="text"
               name="question"
               className="form-control"
+              style={{ backgroundColor: "#121517", border: "none" }}
               onChange={this.handleChange}
               value={this.state.searchValue}
               placeholder="Search questions..."
             />
             <span className="input-group-append">
-              <button className="btn btn-primary" type="button">
+              <button
+                className="btn text-white"
+                style={{ backgroundColor: "#121517" }}
+                type="button"
+              >
                 Search
               </button>
             </span>
@@ -61,7 +67,14 @@ class QuestionSearch extends Component {
               onClick={() => {
                 this.props.searchQuestions(this.state.tagValue);
               }}
-              className="btn btn-primary mb-1"
+              className="btn"
+              style={{
+                backgroundColor: "#121517",
+                position: "relative",
+                bottom: 2.5,
+                height: "38px",
+                width: "38px",
+              }}
               type="button"
             >
               ☑
@@ -72,6 +85,7 @@ class QuestionSearch extends Component {
             type="text"
             name="tag"
             className="form-control d-inline col-lg-3 col-md-3 col-sm-3 col-xs-3 center-align"
+            style={{ backgroundColor: "#121517", border: "none" }}
             onChange={(e) => {
               this.setState({ tagValue: e.target.value });
               this.props.searchQuestions(e.target.value, "tag");

@@ -17,7 +17,10 @@ class App extends Component {
             {/* <div className="page-header">
               <Navbar />
             </div> */}
-            <div className="jumbotron shadow-lg">
+            <div
+              style={{ backgroundColor: "#212529" }}
+              className="jumbotron shadow-lg"
+            >
               <div className="row">
                 <div className="col-md-8">
                   <QuestionsPanel showSearchBar={true} />

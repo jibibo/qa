@@ -144,9 +144,9 @@ class QuestionAdd extends Component {
 
   render() {
     return (
-      <div id="QuestionAdd" className="card shadow-sm">
+      <div id="QuestionAdd" className="card bg-dark shadow-sm">
         <div className="card-header">
-          <h5 className="d-inline">Add question</h5>
+          <h5 className="d-inline text-white">Add question</h5>
         </div>
 
         <div className="card-body">
@@ -165,7 +165,7 @@ class QuestionAdd extends Component {
                   position: "absolute",
                   top: 60,
                   left: 15,
-                  color: "black",
+                  color: "white",
                 }}
               >
                 <b>*</b>
@@ -195,7 +195,9 @@ class QuestionAdd extends Component {
                 aria-label="Close"
                 onClick={this.addChoicesInput}
               >
-                <span aria-hidden="true">&#43;</span>
+                <span aria-hidden="true" className="text-white">
+                  &#43;
+                </span>
               </button>
               <br />
             </div>

@@ -33,13 +33,19 @@ class Authentication extends Component {
 
   render() {
     return (
-      <div id="Authentication" className="card shadow-sm">
+      <div id="Authentication" className="card shadow-sm bg-dark">
         <div className="card-header">
           <ul className="nav nav-tabs card-header-tabs">
             <li className="nav-item">
               <button
                 type="button"
-                className={`nav-link ${this.state.showLogIn ? "active" : ""}`}
+                className={`nav-link ${
+                  this.state.showLogIn ? "active" : ""
+                } text-white`}
+                style={{
+                  border: "none",
+                  backgroundColor: this.state.showLogIn ? "#121517" : "#212529",
+                }}
                 onClick={this.showLogIn}
               >
                 Log in
@@ -50,7 +56,13 @@ class Authentication extends Component {
                 type="button"
                 className={`nav-link ${
                   this.state.showRegister ? "active" : ""
-                }`}
+                } text-white`}
+                style={{
+                  border: "none",
+                  backgroundColor: this.state.showRegister
+                    ? "#121517"
+                    : "#212529",
+                }}
                 onClick={this.showRegister}
               >
                 Register

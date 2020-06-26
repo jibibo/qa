@@ -49,10 +49,8 @@ class QuestionCard extends Component {
   };
 
   getCardClasses = () => {
-    return `card mt-2 ${this.state.hovered ? "shadow " : ""}${
+    return `card mt-2 ${this.state.hovered ? "shadow-sm " : ""}${
       this.isOldQuestion() ? "bg-dark text-white " : ""
-    }${
-      this.props.question.choices.length ? "border-success" : "border-danger"
     }`;
   };
 
@@ -64,65 +62,86 @@ class QuestionCard extends Component {
 
   render() {
     return (
-      <div
-        id="QuestionCard"
-        className={this.getCardClasses()}
-        style={{ borderRadius: "10px" }}
-      >
-        <div className="card-header">
-          <button className={this.getAuthorButtonClasses()}>
-            <b>{this.props.question.author}</b>
-          </button>
-          <span title={this.formatDateTitle()} className="float-right">
-            {this.formatDate()}
-          </span>
-        </div>
-
+      // ${this.props.question.choices.length ? "" : ""}
+      <>
         <div
-          className="card-body"
-          onMouseEnter={this.handleMouseEnter}
-          onMouseLeave={this.handleMouseLeave}
-          style={{ cursor: "pointer" }}
-          onClick={() => this.props.onShowQuestion(this.props.question)}
+          id="QuestionCard"
+          className={this.getCardClasses()}
+          style={{ borderRadius: "10px" }}
         >
-          <h4 className="card-title">{this.props.question.title}</h4>
-          <p className="textInheritAll card-text">
-            {this.props.question.description}
-          </p>
-        </div>
-
-        {this.props.question.tags.length > 0 ? (
-          <div id="QuestionCardTags" className="card-footer">
-            {this.props.question.tags.map((tag) => {
-              // tags here
-
-              return (
-                <a
-                  href="#"
-                  onClick={() => this.props.searchQuestions(tag, "tag")}
-                  key={tag}
-                  className="badge badge-secondary text-light m-1"
-                >
-                  {tag}
-                </a>
-              );
-            })}
-          </div>
-        ) : null}
-
-        <div id="QuestionCardChoices" className="card-footer" onClick={null}>
-          <span
-            className={
-              this.props.question.choices.length
-                ? "badge badge-success"
-                : "badge badge-danger"
-            }
+          <div
+            className="shadow-sm"
+            style={{
+              borderBottomRightRadius: "30%",
+              borderTopLeftRadius: "10px",
+              position: "absolute",
+              zIndex: 1,
+              right: -2,
+              bottom: -2,
+              backgroundColor: this.props.question.choices.length
+                ? "#4CBB17"
+                : "#D5212E",
+              width: 40,
+              height: 40,
+            }}
           >
-            {this.props.question.choices.length}
-          </span>{" "}
-          choices
+            <span>&#8203;</span>
+          </div>
+          <div className="card-header">
+            <button className={this.getAuthorButtonClasses()}>
+              <b>{this.props.question.author}</b>
+            </button>
+            <span title={this.formatDateTitle()} className="float-right">
+              {this.formatDate()}
+            </span>
+          </div>
+
+          <div
+            className="card-body"
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
+            style={{ cursor: "pointer" }}
+            onClick={() => this.props.onShowQuestion(this.props.question)}
+          >
+            <h4 className="card-title">{this.props.question.title}</h4>
+            <p className="textInheritAll card-text">
+              {this.props.question.description}
+            </p>
+          </div>
+
+          {this.props.question.tags.length > 0 ? (
+            <div id="QuestionCardTags" className="card-footer">
+              {this.props.question.tags.map((tag) => {
+                // tags here
+
+                return (
+                  <a
+                    href="#"
+                    onClick={() => this.props.searchQuestions(tag, "tag")}
+                    key={tag}
+                    className="badge badge-secondary text-light m-1"
+                  >
+                    {tag}
+                  </a>
+                );
+              })}
+            </div>
+          ) : null}
+
+          <div id="QuestionCardChoices" className="card-footer" onClick={null}>
+            <span
+              className={
+                this.props.question.choices.length
+                  ? "badge badge-success"
+                  : "badge badge-danger"
+              }
+            >
+              {this.props.question.choices.length}
+            </span>{" "}
+            choices
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }

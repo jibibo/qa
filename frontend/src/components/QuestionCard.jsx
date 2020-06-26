@@ -50,13 +50,13 @@ class QuestionCard extends Component {
 
   getCardClasses = () => {
     return `card mt-2 ${this.state.hovered ? "shadow-sm " : ""}${
-      this.isOldQuestion() ? "bg-dark text-white " : ""
+      this.isOldQuestion() ? "bg-dark text-white " : "bg-secondary text-white"
     }`;
   };
 
   getAuthorButtonClasses = () => {
     return `btn btn-link btn-sm ${
-      this.isOldQuestion() ? "text-light" : "text-dark"
+      this.isOldQuestion() ? "text-light" : "text-light"
     }`;
   };
 

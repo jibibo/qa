@@ -115,14 +115,13 @@ class QuestionCard extends Component {
                 // tags here
 
                 return (
-                  <a
-                    href="#"
+                  <h6
                     onClick={() => this.props.searchQuestions(tag, "tag")}
                     key={tag}
                     className="badge badge-secondary text-light m-1"
                   >
                     {tag}
-                  </a>
+                  </h6>
                 );
               })}
             </div>

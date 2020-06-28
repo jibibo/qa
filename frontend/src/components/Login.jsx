@@ -11,7 +11,7 @@ class LogIn extends Component {
   render() {
     return (
       <div id="LogIn">
-        <form autoComplete="off">
+        <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
           <div className="form-group">
             <small className="form-text text-white mb-1">Username</small>
             <input

@@ -31,7 +31,7 @@ class QuestionSearch extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit} autoComplete="off">
-          <div className="input-group">
+          <div className="input-group shadow-lg">
             <span className="refresh-icon input-group-prepend">
               <button
                 onClick={this.refreshClicked}
@@ -62,46 +62,50 @@ class QuestionSearch extends Component {
             </span>
           </div>
           <br />
-          <span className="refresh-icon input-group-prepend d-inline">
-            <button
-              onClick={() => {
-                this.props.searchQuestions(this.state.tagValue);
-              }}
-              className="btn"
+          <div className="input-group">
+            <span className="refresh-icon input-group-prepend">
+              <button
+                onClick={() => {
+                  this.props.searchQuestions(this.state.tagValue);
+                }}
+                className="btn"
+                style={{
+                  backgroundColor: "#121517",
+                }}
+                type="button"
+              >
+                ☑
+              </button>
+            </span>
+            <input
+              type="text"
+              name="tag"
+              className="form-control shadow-lg col-lg-3 col-md-3 col-sm-3 col-xs-3"
               style={{
+                borderRadius: "0px 50px 50px 0px",
                 backgroundColor: "#121517",
-                position: "relative",
-                bottom: 2.5,
-                height: "38px",
-                width: "38px",
+                border: "none",
+                height: "auto",
               }}
-              type="button"
-            >
-              ☑
-            </button>
-          </span>
-          <input
-            style={{ borderRadius: "0px 50px 50px 0px" }}
-            type="text"
-            name="tag"
-            className="form-control d-inline col-lg-3 col-md-3 col-sm-3 col-xs-3 center-align"
-            style={{ backgroundColor: "#121517", border: "none" }}
-            onChange={(e) => {
-              this.setState({ tagValue: e.target.value });
-              this.props.searchQuestions(e.target.value, "tag");
-            }}
-            value={this.state.tagValue}
-            placeholder="Search tag..."
-          />
-          {this.state.tagValue ? (
-            <button
-              type="button"
-              className="btn btn-outline-secondary rounded-pill m-1 mb-1 ml-2"
-              onClick={this.removeTag}
-            >
-              {this.state.tagValue} <span>&times;</span>
-            </button>
-          ) : null}
+              onChange={(e) => {
+                this.setState({ tagValue: e.target.value });
+                this.props.searchQuestions(e.target.value, "tag");
+              }}
+              value={this.state.tagValue}
+              placeholder="Search tag..."
+            />
+            {this.state.tagValue ? (
+              <span className="input-group-append">
+                <button
+                  type="button"
+                  className="btn btn-outline-light rounded-pill m-1 mb-1 ml-2"
+                  onClick={this.removeTag}
+                >
+                  {this.state.tagValue} <span>&times;</span>
+                </button>
+              </span>
+            ) : null}
+          </div>
         </form>
       </div>
     );
